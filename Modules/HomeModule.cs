@@ -8,7 +8,7 @@ namespace UltimateRoadTripMachineNS
     public HomeModule()
     {
       Get["/"] = _ => {
-        return View["header.cshtml"];
+        return View["index.cshtml"];
       };
     }
   }
