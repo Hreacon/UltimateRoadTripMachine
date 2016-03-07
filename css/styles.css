@@ -35,11 +35,11 @@ html {
       background-color: #47BCEB; }
 
 #map_canvas {
-  height: 68vh;
+  max-height: 100%;
   width: 100%; }
   @media (max-width: 770px) {
     #map_canvas {
-      height: 44vh; } }
+      max-height: 100%; } }
 
 #map_canvas img {
   max-width: 100%; }
@@ -64,7 +64,7 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  height: 600px; }
+  max-height: 100%; }
   .map::after {
     clear: both;
     content: "";
@@ -80,24 +80,23 @@ body {
     clear: both;
     content: "";
     display: table; }
-
-.img {
-  height: 300px;
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 31.76157%;
-  margin-top: 10px; }
-  .img:last-child {
-    margin-right: 0; }
-  .img:hover {
-    border: 2px solid white; }
-  @media (max-width: 1080px) {
-    .img {
-      width: 49%; } }
-  @media (max-width: 770px) {
-    .img {
-      width: 100%; } }
+  .photos .img {
+    height: 300px;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+    margin-top: 2px; }
+    .photos .img:last-child {
+      margin-right: 0; }
+    .photos .img:hover {
+      border: 2px solid white; }
+    @media (max-width: 1080px) {
+      .photos .img {
+        width: 49%; } }
+    @media (max-width: 770px) {
+      .photos .img {
+        width: 100%; } }
 
 .photo1 {
   background-image: url(../img/alvard1.jpeg); }
@@ -177,7 +176,7 @@ footer {
         display: flex;
         flex: 3; }
 
-.img {
+.photos .img {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 3px; }
