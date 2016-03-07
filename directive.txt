@@ -66,6 +66,31 @@ RoadTrip Class:
             getall
             Find - get a road trip by id
             deleteall
+            
+Database Tables:
+    search_terms
+      id int identity(1,1)
+      term varchar
+    images
+      id int identity(1,1)
+      link varchar
+    results
+      id int identity(1,1)
+      term_id int
+      image_id int
+      
+Scrubber Class:
+  Methods:
+    Static Methods:
+      Search - Search the database for a search term and the images
+        return results as a list of strings (urls for images)
+        if the search hasn't been done before, call Scrape(term), save the results to the database and return those results.
+      AddTerm - Store the search term in the database
+      AddImage - store the image in the database and store the relationship in the database
+    Methods Nick Wrote:
+      GetPageContent - Downloads a website into a string. DONE
+      GetList - Retrieves a list of strings separated from a large body of text by delimiters. DONE
+      CheckLink - Checks if link contains any word in the string command and also make sure it doesn't include the word thumb
 
 Views:
 List of road trips
