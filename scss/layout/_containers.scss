@@ -1,0 +1,45 @@
+body {
+  background-color: #333;
+}
+.map {
+  @include outer-container;
+
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  @include outer-container;
+}
+.img {
+  height: 300px;
+  width: 30vw;
+  margin-top: 10px;
+  @media #{$brk-narrow} {
+    width: 100%;
+  }
+}
+.photo1 {
+  background-image: url(../img/alvard1.jpeg);
+  @extend %image-position;
+}
+.photo2 {
+  background-image: url(../img/alvard2.jpeg);
+  @extend %image-position;
+}
+.photo3 {
+  background-image: url(../img/alvard3.jpg);
+  @extend %image-position;
+}
+.photo4 {
+  background-image: url(../img/alvard4.jpg);
+  @extend %image-position;
+}
+.photo5 {
+  background-image: url(../img/alvard5.jpg);
+  @extend %image-position;
+}
+.photo6 {
+  background-image: url(../img/alvard6.jpg);
+  @extend %image-position;
+}
