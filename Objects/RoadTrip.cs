@@ -124,6 +124,41 @@ namespace UltimateRoadTripMachineNS.Objects
         conn.Close();
       }
     }
+      public static RoadTrip Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrip WHERE id = @RoadTripId;", conn);
+      SqlParameter roadTripIdParameter = new SqlParameter();
+      roadTripIdParameter.ParameterName = "@RoadTripId";
+      roadTripIdParameter.Value = id;
+      cmd.Parameters.Add(roadTripIdParameter);
+      rdr = cmd.ExecuteReader();
+
+      int foundRoadTripId = 0;
+      string foundRoadTripName = null;
+      string foundRoadTripDescription = null;
+
+      while(rdr.Read())
+      {
+        foundRoadTripId = rdr.GetInt32(0);
+        foundRoadTripName = rdr.GetString(1);
+        foundRoadTripDescription = rdr.GetString(2);
+      }
+      RoadTrip foundRoadTrip = new RoadTrip(foundRoadTripName, foundRoadTripDescription, foundRoadTripId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundRoadTrip;
+    }
     
     public void Update()
     {

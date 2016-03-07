@@ -47,6 +47,20 @@ namespace UltimateRoadTripMachineNS
     }
     
     [Fact]
+    public void Test_Find_FindsRoadTripInDataBase()
+    {
+      //Arrange
+      RoadTrip testRoadTrip = new RoadTrip("awsome adventure", "awesome adventure to somewhere");
+      testRoadTrip.Save();
+
+      //Act
+      RoadTrip foundRoadTrip = RoadTrip.Find(testRoadTrip.GetId());
+
+      //Assert
+      Assert.Equal(testRoadTrip, foundRoadTrip);
+    }
+    
+    [Fact]
     public void Test_UpdateRoadTripName()
     {
         RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
