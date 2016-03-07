@@ -1,0 +1,14 @@
+POST EXAMPLE
+$.post(href, {
+        command: command 
+      }, function(data, status) {
+          $(".data").text("Command: " + data);
+      }
+    );
+    
+GET EXAMPLE
+$.ajax(href, {
+      success: function(data, status) {
+        $(".data").text("Command: " + data);
+      }
+    });
