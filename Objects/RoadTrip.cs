@@ -6,7 +6,7 @@ using JensenNS.Objects;
 
 namespace UltimateRoadTripMachineNS.Objects
 {
-  public class RoadTrip : DBHandler
+  public class RoadTrip
   {
     public RoadTrip()
     {
