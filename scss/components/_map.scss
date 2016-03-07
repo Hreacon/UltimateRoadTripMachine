@@ -1,6 +1,9 @@
 #map_canvas {
-  height: 400px;
+  height: 68vh;
   width: 100%;
+  @media #{$brk-narrow} {
+    height: 44vh;
+  }
 }
 
 #map_canvas img {

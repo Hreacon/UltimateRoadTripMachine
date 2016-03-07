@@ -3,6 +3,8 @@ body {
 }
 .map {
   @include outer-container;
+  height: 600px;
+
 
 }
 
@@ -13,10 +15,14 @@ body {
 }
 .img {
   height: 300px;
-  width: 30vw;
+  @include span-columns(4);
   margin-top: 10px;
+  &:hover {
+    border: 2px solid white;
+  }
   @media #{$brk-narrow} {
     width: 100%;
+    
   }
 }
 .photo1 {

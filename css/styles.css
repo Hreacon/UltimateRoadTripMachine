@@ -35,8 +35,11 @@ html {
       background-color: #47BCEB; }
 
 #map_canvas {
-  height: 400px;
+  height: 68vh;
   width: 100%; }
+  @media (max-width: 770px) {
+    #map_canvas {
+      height: 44vh; } }
 
 #map_canvas img {
   max-width: 100%; }
@@ -60,7 +63,8 @@ body {
 .map {
   max-width: 1200px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  height: 600px; }
   .map::after {
     clear: both;
     content: "";
@@ -79,8 +83,15 @@ body {
 
 .img {
   height: 300px;
-  width: 30vw;
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
   margin-top: 10px; }
+  .img:last-child {
+    margin-right: 0; }
+  .img:hover {
+    border: 2px solid white; }
   @media (max-width: 770px) {
     .img {
       width: 100%; } }
@@ -197,6 +208,6 @@ a {
 .photo1, .photo2, .photo3, .photo4, .photo5, .photo6 {
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 1px; }
+  margin: 3px; }
 
 /*# sourceMappingURL=styles.css.map */
