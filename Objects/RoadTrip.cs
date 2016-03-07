@@ -199,15 +199,7 @@ namespace UltimateRoadTripMachineNS.Objects
       }
     }
     
-    public static void DeleteAll()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip", conn);
-      cmd.ExecuteNonQuery();
-    }
-    
-  public void Delete()
+    public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -226,6 +218,16 @@ namespace UltimateRoadTripMachineNS.Objects
         conn.Close();
       }
     }
+    
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip", conn);
+      cmd.ExecuteNonQuery();
+    }
+    
+  
     
   } // end class
 } // end namespace

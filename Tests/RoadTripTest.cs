@@ -13,7 +13,7 @@ namespace UltimateRoadTripMachineNS
      {
        DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=road_trip_test;Integrated Security=SSPI;";
      }
-     
+
      [Fact]
     public void Test_DatabaseEmptyAtFirst()
     {
@@ -31,21 +31,21 @@ namespace UltimateRoadTripMachineNS
 
       Assert.Equal(firstRoadTrip, secondRoadTrip);
     }
-    
+
     [Fact]
     public void Test_SaveRoadTripToDatabase()
     {
         RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
         newTrip.Save();
-        
+
          List<RoadTrip> allTrips = RoadTrip.GetAll();
-         
+
          List<RoadTrip> testTrips = new List<RoadTrip>{newTrip};
-         
+
         Assert.Equal(testTrips, allTrips);
-        
+
     }
-    
+
     [Fact]
     public void Test_Find_FindsRoadTripInDataBase()
     {
@@ -59,7 +59,7 @@ namespace UltimateRoadTripMachineNS
       //Assert
       Assert.Equal(testRoadTrip, foundRoadTrip);
     }
-    
+
     [Fact]
     public void Test_UpdateRoadTripName()
     {
@@ -67,10 +67,10 @@ namespace UltimateRoadTripMachineNS
         newTrip.Save();
         newTrip.SetName("Extreme");
         newTrip.Update();
-        
+
         Assert.Equal(newTrip.GetName(), "Extreme");
     }
-    
+
     [Fact]
     public void Test_DeleteRoadTrip()
     {
@@ -78,16 +78,18 @@ namespace UltimateRoadTripMachineNS
         firstTrip.Save();
         RoadTrip secondTrip = new RoadTrip("extreme adventure", "extreme adventure to somewhere");
         secondTrip.Save();
-        
+
         secondTrip.Delete();
         List<RoadTrip> allTrips = RoadTrip.GetAll();
         List<RoadTrip> testTrips = new List<RoadTrip>{firstTrip};
         Assert.Equal(testTrips, allTrips);
     }
-     
+
      public void Dispose()
      {
        RoadTrip.DeleteAll();
+       Destination.DeleteAll();
      }
   }
+
 }
