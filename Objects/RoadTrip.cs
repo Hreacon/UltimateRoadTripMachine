@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using JensenNS.Objects;
 
 namespace UltimateRoadTripMachineNS.Objects
 {
-  public class RoadTrip 
+  public class RoadTrip
   {
         private int _id;
         private string _name;
@@ -53,6 +52,40 @@ namespace UltimateRoadTripMachineNS.Objects
     public void SetDescription(string description)
     {
         _description = description;
+    }
+    
+    public static List<RoadTrip> GetAll()
+    {
+        List<RoadTrip> allTrips = new List<RoadTrip>{};
+        
+        SqlConnection conn = DB.Connection();
+        SqlDataReader rdr = null;
+        conn.Open();
+        
+        SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrip;", conn);
+        rdr = cmd.ExecuteReader();
+        
+        while(rdr.Read())
+        {
+            int id = rdr.GetInt32(0);
+            string name = rdr.GetString(1);
+            string description = rdr.GetString(2);
+            
+            RoadTrip newTrip = new RoadTrip(name, description, id);
+            allTrips.Add(newTrip);
+        }
+        
+        if (rdr != null)
+        {
+            rdr.Close();
+        }
+        if (conn != null)
+        {
+            conn.Close();
+        }
+        
+        return allTrips;
+        
     }
     
   } // end class
