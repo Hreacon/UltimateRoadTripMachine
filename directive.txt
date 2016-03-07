@@ -78,3 +78,8 @@ Past MVP:
 Can we make scrolling the website “snap” a little to certain places?
 gallery - store the url of all the pictures and videos found. Need a C# class and some javascript
 Have a way to store cars and pictures and show the rides used to go on the roadtrip
+
+
+Other notes:
+
+Google Developer API key AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA
