@@ -70,6 +70,20 @@ namespace UltimateRoadTripMachineNS
         
         Assert.Equal(newTrip.GetName(), "Extreme");
     }
+    
+    [Fact]
+    public void Test_DeleteRoadTrip()
+    {
+        RoadTrip firstTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
+        firstTrip.Save();
+        RoadTrip secondTrip = new RoadTrip("extreme adventure", "extreme adventure to somewhere");
+        secondTrip.Save();
+        
+        secondTrip.Delete();
+        List<RoadTrip> allTrips = RoadTrip.GetAll();
+        List<RoadTrip> testTrips = new List<RoadTrip>{firstTrip};
+        Assert.Equal(testTrips, allTrips);
+    }
      
      public void Dispose()
      {

@@ -207,5 +207,25 @@ namespace UltimateRoadTripMachineNS.Objects
       cmd.ExecuteNonQuery();
     }
     
+  public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip WHERE id = @RoadTripId", conn);
+
+      SqlParameter roadTripIdParameter = new SqlParameter();
+      roadTripIdParameter.ParameterName = "@RoadTripId";
+      roadTripIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(roadTripIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+    
   } // end class
 } // end namespace
