@@ -67,7 +67,7 @@ RoadTrip Class:
             Getters/Setters - done
             save - done
             optional update - done
-            getdestinations
+            getdestinations - done
             Delete - done
             change order, change the order of the events. arguments, id of item to change, place to put it in. - do this later
         Static Methods
