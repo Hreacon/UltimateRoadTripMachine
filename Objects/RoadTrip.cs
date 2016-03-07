@@ -88,5 +88,50 @@ namespace UltimateRoadTripMachineNS.Objects
         
     }
     
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO roadtrip (name, description) OUTPUT INSERTED.id VALUES (@RoadTripName, @RoadTripDescription);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@RoadTripName";
+      nameParameter.Value = this.GetName();
+      
+      SqlParameter descriptionParameter = new SqlParameter();
+      descriptionParameter.ParameterName = "@RoadTripDescription";
+      descriptionParameter.Value = this.GetDescription();
+
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(descriptionParameter);
+
+      rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+    
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip", conn);
+      cmd.ExecuteNonQuery();
+    }
+    
   } // end class
 } // end namespace

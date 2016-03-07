@@ -31,10 +31,23 @@ namespace UltimateRoadTripMachineNS
 
       Assert.Equal(firstRoadTrip, secondRoadTrip);
     }
+    
+    [Fact]
+    public void Test_SaveRoadTripToDatabase()
+    {
+        RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
+        newTrip.Save();
+        
+         List<RoadTrip> allTrips = RoadTrip.GetAll();
+         
+         List<RoadTrip> testTrips = new List<RoadTrip>{newTrip};
+         
+        Assert.Equal(testTrips, allTrips);
+    }
      
      public void Dispose()
      {
-    //    RoadTrip.DeleteAll();
+       RoadTrip.DeleteAll();
      }
   }
 }
