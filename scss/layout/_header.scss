@@ -1,4 +1,4 @@
-header {
+.header {
   background-color: #222;
   nav {
     width: 80%;
@@ -6,10 +6,17 @@ header {
   ul {
     display: flex;
     justify-content: space-around;
-
     margin: 0 auto;
     padding: 34px 0 18px;
       li {
+        a {
+          list-style: none;
+          text-decoration: none;
+          color: white;
+        }
+      i {
+        color: #ffb84d;
+      }
       flex: 1;
       padding: 5px 0;
       font-size: 18px;
@@ -26,11 +33,4 @@ header {
       }
     }
   }
-}
-
-a {
-  list-style: none;
-  text-decoration: none;
-  color: white;
-
 }

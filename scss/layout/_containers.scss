@@ -1,11 +1,10 @@
 body {
   background-color: #333;
 }
+
 .map {
   @include outer-container;
   height: 600px;
-
-
 }
 
 .photos {
@@ -16,36 +15,34 @@ body {
 .img {
   height: 300px;
   @include span-columns(4);
+  @extend %image-position;
   margin-top: 10px;
   &:hover {
     border: 2px solid white;
   }
+  @media #{$brk-medium} {
+    width: 49%;
+  }
   @media #{$brk-narrow} {
     width: 100%;
-    
   }
+
 }
 .photo1 {
   background-image: url(../img/alvard1.jpeg);
-  @extend %image-position;
 }
 .photo2 {
   background-image: url(../img/alvard2.jpeg);
-  @extend %image-position;
 }
 .photo3 {
   background-image: url(../img/alvard3.jpg);
-  @extend %image-position;
 }
 .photo4 {
   background-image: url(../img/alvard4.jpg);
-  @extend %image-position;
 }
 .photo5 {
   background-image: url(../img/alvard5.jpg);
-  @extend %image-position;
 }
 .photo6 {
   background-image: url(../img/alvard6.jpg);
-  @extend %image-position;
 }

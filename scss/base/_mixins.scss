@@ -1,0 +1,25 @@
+@mixin image-container ($width, $height, $url) {
+  width: $width;
+  height: $height;
+  background-color: red;
+
+
+  
+  @media #{$brk-wide} {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    float: none;
+    img {
+    width: 100%;
+    max-height: 100%;
+    }
+    h3 {
+      margin: 0 5vw 5px;
+    }
+    p {
+      padding: 2 20px;
+      margin: 2px 5vw 45px;
+    }
+  }
+}
