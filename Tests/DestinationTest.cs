@@ -71,6 +71,7 @@ namespace UltimateRoadTripMachineNS
       Assert.Equal(newDestination.GetName(), "paradise falls");
   }
 
+
   [Fact]
   public void Test_DeleteDestinationDestination()
   {

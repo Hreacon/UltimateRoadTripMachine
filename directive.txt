@@ -6,7 +6,7 @@ I want the image galleries to extend off to the right if theres enough content. 
 
 In the end you have a road trip that scrolls like its already been completed, just with impersonal images and videos
 
-Save the road trip to a database and be able to see all the road trips in snippets, select them and view the awesome road trips other people have planned 
+Save the road trip to a database and be able to see all the road trips in snippets, select them and view the awesome road trips other people have planned
 Description of service used in MVP form:
 
 Enter start location - IE Portland OR
@@ -48,14 +48,14 @@ Destination Class:
         inorder int
     Methods:
         Non-Static methods:
-            getters/setters
-            save, saves to database weather it needs to insert or ipdate.
-            Optional - separate the update function. I don’t mind what way you choose to do it.
-            delete, deletes the record in the database
+            getters/setters - done
+            save, saves to database weather it needs to insert or update. - done
+            Optional - separate the update function. I don’t mind what way you choose to do it. -done
+            delete, deletes the record in the database - done
         Static methods:
-            getall, gets all destinations
-            find, returns the destination given the id
-            deleteall, deletes all in the table
+            getall, gets all destinations - done
+            find, returns the destination given the id - done
+            deleteall, deletes all in the table - done
 
 RoadTrip Class:
     Properties
@@ -80,7 +80,7 @@ List of road trips
 Landing page / road trip creation page / road trip view page
 The destinations should take up roughly the same size as a screen
 Have small links to edit the destination
-A page for editing the order of the routes 
+A page for editing the order of the routes
 
 Past MVP:
 Can we make scrolling the website “snap” a little to certain places?

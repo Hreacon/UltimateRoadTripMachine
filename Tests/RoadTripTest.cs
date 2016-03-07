@@ -61,6 +61,27 @@ namespace UltimateRoadTripMachineNS
     }
 
     [Fact]
+    public void Test_GetDestinationsOfRoadTrip()
+    {
+      RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
+      newTrip.Save();
+      Console.WriteLine(newTrip.GetName()+" "+newTrip.GetId());
+      Destination firstDestination = new Destination("multnomah falls", 1, newTrip.GetId());
+      firstDestination.Save();
+      Console.WriteLine(firstDestination.GetName()+" "+firstDestination.GetId());
+      Destination secondDestination = new Destination("mt tabor", 2, newTrip.GetId());
+      secondDestination.Save();
+      Console.WriteLine(secondDestination.GetName()+" "+secondDestination.GetId() + " "+ secondDestination.GetRoadTripId());
+
+      List<Destination> testDestinations = new List<Destination> {firstDestination, secondDestination};
+
+      List<Destination> tripDestinations = newTrip.GetDestinations();
+      Console.WriteLine(tripDestinations);
+
+      Assert.Equal(testDestinations, tripDestinations);
+    }
+
+    [Fact]
     public void Test_UpdateRoadTripName()
     {
         RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");

@@ -81,8 +81,8 @@ namespace UltimateRoadTripMachineNS.Objects
         {
             int id = rdr.GetInt32(0);
             string name = rdr.GetString(1);
-            int stop = rdr.GetInt32(2);
-            int roadtrip_id = rdr.GetInt32(3);
+            int roadtrip_id = rdr.GetInt32(2);
+            int stop = rdr.GetInt32(3);
 
             Destination newDestination = new Destination(name, stop, roadtrip_id, id);
             allDestinations.Add(newDestination);
@@ -164,8 +164,9 @@ namespace UltimateRoadTripMachineNS.Objects
       {
         foundDestinationId = rdr.GetInt32(0);
         foundDestinationName = rdr.GetString(1);
-        foundDestinationStop = rdr.GetInt32(2);
-        foundDestinationRoadTripId = rdr.GetInt32(3);
+          foundDestinationRoadTripId = rdr.GetInt32(2);
+        foundDestinationStop = rdr.GetInt32(3);
+
       }
       Destination foundDestination = new Destination(foundDestinationName, foundDestinationStop, foundDestinationRoadTripId, foundDestinationId);
 
@@ -202,7 +203,7 @@ namespace UltimateRoadTripMachineNS.Objects
       NewStopParameter.ParameterName = "@NewStop";
       NewStopParameter.Value = this.GetStop();
       cmd.Parameters.Add(NewStopParameter);
-    
+
 
       SqlParameter NewRoadTripIdParameter = new SqlParameter();
       NewRoadTripIdParameter.ParameterName = "@NewRoadTripId";

@@ -11,12 +11,12 @@ namespace UltimateRoadTripMachineNS.Objects
         private string _name;
         private string _description;
         public RoadTrip(string name, string description, int id = 0)
-    {  
+    {
         _id = id;
         _name = name;
         _description = description;
     }
-    
+
     public override bool Equals(System.Object otherTrip)
     {
         if (!(otherTrip is RoadTrip))
@@ -28,11 +28,11 @@ namespace UltimateRoadTripMachineNS.Objects
             bool IdEquality = this.GetId() == newTrip.GetId();
             bool NameEquality = this.GetName() == newTrip.GetName();
             bool DescriptionEquality = this.GetDescription() == newTrip.GetDescription();
-            
+
             return (IdEquality && NameEquality && DescriptionEquality);
         }
     }
-    
+
     public int GetId()
     {
         return _id;
@@ -53,28 +53,28 @@ namespace UltimateRoadTripMachineNS.Objects
     {
         _description = description;
     }
-    
+
     public static List<RoadTrip> GetAll()
     {
         List<RoadTrip> allTrips = new List<RoadTrip>{};
-        
+
         SqlConnection conn = DB.Connection();
         SqlDataReader rdr = null;
         conn.Open();
-        
+
         SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrip;", conn);
         rdr = cmd.ExecuteReader();
-        
+
         while(rdr.Read())
         {
             int id = rdr.GetInt32(0);
             string name = rdr.GetString(1);
             string description = rdr.GetString(2);
-            
+
             RoadTrip newTrip = new RoadTrip(name, description, id);
             allTrips.Add(newTrip);
         }
-        
+
         if (rdr != null)
         {
             rdr.Close();
@@ -83,11 +83,11 @@ namespace UltimateRoadTripMachineNS.Objects
         {
             conn.Close();
         }
-        
+
         return allTrips;
-        
+
     }
-    
+
     public void Save()
     {
       SqlConnection conn = DB.Connection();
@@ -99,7 +99,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@RoadTripName";
       nameParameter.Value = this.GetName();
-      
+
       SqlParameter descriptionParameter = new SqlParameter();
       descriptionParameter.ParameterName = "@RoadTripDescription";
       descriptionParameter.Value = this.GetDescription();
@@ -159,7 +159,7 @@ namespace UltimateRoadTripMachineNS.Objects
       }
       return foundRoadTrip;
     }
-    
+
     public void Update()
     {
       SqlConnection conn = DB.Connection();
@@ -177,7 +177,7 @@ namespace UltimateRoadTripMachineNS.Objects
       RoadTripIdParameter.ParameterName = "@RoadTripId";
       RoadTripIdParameter.Value = this.GetId();
       cmd.Parameters.Add(RoadTripIdParameter);
-      
+
       SqlParameter NewDescriptionParameter = new SqlParameter();
       NewDescriptionParameter.ParameterName = "@NewDescription";
       NewDescriptionParameter.Value = this.GetDescription();
@@ -198,7 +198,40 @@ namespace UltimateRoadTripMachineNS.Objects
         conn.Close();
       }
     }
-    
+    public List<Destination> GetDestinations()
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM destination WHERE roadtrip_id = @RoadTripId;", conn);
+      SqlParameter roadtripIdParameter = new SqlParameter();
+      roadtripIdParameter.ParameterName = "@RoadTripId";
+      roadtripIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(roadtripIdParameter);
+      rdr = cmd.ExecuteReader();
+
+      List<Destination> destinations = new List<Destination> {};
+      while(rdr.Read())
+      {
+        int DestinationId = rdr.GetInt32(0);
+        string DestinationName = rdr.GetString(1);
+        int DestinationRoadtrip_id = rdr.GetInt32(2);
+        int DestinationStop = rdr.GetInt32(3);
+        Destination newDestination = new Destination(DestinationName, DestinationStop, DestinationRoadtrip_id, DestinationId);
+        destinations.Add(newDestination);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return destinations;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
@@ -218,7 +251,7 @@ namespace UltimateRoadTripMachineNS.Objects
         conn.Close();
       }
     }
-    
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -226,8 +259,8 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip", conn);
       cmd.ExecuteNonQuery();
     }
-    
-  
-    
+
+
+
   } // end class
 } // end namespace
