@@ -1,13 +1,16 @@
 $(document).ready(function() {
-  $("#testa").submit(function(event) {
+  $("#tesat").submit(function(event) {
     event.preventDefault();
-    var href = "/test";
+    var href = "/getPage";
     var command = $("input[name='command']").val();
+    href = href;
     $.post(href, {
         command: command 
       }, function(data, status) {
-          $(".data").html("Command: " + data);
+          $(".data").html(data);
       }
     );
   });
 });
+
+

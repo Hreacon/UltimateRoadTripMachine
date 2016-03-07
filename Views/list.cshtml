@@ -1,0 +1,11 @@
+@Html.Partial("header.cshtml")
+
+@if( Model["list"].Count > 0 )
+{
+  <ul>
+    @foreach(var img in Model["list"])
+    {
+      <img src="@img">
+    }
+  </ul>
+}
