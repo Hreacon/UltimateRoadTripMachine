@@ -32,12 +32,20 @@ Chris B, Front End Design. Design/Code the front end/views
 Nicholas Jensen, Project Management, Javascript/jQuery, AJAX
 Class definitions for MVP:
 
+Database Name:
+
+road_trip
+
+Table Names:
+1. destination
+2. trip
+
 Destination Class:
     Properties
         id int identity(1,1)
         roadtrip_id int
         name varchar(255)
-        order int
+        inorder int
     Methods:
         Non-Static methods:
             getters/setters
