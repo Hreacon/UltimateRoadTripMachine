@@ -43,6 +43,18 @@ namespace UltimateRoadTripMachineNS
          List<RoadTrip> testTrips = new List<RoadTrip>{newTrip};
          
         Assert.Equal(testTrips, allTrips);
+        
+    }
+    
+    [Fact]
+    public void Test_UpdateRoadTripName()
+    {
+        RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
+        newTrip.Save();
+        newTrip.SetName("Extreme");
+        newTrip.Update();
+        
+        Assert.Equal(newTrip.GetName(), "Extreme");
     }
      
      public void Dispose()

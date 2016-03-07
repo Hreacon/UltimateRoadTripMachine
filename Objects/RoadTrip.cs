@@ -29,7 +29,7 @@ namespace UltimateRoadTripMachineNS.Objects
             bool NameEquality = this.GetName() == newTrip.GetName();
             bool DescriptionEquality = this.GetDescription() == newTrip.GetDescription();
             
-            return (NameEquality && DescriptionEquality && IdEquality);
+            return (IdEquality && NameEquality && DescriptionEquality);
         }
     }
     
@@ -120,6 +120,45 @@ namespace UltimateRoadTripMachineNS.Objects
       }
 
       if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+    
+    public void Update()
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE roadtrip SET name = @NewName, description = @NewDescription OUTPUT INSERTED.name, INSERTED.description WHERE id = @RoadTripId;", conn);
+
+      SqlParameter NewNameParameter = new SqlParameter();
+      NewNameParameter.ParameterName= "@NewName";
+      NewNameParameter.Value = this.GetName();
+      cmd.Parameters.Add(NewNameParameter);
+
+      SqlParameter RoadTripIdParameter = new SqlParameter();
+      RoadTripIdParameter.ParameterName = "@RoadTripId";
+      RoadTripIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(RoadTripIdParameter);
+      
+      SqlParameter NewDescriptionParameter = new SqlParameter();
+      NewDescriptionParameter.ParameterName = "@NewDescription";
+      NewDescriptionParameter.Value = this.GetDescription();
+      cmd.Parameters.Add(NewDescriptionParameter);
+      rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+      if (conn != null)
       {
         conn.Close();
       }
