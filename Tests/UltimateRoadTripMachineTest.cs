@@ -15,7 +15,7 @@ namespace UltimateRoadTripMachineNS
      }
      public void Dispose()
      {
-       RoadTrip.DeleteAll();
+      //  RoadTrip.DeleteAll();
      }
   }
 }
