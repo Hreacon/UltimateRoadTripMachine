@@ -70,7 +70,7 @@ namespace UltimateRoadTripMachineNS
   public void Test_MoveUp_SwapsThisDestinationWithPrevious()
   {
     Destination firstDestination = new Destination("multnomah falls", 1, 1);
-    Destination secondDestination = new Destination("paradise falls", 2, 1);
+    Destination secondDestination = new Destination("paradise falls", 2, 2);
 
     secondDestination.MoveUp();
 

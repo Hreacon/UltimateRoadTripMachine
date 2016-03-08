@@ -66,7 +66,7 @@ namespace UltimateRoadTripMachineNS.Objects
       return output > 0;
     }
     
-    public static List<string> Scrub(string command)
+    public static List<string> Scrub(string command, int limit = 30)
     {
         string binguri = "http://www.bing.com/images/search?q=";
         Console.WriteLine("Searching for URLs...");
@@ -86,53 +86,32 @@ namespace UltimateRoadTripMachineNS.Objects
         foreach(string page in source)
         {
           try {
-          Console.WriteLine("Scrubbing Page: " + page);
-          string code = Scrubber.GetPageContent(page);
-          Console.WriteLine("Getting Source Images");
-          List<string> sourceImgs = Scrubber.GetList(code, "<img", ">");
-          foreach(string sourceImg in sourceImgs)
-          {
-            // filter out the links that reference something on the page and instead focus on the links that link directly to the image, but this has to be checked at the img src level
-            //  sourceImg.Substring(0,2) == "ht" || sourceImg.Substring(0,2) == "//"
-            
-            if(Scrubber.CheckLink(sourceImg, command))
+            Console.WriteLine("Scrubbing Page: " + page);
+            string code = Scrubber.GetPageContent(page);
+            Console.WriteLine("Getting Source Images");
+            List<string> sourceImgs = Scrubber.GetList(code, "<img", ">");
+            foreach(string sourceImg in sourceImgs)
             {
-              Console.WriteLine("Source of scrub " + sourceImg);
-              int position = sourceImg.IndexOf("http");
-              if(position == -1)
-                position = 0;
-              if(position < 0)
-                position = sourceImg.IndexOf("src=")+5;
-              string src = sourceImg.Substring(position);
-              Console.WriteLine("src: " + src);
-              try {
-                src = src.Substring(0, src.IndexOf('"'));
-              } catch(Exception e) {}
-              if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//")
-                images.Add(src);
-              Console.WriteLine("Adding Image: " + src);
-            }
-          }
-            
-          } catch (WebException ex)
-          {
-            if (ex.Status == WebExceptionStatus.ProtocolError && ex.Response != null)
-            {
-              var resp = (HttpWebResponse) ex.Response;
-              if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
+              // filter out the links that reference something on the page and instead focus on the links that link directly to the image, but this has to be checked at the img src level
+              //  sourceImg.Substring(0,2) == "ht" || sourceImg.Substring(0,2) == "//"
+              
+              if(Scrubber.CheckLink(sourceImg, command)) // check to see if the image tag has a word from the original command in it, attempting to circumvent getting useless photos
               {
-                  // Do something
-              }
-              else
-              {
-                  // Do something else
+                Console.WriteLine("Source of scrub " + sourceImg);
+                int position = sourceImg.IndexOf("http"); // find the actual link to the image
+                if(position < 0)
+                  position = sourceImg.IndexOf("src=")+5; // not found with http? try src
+                string src = sourceImg.Substring(position); // get the link to the actual image
+                Console.WriteLine("src: " + src);
+                try { // try to catch 404 exceptions... etc
+                  src = src.Substring(0, src.IndexOf('"')); // cut off the rest of the string after the link ends
+                } catch(Exception e) {} // empty catch - ignore errors!
+                if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") // make sure the link starts with http or // so its a full path link. 
+                  images.Add(src);
+                Console.WriteLine("Adding Image: " + src);
               }
             }
-            else
-            {
-                // Do something else
-            }
-          }
+          } catch (WebException ex){}
         }
         return images;
     } // end func scrub

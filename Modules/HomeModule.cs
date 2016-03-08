@@ -44,14 +44,27 @@ namespace UltimateRoadTripMachineNS
         return View["stop.cshtml", model];
       }; 
       Post["/addStop"] = _ => {
-        Dictionary<string,object> model = new Dictionary<string,object>(){};
-        // get roadtrip id
-        int roadTripId = int.Parse(Request.Form["roadtripid"]);
-        string destinationName = Request.Form["command"];
-        List<Destination> destinations = RoadTrip.Find(roadTripId).GetDestinations();
-        Destination newStop = new Destination(destinationName, destinations.Count+1, roadTripId);
-        // get the previous destination
-        model.Add("map", Scrubber.GetMapDirections(destinations[destinations.Count-1].GetName(), newStop.GetName()));
+        Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
+        int roadTripId = 0;
+        try {
+          roadTripId = int.Parse(Request.Form["roadtripid"]); // get roadtrip id
+        } catch (Exception e) {}
+        string destinationName = Request.Form["command"]; // get new destination name
+        RoadTrip rtrip;
+        if(roadTripId == 0) // there is no road trip yet
+        {
+          rtrip = new RoadTrip("The awesome " + destinationName + " Road Trip!", ""); // so make a road trip 
+          rtrip.Save(); // save road trip to db
+          roadTripId = rtrip.GetId();
+        } else rtrip = RoadTrip.Find(roadTripId);
+        Destination newStop = new Destination(destinationName, roadTripId); // make a new destination
+        newStop.Save(); // save the new stop to the database
+        if(newStop.GetStop() == 1) // if theres only one stop in the road trip so far
+        {
+          model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName())); // show the map with only one location
+        } else { // there are already multiple stops in the trip
+          model.Add("map", Scrubber.GetMapDirections(rtrip.GetDestinations()[rtrip.GetDestinations().Count-1].GetName(), newStop.GetName())); // show direciton map
+        }
         model.Add("images", Scrubber.Scrub(newStop.GetName()));
         model.Add("roadTripId", roadTripId);        
         return View["stop.cshtml", model];

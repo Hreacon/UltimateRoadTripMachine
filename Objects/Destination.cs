@@ -242,44 +242,44 @@ namespace UltimateRoadTripMachineNS.Objects
 
     public void MoveUp()
     {
-      {
+    //   {
         // List<Destination> tripDestinations = Find(this.GetRoadTripId()).GetDestinations();
         // int result = this.GetStop();
         // int otherresult = (this.GetStop() - 1)
         // this.SetStop(result-1);
-        int PreviousStop;
-        SqlConnection conn = DB.Connection();
-        SqlDataReader rdr;
-        conn.Open();
+    //     int PreviousStop;
+    //     SqlConnection conn = DB.Connection();
+    //     SqlDataReader rdr;
+    //     conn.Open();
 
-        SqlCommand cmd = new SqlCommand("SELECT stop.* from destinations WHERE roadtripid = @RoadTripId and stop = @StopId-1", conn );
-        PreviousStop = cmd.ExecuteScalar();
-        Console.WriteLine(PreviousStop);
-        SqlCommand cmd = new SqlCommand("SET stop = @StopId-1 WHERE id is @PreviousStop");
-        // store the old stop id
-        // update to the new StopId
-        // swapdestinations = select * from destinationss where roadtripid = this.roadtripid and stop = this.stop+1 - gets the id
-        // update destinationss set stop = this.stop-+1 where id is swapdestinations.id
-        SqlParameter NewStopIdParameter = new SqlParameter();
-        NewStopIdParameter.ParameterName= "@StopId";
-        NewStopIdParameter.Value = this.GetNewStopId();
-        cmd.Parameters.Add(NewStopIdParameter);
+    //     SqlCommand cmd = new SqlCommand("SELECT stop.* from destinations WHERE roadtripid = @RoadTripId and stop = @StopId-1", conn );
+    //     PreviousStop = cmd.ExecuteScalar();
+    //     Console.WriteLine(PreviousStop);
+    //     SqlCommand cmd = new SqlCommand("SET stop = @StopId-1 WHERE id is @PreviousStop");
+    //     // store the old stop id
+    //     // update to the new StopId
+    //     // swapdestinations = select * from destinationss where roadtripid = this.roadtripid and stop = this.stop+1 - gets the id
+    //     // update destinationss set stop = this.stop-+1 where id is swapdestinations.id
+    //     SqlParameter NewStopIdParameter = new SqlParameter();
+    //     NewStopIdParameter.ParameterName= "@StopId";
+    //     NewStopIdParameter.Value = this.GetNewStopId();
+    //     cmd.Parameters.Add(NewStopIdParameter);
 
-        SqlParameter PreviousStopParameter = new SqlParameter();
-        PreviousStopParameter.ParameterName = "@PreviousStop";
-        PreviousStopParameter.Value = PreviousStop;
-        cmd.Parameters.Add(PreviousStopParameter);
-        rdr = cmd.ExecuteReader();
+    //     SqlParameter PreviousStopParameter = new SqlParameter();
+    //     PreviousStopParameter.ParameterName = "@PreviousStop";
+    //     PreviousStopParameter.Value = PreviousStop;
+    //     cmd.Parameters.Add(PreviousStopParameter);
+    //     rdr = cmd.ExecuteReader();
 
-        if (rdr != null)
-        {
-         rdr.Close();
-        }
-        if (conn != null)
-        {
-          conn.Close();
-        }
-      }
+    //     if (rdr != null)
+    //     {
+    //      rdr.Close();
+    //     }
+    //     if (conn != null)
+    //     {
+    //       conn.Close();
+    //     }
+    //   }
     }
 
     public void Delete()
