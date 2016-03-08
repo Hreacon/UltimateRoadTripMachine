@@ -1,8 +1,7 @@
 .header {
   background-color: #222;
   nav {
-    width: 80%;
-    margin:auto;
+    @include outer-container;
   }
 }
 

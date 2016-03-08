@@ -5,15 +5,20 @@ html {
   box-sizing: inherit; }
 
 .input-group-destination {
-  clear: both;
   margin: 20px 0;
   display: flex;
-  margin-left: 20%;
-  width: 40%;
-  min-width: 300px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-left: 25%;
+  width: 45vw;
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   background-color: white; }
+  @media (max-width: 770px) {
+    .input-group-destination {
+      margin-left: 20px;
+      width: 90%; } }
   .input-group-destination input[type="text"] {
     outline: 0;
     padding: 14px;
@@ -27,7 +32,7 @@ html {
     background-color: #42A8D1;
     color: white;
     font-size: 1.2rem;
-    padding: 14px 30px;
+    padding: 14px 22px;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border: none; }
@@ -76,30 +81,42 @@ body {
 .photos {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1200px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  /* clearfix wtf? */ }
   .photos::after {
     clear: both;
     content: "";
     display: table; }
   .photos .img {
     height: 300px;
+    width: 100%;
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 31.76157%;
-    margin-top: 2px; }
+    width: 31.76157%; }
     .photos .img:last-child {
       margin-right: 0; }
     .photos .img:hover {
       border: 2px solid white; }
-    @media (max-width: 1080px) {
+    @media (max-width: 1040px) {
       .photos .img {
-        width: 49.15%; } }
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 48.82117%; }
+        .photos .img:last-child {
+          margin-right: 0; } }
     @media (max-width: 770px) {
       .photos .img {
-        width: 100%; } }
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        .photos .img:last-child {
+          margin-right: 0; } }
 
 .photo1 {
   background-image: url(../img/alvard1.jpeg); }
@@ -134,6 +151,9 @@ footer {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap; }
+    @media (max-width: 770px) {
+      footer .footer-primary-contacts {
+        justify-content: flex-start; } }
     footer .footer-primary-contacts li {
       list-style: none;
       margin-left: 10px;
@@ -153,8 +173,13 @@ footer {
 .header {
   background-color: #222; }
   .header nav {
-    width: 80%;
-    margin: auto; }
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto; }
+    .header nav::after {
+      clear: both;
+      content: "";
+      display: table; }
 
 .header-ul {
   display: flex;

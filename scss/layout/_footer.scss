@@ -7,6 +7,9 @@ footer {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    @media #{$brk-narrow} {
+      justify-content: flex-start;
+    }
     li {
       list-style: none;
       margin-left: 10px;
