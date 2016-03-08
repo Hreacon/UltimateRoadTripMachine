@@ -109,6 +109,8 @@ namespace UltimateRoadTripMachineNS.Objects
                 if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") // make sure the link starts with http or // so its a full path link. 
                   images.Add(src);
                 Console.WriteLine("Adding Image: " + src);
+                if(images.Count >= limit)
+                  return images;
               }
             }
           } catch (WebException ex){}

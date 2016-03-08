@@ -31,23 +31,23 @@ namespace UltimateRoadTripMachineNS
         Uri model = new Uri(command);
         return View["map.cshtml", model.AbsoluteUri];
       };
-      Post["/start"] = _ => { // start of a road trip. Reset the form to include a road trip id. Then show a map
-        // create new road trip based on start destination and some keywords
-        string firstStop = Request.Form["command"];
-        RoadTrip newTrip = new RoadTrip("The awesome " + firstStop + " Road Trip!", "");
-        newTrip.Save();
-        Destination newStop = new Destination(firstStop, 1, newTrip.GetId()); // TODO depreciated stop constructor
-        newStop.Save();
-        Dictionary<string,object> model = new Dictionary<string,object>(){};
-        model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName()));
-        model.Add("roadTripId", newTrip.GetId());
-        return View["stop.cshtml", model];
-      }; 
+      // Post["/start"] = _ => { // start of a road trip. Reset the form to include a road trip id. Then show a map
+      //   // create new road trip based on start destination and some keywords
+      //   string firstStop = Request.Form["command"];
+      //   RoadTrip newTrip = new RoadTrip("The awesome " + firstStop + " Road Trip!", "");
+      //   newTrip.Save();
+      //   Destination newStop = new Destination(firstStop, 1, newTrip.GetId()); // TODO depreciated stop constructor
+      //   newStop.Save();
+      //   Dictionary<string,object> model = new Dictionary<string,object>(){};
+      //   model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName()));
+      //   model.Add("roadTripId", newTrip.GetId());
+      //   return View["stop.cshtml", model];
+      // }; 
       Post["/addStop"] = _ => {
         Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
         int roadTripId = 0;
         try {
-          roadTripId = int.Parse(Request.Form["roadtripid"]); // get roadtrip id
+          roadTripId = int.Parse(Request.Form["roadTripId"]); // get roadtrip id
         } catch (Exception e) {}
         string destinationName = Request.Form["command"]; // get new destination name
         RoadTrip rtrip;
@@ -65,8 +65,9 @@ namespace UltimateRoadTripMachineNS
         } else { // there are already multiple stops in the trip
           model.Add("map", Scrubber.GetMapDirections(rtrip.GetDestinations()[rtrip.GetDestinations().Count-1].GetName(), newStop.GetName())); // show direciton map
         }
-        model.Add("images", Scrubber.Scrub(newStop.GetName()));
-        model.Add("roadTripId", roadTripId);        
+        model.Add("images", Scrubber.Scrub(newStop.GetName(), 6));
+        model.Add("roadTripId", roadTripId);
+        Console.WriteLine(model);
         return View["stop.cshtml", model];
       };
       Post["/getPage"] = _ => {
