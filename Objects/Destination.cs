@@ -10,7 +10,6 @@ namespace UltimateRoadTripMachineNS.Objects
         private int _id;
         private string _name;
         private int _stop;
-
         private int _roadtrip_id;
         public Destination(string name, int stop, int roadtrip_id, int id = 0)
     {
@@ -74,7 +73,7 @@ namespace UltimateRoadTripMachineNS.Objects
         SqlDataReader rdr = null;
         conn.Open();
 
-        SqlCommand cmd = new SqlCommand("SELECT * FROM destination;", conn);
+        SqlCommand cmd = new SqlCommand("SELECT * FROM destinations;", conn);
         rdr = cmd.ExecuteReader();
 
         while(rdr.Read())
@@ -107,7 +106,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO destination (name, stop, roadtrip_id) OUTPUT INSERTED.id VALUES (@DestinationName, @DestinationStop, @DestinationRoadTripId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO destinations (name, stop, roadtrip_id) OUTPUT INSERTED.id VALUES (@DestinationName, @DestinationStop, @DestinationRoadTripId);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@DestinationName";
@@ -148,7 +147,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM destination WHERE id = @DestinationId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM destinations WHERE id = @DestinationId;", conn);
       SqlParameter DestinationIdParameter = new SqlParameter();
       DestinationIdParameter.ParameterName = "@DestinationId";
       DestinationIdParameter.Value = id;
@@ -187,7 +186,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE destination SET name = @NewName, stop = @NewStop, roadtrip_id = @NewRoadTripId OUTPUT INSERTED.name, INSERTED.stop, INSERTED.roadtrip_id WHERE id = @DestinationId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE destinations SET name = @NewName, stop = @NewStop, roadtrip_id = @NewRoadTripId OUTPUT INSERTED.name, INSERTED.stop, INSERTED.roadtrip_id WHERE id = @DestinationId;", conn);
 
       SqlParameter NewNameParameter = new SqlParameter();
       NewNameParameter.ParameterName= "@NewName";
@@ -226,21 +225,45 @@ namespace UltimateRoadTripMachineNS.Objects
       }
     }
 
-    // public void MoveUp()
+    // public void MoveUpDown()
     // {
     //   if(this.GetId() = 0)
     //   {
     //     return("You Are at the Starting Position of Your Trip");
     //   }
-    //   else if
+    //   else
     //   {
-    //     List<Destination> tripDestinations = Find(this.GetRoadTripId()).GetDestinations();
-    //     update fruit a
-    //      inner join fruit b on a.id <> b.id
-    //        set a.color = b.color,
-    //            a.name = b.name,
-    //            a.calories = b.calories
-    //      where a.id in (2,5) and b.id in (2,5)
+    //     // List<Destination> tripDestinations = Find(this.GetRoadTripId()).GetDestinations();
+    //     int result = this.GetStop();
+    //     int otherresult = (this.GetStop() - 1)
+    //     this.SetStop(result-1);
+    //
+    //     // SqlConnection conn = DB.Connection();
+    //     // SqlDataReader rdr;
+    //     // conn.Open();
+    //
+    //     SqlCommand cmd = new SqlCommand("SELECT * from destinationss WHERE roadtripid = @RoadTripId and stop = @StopId+1", conn );
+    //     SqlCommand cmd = new
+    //     store the old stop id
+    //     update to the new StopId
+    //     swapdestinations = select * from destinationss where roadtripid = this.roadtripid and stop = this.stop+1 - gets the id
+    //     update destinationss set stop = this.stop-+1 where id is swapdestinations.id
+    //     SqlParameter NewStopIdParameter = new SqlParameter();
+    //     NewStopIdParameter.ParameterName= "@StopId";
+    //     NewStopIdParameter.Value = this.GetNewStopId();
+    //     cmd.Parameters.Add(NewStopIdParameter);
+        //
+        // SqlParameter DestinationIdParameter = new SqlParameter();
+        // DestinationIdParameter.ParameterName= "@DestinationId";
+        // DestinationIdParameter.Value = this.GetDestinationId();
+        // cmd.Parameters.Add(DestinationIdParameter);
+        // rdr = cmd.ExecuteReader();
+        //
+        // while(rdr.Read())
+        // {
+          // Destinations.Update(stop)
+    //     }
+    //
     //   }
     // }
 
@@ -249,7 +272,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM destination WHERE id = @DestinationId", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM destinations WHERE id = @DestinationId", conn);
 
       SqlParameter DestinationIdParameter = new SqlParameter();
       DestinationIdParameter.ParameterName = "@DestinationId";
@@ -268,7 +291,7 @@ namespace UltimateRoadTripMachineNS.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM destination", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM destinations", conn);
       cmd.ExecuteNonQuery();
     }
 

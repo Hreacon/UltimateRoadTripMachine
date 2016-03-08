@@ -62,7 +62,7 @@ namespace UltimateRoadTripMachineNS.Objects
         SqlDataReader rdr = null;
         conn.Open();
 
-        SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrip;", conn);
+        SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrips;", conn);
         rdr = cmd.ExecuteReader();
 
         while(rdr.Read())
@@ -94,7 +94,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO roadtrip (name, description) OUTPUT INSERTED.id VALUES (@RoadTripName, @RoadTripDescription);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO roadtrips (name, description) OUTPUT INSERTED.id VALUES (@RoadTripName, @RoadTripDescription);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@RoadTripName";
@@ -130,7 +130,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrip WHERE id = @RoadTripId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM roadtrips WHERE id = @RoadTripId;", conn);
       SqlParameter roadTripIdParameter = new SqlParameter();
       roadTripIdParameter.ParameterName = "@RoadTripId";
       roadTripIdParameter.Value = id;
@@ -166,7 +166,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE roadtrip SET name = @NewName, description = @NewDescription OUTPUT INSERTED.name, INSERTED.description WHERE id = @RoadTripId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE roadtrips SET name = @NewName, description = @NewDescription OUTPUT INSERTED.name, INSERTED.description WHERE id = @RoadTripId;", conn);
 
       SqlParameter NewNameParameter = new SqlParameter();
       NewNameParameter.ParameterName= "@NewName";
@@ -204,7 +204,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM destination WHERE roadtrip_id = @RoadTripId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM destinations WHERE roadtrip_id = @RoadTripId;", conn);
       SqlParameter roadtripIdParameter = new SqlParameter();
       roadtripIdParameter.ParameterName = "@RoadTripId";
       roadtripIdParameter.Value = this.GetId();
@@ -237,7 +237,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip WHERE id = @RoadTripId", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrips WHERE id = @RoadTripId", conn);
 
       SqlParameter roadTripIdParameter = new SqlParameter();
       roadTripIdParameter.ParameterName = "@RoadTripId";
@@ -256,7 +256,7 @@ namespace UltimateRoadTripMachineNS.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrip", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM roadtrips", conn);
       cmd.ExecuteNonQuery();
     }
 
