@@ -1,0 +1,26 @@
+#map_canvas {
+  max-height: 100%;
+  width: 100%;
+  @media #{$brk-narrow} {
+    max-height: 100%;
+  }
+}
+#map_canvas img {
+  max-width: 100%; // to prevent UI control bug
+}
+
+#map_canvas .content {
+  padding: 0 0.5em 1em 0.5em;
+}
+
+#map_canvas .firstHeading {
+  font-size: 1em;
+  line-height: 1em;
+  font-weight: bold;
+  margin: 0;
+}
+
+#map_canvas #bodyContent p {
+  font-size: 1em;
+  margin: 0;
+}
