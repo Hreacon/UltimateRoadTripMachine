@@ -20,13 +20,13 @@ namespace UltimateRoadTripMachineNS
       };
       Post["/map"] = _ => {
         string command = Request.Form["start"];
-        Console.WriteLine("Retrieving Map Locations: "+ command);
+        Console.WriteLine("Retrieving Map Location: "+ command);
         return View["map.cshtml", Scrubber.GetMapOnLocation(command)];
       };
       Post["/mapDirections"] = _ => {
         string start = Request.Form["start"];
-        string end = Request.Form["end"];
-        Console.WriteLine("Retrieving Map Directions: "+ start + " " + end);
+        string end = Request.Form["destination"];
+        Console.WriteLine("Retrieving Map Directions: '"+ start + "', '" + end +"'");
         return View["map.cshtml", Scrubber.GetMapDirections(start, end)];
       };
       Post["/iframe"] = _ => {

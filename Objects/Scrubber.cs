@@ -138,25 +138,25 @@ namespace UltimateRoadTripMachineNS.Objects
     } // end func scrub
     
     // Dealing with the map
-    public static Uri GetMapOnLocation(string location)
+    public static string GetMapOnLocation(string location)
     {
       string placeUri = "place?q=" + location;
       return GetMap(placeUri);
     }
-    private static Uri GetMap(string command)
+    private static string GetMap(string command)
     {
       string baseUri = "https://www.google.com/maps/embed/v1/";
-      string zoomLevel = "&zoom=5";
+      string zoomLevel = "";//"&zoom=17";
       string apiKey = "&key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA";
       Console.WriteLine("map route, command string: " + command);
       Uri model = new Uri(baseUri + command + zoomLevel + apiKey);
-      return model;
+      return model.AbsoluteUri;
     }
-    public static Uri GetMapDirections(string start, string end)
+    public static string GetMapDirections(string start, string end)
     {
-      start = "&origin="+start;
+      start = "origin="+start;
       end = "&destination="+end;
-      return GetMap(start+end);
+      return GetMap("directions?"+start+end);
     }
   } // end class
 } // end namespace
