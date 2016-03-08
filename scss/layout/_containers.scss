@@ -4,7 +4,14 @@ body {
 
 .map {
   @include outer-container;
-  max-height: 100%;
+  iframe {
+    min-height: 400px;
+    width: 100%;
+    // display: block;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
 }
 
 .photos {
@@ -20,7 +27,7 @@ body {
       border: 2px solid white;
     }
     @media #{$brk-medium} {
-      width: 49%;
+      width: 49.15%;
     }
     @media #{$brk-narrow} {
       width: 100%;

@@ -28,19 +28,18 @@ footer {
 .footer-primary-contacts {
   @media #{$brk-narrow} {
     li:nth-child(5), li:nth-child(6),li:nth-child(7) {
-      width: 60px;
-      display: inline-block;
-      float: left;
+
 
       border: 5px solid red;
       a {
-        flex-direction: row;
-        flex-wrap: wrap;
+
+
 
       border: 3px solid yellow;
       }
       i {
 
+        font-size: 2em;
         border: 3px solid green;
      }
     }
