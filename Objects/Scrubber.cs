@@ -9,10 +9,47 @@ namespace UltimateRoadTripMachineNS.Objects
 {
   public class Scrubber
   {
+<<<<<<< HEAD
     public Scrubber()
     {
     }
     
+=======
+    public static List<string> Search(string term, int limit = 6)
+    {
+      List<string> terms = new List<string>(){};
+      List<string> urls = new List<string>(){};
+
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
+      SqlParameter TermParameter = new SqlParameter();
+      TermParameter.ParameterName = "@Term";
+      TermParameter.Value = term;
+      cmd.Parameters.Add(TermParameter);
+      rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+          if(term=0)
+          {
+            Scrubber.Scrub();
+          }
+          else
+          {
+            string link = rdr.GetString(1);
+            
+            urls.Add(link)
+          }
+          return urls;
+      }
+
+
+    }
+
+>>>>>>> 025827c8c7f574b795909d1ac177f849bb80da9d
     public static string GetPageContent(string url)
     {
       string output = String.Empty;
@@ -25,12 +62,20 @@ namespace UltimateRoadTripMachineNS.Objects
       }
       return output;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 025827c8c7f574b795909d1ac177f849bb80da9d
     public static List<string> GetList(string html, string start, string end)
     {
       List<string> output = new List<string>(){};
       bool done = false;
+<<<<<<< HEAD
       while(!done && html.Length>100) 
+=======
+      while(!done && html.Length>100)
+>>>>>>> 025827c8c7f574b795909d1ac177f849bb80da9d
       {
         int position = html.IndexOf(start, 0);
         int endposition = 0;
@@ -38,7 +83,11 @@ namespace UltimateRoadTripMachineNS.Objects
           endposition = html.IndexOf(end, position);
         // Console.WriteLine("Position: " + position);
         // Console.WriteLine("EndPosition: " + endposition);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 025827c8c7f574b795909d1ac177f849bb80da9d
         if( position > 0 && endposition > 0)
         {
           output.Add(html.Substring(position, endposition - position));
@@ -49,7 +98,6 @@ namespace UltimateRoadTripMachineNS.Objects
       }
       return output;
     }
-    
     public static bool CheckLink(string link, string command)
     {
       string[] commandsArray = command.Split(' ');
@@ -74,14 +122,12 @@ namespace UltimateRoadTripMachineNS.Objects
         string start =  ";\"><img";
         string end = "class=\"tit\"";
         List<string> source = Scrubber.GetList(html, start, end);
-        
         for(int i = 0; i < source.Count; i++)
         {
            source[i] = source[i].Substring(source[i].IndexOf("href=")+6);
            source[i] = source[i].Substring(0, source[i].Length -2);
            Console.WriteLine("URL Found: " + source[i]);
         }
-        
         List<string> images = new List<string>(){};
         foreach(string page in source)
         {

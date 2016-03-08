@@ -69,13 +69,6 @@ namespace UltimateRoadTripMachineNS
   [Fact]
   public void Test_MoveUp_SwapsThisDestinationWithPrevious()
   {
-    Destination firstDestination = new Destination("multnomah falls", 1, 1);
-    Destination secondDestination = new Destination("paradise falls", 2, 2);
-
-    secondDestination.MoveUp();
-
-    Assert.Equal(1, secondDestination.GetStop());
-    Assert.Equal(2, firstDestination.GetStop());
   }
 
   [Fact]
