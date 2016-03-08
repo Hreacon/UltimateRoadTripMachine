@@ -77,10 +77,10 @@ RoadTrip Class:
             deleteall - done
 
 Database Tables:
-    search_terms
+    search_terms DONE
       id int identity(1,1)
       term varchar
-    images
+    images DONE
       id int identity(1,1)
       link varchar
       search_terms_id int

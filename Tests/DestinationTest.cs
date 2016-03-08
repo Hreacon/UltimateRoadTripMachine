@@ -60,6 +60,17 @@ namespace UltimateRoadTripMachineNS
     Assert.Equal(testDestination, foundDestination);
   }
 
+  // [Fact]
+  // public void Test_MoveUp_SwapsThisDestinationWithPrevious()
+  // {
+  //   Destination firstDestination = new Destination("multnomah falls", 1, 1);
+  //   Destination secondDestination = new Destination("paradise falls", 2, 1);
+  //
+  //   secondDestination.MoveUp();
+  //
+  //   Assert.Equal(1, secondDestination.GetStop());
+  // }
+
   [Fact]
   public void Test_UpdateDestinationNameDestination()
   {
