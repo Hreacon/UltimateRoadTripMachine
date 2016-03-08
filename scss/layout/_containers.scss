@@ -4,26 +4,37 @@ body {
 
 .map {
   @include outer-container;
-  max-height: 100%;
+  iframe {
+    min-height: 400px;
+    width: 100%;
+    // display: block;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
 }
 
 .photos {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   @include outer-container;
+/* clearfix wtf? */
   .img {
     height: 300px;
+    width: 100%;
     @include span-columns(4);
+
     @extend %image-position;
-    margin-top: 2px;
+    // margin-top: 2px;
     &:hover {
       border: 2px solid white;
     }
     @media #{$brk-medium} {
-      width: 49%;
+      @include span-columns(6);
     }
     @media #{$brk-narrow} {
-      width: 100%;
+      @include span-columns(12);
     }
 }
 
@@ -46,4 +57,5 @@ body {
 }
 .photo6 {
   background-image: url(../img/alvard6.jpg);
+
 }

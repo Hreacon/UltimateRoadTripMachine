@@ -1,36 +1,30 @@
 .header {
+  margin: 0 auto;
   background-color: #222;
-  nav {
-    width: 80%;
-    margin:auto;
-  ul {
-    display: flex;
-    justify-content: space-around;
+  height: 120px;
+  .header-ul {
     margin: 0 auto;
-    padding: 34px 0 18px;
-      li {
-        a {
-          list-style: none;
-          text-decoration: none;
-          color: white;
-        }
-      i {
-        color: #ffb84d;
-      }
-      flex: 1;
+    padding: 34px 12px 18px;
+    li {
       padding: 5px 0;
       font-size: 18px;
-      text-align: center;
       font-family: 'Fjalla One', sans-serif;
       list-style: none;
       @media #{$brk-narrow} {
         display: none;
       }
+      a {
+        text-decoration: none;
+        color: #777;
+        &:hover {
+          color: #999;
+        }
       }
-      li:nth-child(1) {
-        display: flex;
-        flex: 3;
+      i {
+        color: #ffb84d;
       }
+
     }
   }
+
 }

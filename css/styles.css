@@ -4,16 +4,21 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
-.input-group-start, .input-group-destination {
-  clear: both;
+.input-group-destination {
   margin: 20px 0;
   display: flex;
-  margin-left: 20%;
-  width: 40%;
+  position: fixed;
+  top: 10px;
+  right: 60px;
+  width: 60vw;
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   background-color: white; }
-  .input-group-start input[type="text"], .input-group-destination input[type="text"] {
+  @media (max-width: 770px) {
+    .input-group-destination {
+      right: 12px;
+      width: 90vw; } }
+  .input-group-destination input[type="text"] {
     outline: 0;
     padding: 14px;
     border-top-left-radius: 4px;
@@ -21,16 +26,16 @@ html {
     flex: 1;
     font-size: 1.2rem;
     border: none; }
-  .input-group-start input[type="button"], .input-group-destination input[type="button"] {
+  .input-group-destination input[type="button"] {
     outline: 0;
     background-color: #42A8D1;
     color: white;
     font-size: 1.2rem;
-    padding: 14px 30px;
+    padding: 14px 22px;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border: none; }
-    .input-group-start input[type="button"]:hover, .input-group-destination input[type="button"]:hover {
+    .input-group-destination input[type="button"]:hover {
       cursor: pointer;
       background-color: #47BCEB; }
 
@@ -63,40 +68,54 @@ body {
 .map {
   max-width: 1200px;
   margin-left: auto;
-  margin-right: auto;
-  max-height: 100%; }
+  margin-right: auto; }
   .map::after {
     clear: both;
     content: "";
     display: table; }
+  .map iframe {
+    min-height: 400px;
+    width: 100%; }
 
 .photos {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1200px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  /* clearfix wtf? */ }
   .photos::after {
     clear: both;
     content: "";
     display: table; }
   .photos .img {
     height: 300px;
+    width: 100%;
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 31.76157%;
-    margin-top: 2px; }
+    width: 31.76157%; }
     .photos .img:last-child {
       margin-right: 0; }
     .photos .img:hover {
       border: 2px solid white; }
-    @media (max-width: 1080px) {
+    @media (max-width: 1040px) {
       .photos .img {
-        width: 49%; } }
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 48.82117%; }
+        .photos .img:last-child {
+          margin-right: 0; } }
     @media (max-width: 770px) {
       .photos .img {
-        width: 100%; } }
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%; }
+        .photos .img:last-child {
+          margin-right: 0; } }
 
 .photo1 {
   background-image: url(../img/alvard1.jpeg); }
@@ -128,63 +147,50 @@ footer {
     display: table; }
   footer .footer-primary-contacts {
     display: flex;
-    justify-content: flex-end; }
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; }
     @media (max-width: 770px) {
       footer .footer-primary-contacts {
-        flex-direction: column; } }
+        justify-content: flex-start; } }
     footer .footer-primary-contacts li {
-      align-content: center;
       list-style: none;
-      margin-left: 16px;
+      margin-left: 10px;
       padding: 30px 10px 0 0; }
     footer .footer-primary-contacts a {
       color: white;
       text-decoration: none; }
-    footer .footer-primary-contacts li:nth-child(1), footer .footer-primary-contacts li:nth-child(2) {
-      flex: 1; }
-
-@media (max-width: 770px) {
-  .footer-primary-contacts li:nth-child(5), .footer-primary-contacts li:nth-child(6), .footer-primary-contacts li:nth-child(7) {
-    width: 60px;
-    display: inline-block;
-    float: left;
-    border: 5px solid red; }
-    .footer-primary-contacts li:nth-child(5) a, .footer-primary-contacts li:nth-child(6) a, .footer-primary-contacts li:nth-child(7) a {
-      flex-direction: row;
-      flex-wrap: wrap;
-      border: 3px solid yellow; }
-    .footer-primary-contacts li:nth-child(5) i, .footer-primary-contacts li:nth-child(6) i, .footer-primary-contacts li:nth-child(7) i {
-      border: 3px solid green; } }
+    footer .footer-primary-contacts i {
+      font-size: 2em; }
+    @media (max-width: 770px) {
+      footer .footer-primary-contacts li {
+        width: 100%; }
+      footer .footer-primary-contacts li:nth-child(5), footer .footer-primary-contacts li:nth-child(6), footer .footer-primary-contacts li:nth-child(7) {
+        width: 10%;
+        display: block; } }
 
 .header {
-  background-color: #222; }
-  .header nav {
-    width: 80%;
-    margin: auto; }
-    .header nav ul {
-      display: flex;
-      justify-content: space-around;
-      margin: 0 auto;
-      padding: 34px 0 18px; }
-      .header nav ul li {
-        flex: 1;
-        padding: 5px 0;
-        font-size: 18px;
-        text-align: center;
-        font-family: 'Fjalla One', sans-serif;
-        list-style: none; }
-        .header nav ul li a {
-          list-style: none;
-          text-decoration: none;
-          color: white; }
-        .header nav ul li i {
-          color: #ffb84d; }
-        @media (max-width: 770px) {
-          .header nav ul li {
-            display: none; } }
-      .header nav ul li:nth-child(1) {
-        display: flex;
-        flex: 3; }
+  margin: 0 auto;
+  background-color: #222;
+  height: 120px; }
+  .header .header-ul {
+    margin: 0 auto;
+    padding: 34px 12px 18px; }
+    .header .header-ul li {
+      padding: 5px 0;
+      font-size: 18px;
+      font-family: 'Fjalla One', sans-serif;
+      list-style: none; }
+      @media (max-width: 770px) {
+        .header .header-ul li {
+          display: none; } }
+      .header .header-ul li a {
+        text-decoration: none;
+        color: #777; }
+        .header .header-ul li a:hover {
+          color: #999; }
+      .header .header-ul li i {
+        color: #ffb84d; }
 
 .photos .img {
   background-repeat: no-repeat;
