@@ -99,12 +99,14 @@ namespace UltimateRoadTripMachineNS.Objects
               {
                 Console.WriteLine("Source of scrub " + sourceImg);
                 int position = sourceImg.IndexOf("http"); // find the actual link to the image
+                char endQuote = '"';
                 if(position < 0)
                   position = sourceImg.IndexOf("src=")+5; // not found with http? try src
+                endQuote = sourceImg[position-1]; 
                 string src = sourceImg.Substring(position); // get the link to the actual image
                 Console.WriteLine("src: " + src);
                 try { // try to catch 404 exceptions... etc
-                  src = src.Substring(0, src.IndexOf('"')); // cut off the rest of the string after the link ends
+                  src = src.Substring(0, src.IndexOf(endQuote)); // cut off the rest of the string after the link ends
                 } catch(Exception e) {} // empty catch - ignore errors!
                 if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") // make sure the link starts with http or // so its a full path link. 
                   images.Add(src);
