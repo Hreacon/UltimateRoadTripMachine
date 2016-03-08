@@ -98,17 +98,18 @@ namespace UltimateRoadTripMachineNS.Objects
             
             if(Scrubber.CheckLink(sourceImg, command))
             {
-              
-              int position = sourceImg.IndexOf("http")-1;
+              Console.WriteLine("Source of scrub " + sourceImg);
+              int position = sourceImg.IndexOf("http");
               if(position == -1)
                 position = 0;
               if(position < 0)
                 position = sourceImg.IndexOf("src=")+5;
               string src = sourceImg.Substring(position);
+              Console.WriteLine("src: " + src);
               try {
                 src = src.Substring(0, src.IndexOf('"'));
               } catch(Exception e) {}
-              if(src.Substring(0,2) == "ht" || sourceImg.Substring(0,2) == "//")
+              if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//")
                 images.Add(src);
               Console.WriteLine("Adding Image: " + src);
             }

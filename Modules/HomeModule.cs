@@ -41,6 +41,8 @@ namespace UltimateRoadTripMachineNS
         List<string> images = Scrubber.Scrub(command);
         Dictionary<string, object> model = new Dictionary<string, object>(){};
         model.Add("list", images);
+        string binguri = "http://www.bing.com/images/search?q=";
+        model.Add("bing", Scrubber.GetPageContent(binguri + command));
         return View["list.cshtml", model];
       };
     }
