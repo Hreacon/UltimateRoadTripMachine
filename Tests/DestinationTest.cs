@@ -70,12 +70,18 @@ namespace UltimateRoadTripMachineNS
   public void Test_MoveUp_SwapsThisDestinationWithPrevious()
   {
     Destination firstDestination = new Destination("multnomah falls", 1, 1);
-    Destination secondDestination = new Destination("paradise falls", 2, 1);
+    firstDestination.Save();
+    Destination secondDestination = new Destination("paradise falls", 1, 2);
+    secondDestination.Save();
+    Destination thirdDestination = new Destination("weekend falls", 1, 3);
+    thirdDestination.Save();
+    Destination fourthDestination = new Destination("big falls", 1, 4);
+    fourthDestination.Save();
 
-    secondDestination.MoveUp();
+    thirdDestination.MoveUp();
 
-    Assert.Equal(1, secondDestination.GetStop());
-    Assert.Equal(2, firstDestination.GetStop());
+    Assert.Equal(2, thirdDestination.GetStop());
+    //Assert.Equal(6, firstDestination.GetStop());
   }
 
   [Fact]
