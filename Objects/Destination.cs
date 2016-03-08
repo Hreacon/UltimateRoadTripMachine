@@ -11,11 +11,18 @@ namespace UltimateRoadTripMachineNS.Objects
         private string _name;
         private int _stop;
         private int _roadtrip_id;
-        public Destination(string name, int stop, int roadtrip_id, int id = 0)
+        public Destination(string name, int roadtrip_id, int stop = 0, int id = 0)
     {
         _id = id;
         _name = name;
-        _stop = stop;
+        if(_stop != 0)
+        {
+          _stop = this.CountStops()+1;
+        }
+        else
+        {
+          _stop = stop;
+        }
         _roadtrip_id = roadtrip_id;
     }
 
@@ -167,7 +174,7 @@ namespace UltimateRoadTripMachineNS.Objects
         foundDestinationStop = rdr.GetInt32(3);
 
       }
-      Destination foundDestination = new Destination(foundDestinationName, foundDestinationStop, foundDestinationRoadTripId, foundDestinationId);
+      Destination foundDestination = new Destination(foundDestinationName, foundDestinationRoadTripId, foundDestinationStop, foundDestinationId);
 
       if (rdr != null)
       {
@@ -225,47 +232,55 @@ namespace UltimateRoadTripMachineNS.Objects
       }
     }
 
-    // public void MoveUpDown()
-    // {
-    //   if(this.GetId() = 0)
-    //   {
-    //     return("You Are at the Starting Position of Your Trip");
-    //   }
-    //   else
-    //   {
-    //     // List<Destination> tripDestinations = Find(this.GetRoadTripId()).GetDestinations();
-    //     int result = this.GetStop();
-    //     int otherresult = (this.GetStop() - 1)
-    //     this.SetStop(result-1);
-    //
-    //     // SqlConnection conn = DB.Connection();
-    //     // SqlDataReader rdr;
-    //     // conn.Open();
-    //
-    //     SqlCommand cmd = new SqlCommand("SELECT * from destinationss WHERE roadtripid = @RoadTripId and stop = @StopId+1", conn );
-    //     SqlCommand cmd = new
-    //     store the old stop id
-    //     update to the new StopId
-    //     swapdestinations = select * from destinationss where roadtripid = this.roadtripid and stop = this.stop+1 - gets the id
-    //     update destinationss set stop = this.stop-+1 where id is swapdestinations.id
-    //     SqlParameter NewStopIdParameter = new SqlParameter();
-    //     NewStopIdParameter.ParameterName= "@StopId";
-    //     NewStopIdParameter.Value = this.GetNewStopId();
-    //     cmd.Parameters.Add(NewStopIdParameter);
-        //
-        // SqlParameter DestinationIdParameter = new SqlParameter();
-        // DestinationIdParameter.ParameterName= "@DestinationId";
-        // DestinationIdParameter.Value = this.GetDestinationId();
-        // cmd.Parameters.Add(DestinationIdParameter);
-        // rdr = cmd.ExecuteReader();
-        //
-        // while(rdr.Read())
-        // {
-          // Destinations.Update(stop)
-    //     }
-    //
-    //   }
-    // }
+    public int CountStops()
+    {
+      List<Destination> tripDestinations = RoadTrip.Find(this.GetRoadTripId()).GetDestinations();
+      return tripDestinations.Count;
+     }
+
+
+
+    public void MoveUp()
+    {
+      {
+        // List<Destination> tripDestinations = Find(this.GetRoadTripId()).GetDestinations();
+        // int result = this.GetStop();
+        // int otherresult = (this.GetStop() - 1)
+        // this.SetStop(result-1);
+        int PreviousStop;
+        SqlConnection conn = DB.Connection();
+        SqlDataReader rdr;
+        conn.Open();
+
+        SqlCommand cmd = new SqlCommand("SELECT stop.* from destinations WHERE roadtripid = @RoadTripId and stop = @StopId-1", conn );
+        PreviousStop = cmd.ExecuteScalar();
+        Console.WriteLine(PreviousStop);
+        SqlCommand cmd = new SqlCommand("SET stop = @StopId-1 WHERE id is @PreviousStop");
+        // store the old stop id
+        // update to the new StopId
+        // swapdestinations = select * from destinationss where roadtripid = this.roadtripid and stop = this.stop+1 - gets the id
+        // update destinationss set stop = this.stop-+1 where id is swapdestinations.id
+        SqlParameter NewStopIdParameter = new SqlParameter();
+        NewStopIdParameter.ParameterName= "@StopId";
+        NewStopIdParameter.Value = this.GetNewStopId();
+        cmd.Parameters.Add(NewStopIdParameter);
+
+        SqlParameter PreviousStopParameter = new SqlParameter();
+        PreviousStopParameter.ParameterName = "@PreviousStop";
+        PreviousStopParameter.Value = PreviousStop;
+        cmd.Parameters.Add(PreviousStopParameter);
+        rdr = cmd.ExecuteReader();
+
+        if (rdr != null)
+        {
+         rdr.Close();
+        }
+        if (conn != null)
+        {
+          conn.Close();
+        }
+      }
+    }
 
     public void Delete()
     {
