@@ -121,3 +121,9 @@ Test map for front-end
 
 <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?origin=portland%20or&amp;destination=the%20dalles%20or&amp;key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA">
 </iframe>
+
+
+TODO:
+When resizing the page the map doesn't keep centered over the target location.
+
+Fix the image resizing
