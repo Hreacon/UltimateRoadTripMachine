@@ -19,16 +19,16 @@ namespace UltimateRoadTripMachineNS
         return View["test.cshtml"];
       };
       Post["/map"] = _ => {
-        string command = Request.Form["command"];
-        string baseUri = "https://www.google.com/maps/embed/v1/";
-        string placeUri = "place?q=" + command;
-        string zoomLevel = "&zoom=17";
-        string apiKey = "&key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA";
-        Console.WriteLine("map route, command string: " + command);
-        Uri model = new Uri(baseUri + placeUri + zoomLevel + apiKey);
-        return View["map.cshtml", model.AbsoluteUri];
+        string command = Request.Form["start"];
+        Console.WriteLine("Retrieving Map Locations: "+ command);
+        return View["map.cshtml", Scrubber.GetMapOnLocation(command)];
       };
-      
+      Post["/mapDirections"] = _ => {
+        string start = Request.Form["start"];
+        string end = Request.Form["end"];
+        Console.WriteLine("Retrieving Map Directions: "+ start + " " + end);
+        return View["map.cshtml", Scrubber.GetMapDirections(start, end)];
+      };
       Post["/iframe"] = _ => {
         string command = Request.Form["command"];
         Console.WriteLine("iframe route, command string: " + command);
@@ -41,7 +41,7 @@ namespace UltimateRoadTripMachineNS
         List<string> images = Scrubber.Scrub(command);
         Dictionary<string, object> model = new Dictionary<string, object>(){};
         model.Add("list", images);
-        string binguri = "http://www.bing.com/images/search?q=";
+        string binguri = "http://www.bing.com/images/search?q="; // this is for testing, it is not needed for production
         model.Add("bing", Scrubber.GetPageContent(binguri + command));
         return View["list.cshtml", model];
       };

@@ -1,9 +1,21 @@
 @Html.Partial("header.cshtml")
 
+<h1>Scrub Images test</h1>
 <form method="post" id="test" action="/getPage">
   <input type="text" name="command" autofocus>
   <input type="submit" name="submit" value="command">
 </form>
+
+<h1> Map Test </h1>
+<form method="post" id="maptest">
+  <input type="text" name="start">
+  <input type="submit" value="Get Map On Location">
+</form>
+<h1> Map Directions Test </h1>
+<form method="post" id="maptestdirections">
+  <input type="text" name="start">
+  <input type="text" name="end">
+  <input type="submit" value="Get Map Directions">
+</form>
 <div class="content">
-  This is sample data
-</div>
+  </div>
