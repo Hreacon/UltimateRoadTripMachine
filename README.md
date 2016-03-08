@@ -1,6 +1,6 @@
 # Ultimate Road Trip Machine
 
-#### Shows you a road trip that you plan, March 7th, 2016
+#### Lets you visually plan a road trip, March 7th, 2016
 
 #### By Nicholas Jensen-Hay, Michael Dada, Chris Kuiper, Chris Berry
 
