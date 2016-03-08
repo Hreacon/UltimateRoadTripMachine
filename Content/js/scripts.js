@@ -13,21 +13,27 @@ $(document).ready(function() {
       }
     );
   });
-  $("#maptestdirections").submit(function(event) {
-    console.log("Map Test Direction Form Submit");
+  $("#commandLinea").submit(function(event) {
     event.preventDefault();
-    var href = "/mapDirections";
-    var start = $("#maptestdirections input[name='start']").val();
-    var end = $("#maptestdirections input[name='end']").val();
-    href = href;
-    $.post(href, {
-        start: start,
-        destination: end,
-      }, function(data, status) {
-          console.log("Map Test Direction Returned Data");
-          $(".content").html(data);
-      }
-    );
+    var href = "/start";
+    if($(".content").html().trim() != "")
+      href="/addStop";
+    var command = $("#commandLine input[name='command']").val();
+    if(command.trim().length > 0) {
+      console.log("Command sent to server at " + href + " with command " + command);
+      var roadTripId = 0;
+      if(href == "/addStop")
+        roadTripId = $("#roadTripId").val();
+      $.post(href, {
+          command: command,
+        }, function(data, status) {
+            console.log("Data returned from server");
+            $(".content").append(data);
+        }
+      );
+    } else { 
+      console.log("Command not sent, no command found");
+    }
   });
 });
 

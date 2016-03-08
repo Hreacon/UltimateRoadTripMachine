@@ -14,10 +14,6 @@ namespace UltimateRoadTripMachineNS
       Get["/"] = _ => {
         return View["index.cshtml"];
       };
-      Get["/test/"] = _ => {
-        
-        return View["test.cshtml"];
-      };
       Post["/map"] = _ => {
         string command = Request.Form["start"];
         Console.WriteLine("Retrieving Map Location: "+ command);
@@ -34,6 +30,31 @@ namespace UltimateRoadTripMachineNS
         Console.WriteLine("iframe route, command string: " + command);
         Uri model = new Uri(command);
         return View["map.cshtml", model.AbsoluteUri];
+      };
+      Post["/start"] = _ => { // start of a road trip. Reset the form to include a road trip id. Then show a map
+        // create new road trip based on start destination and some keywords
+        string firstStop = Request.Form["command"];
+        RoadTrip newTrip = new RoadTrip("The awesome " + firstStop + " Road Trip!", "");
+        newTrip.Save();
+        Destination newStop = new Destination(firstStop, 1, newTrip.GetId()); // TODO depreciated stop constructor
+        newStop.Save();
+        Dictionary<string,object> model = new Dictionary<string,object>(){};
+        model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName()));
+        model.Add("roadTripId", newTrip.GetId());
+        return View["stop.cshtml", model];
+      }; 
+      Post["/addStop"] = _ => {
+        Dictionary<string,object> model = new Dictionary<string,object>(){};
+        // get roadtrip id
+        int roadTripId = int.Parse(Request.Form["roadtripid"]);
+        string destinationName = Request.Form["command"];
+        List<Destination> destinations = RoadTrip.Find(roadTripId).GetDestinations();
+        Destination newStop = new Destination(destinationName, destinations.Count+1, roadTripId);
+        // get the previous destination
+        model.Add("map", Scrubber.GetMapDirections(destinations[destinations.Count-1].GetName(), newStop.GetName()));
+        model.Add("images", Scrubber.Scrub(newStop.GetName()));
+        model.Add("roadTripId", roadTripId);        
+        return View["stop.cshtml", model];
       };
       Post["/getPage"] = _ => {
         Console.WriteLine("Get Page");

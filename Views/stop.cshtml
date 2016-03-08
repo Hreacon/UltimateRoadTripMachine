@@ -1,0 +1,12 @@
+<div class="map" id="map_canvas">
+      @Html.Partial("map.cshtml", Model["map"])
+    </div>
+   <!-- //images displayed from search// -->
+    <div class="photos">
+      @Html.Partial("list.cshtml", Model["images"])
+    </div>
+    <!-- //videos displayed from search// -->
+    <div class="videos">
+
+    </div>
+    <input type="hidden" id="roadTripId" value="@Model["roadTripId"]">
