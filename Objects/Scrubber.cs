@@ -68,7 +68,6 @@ namespace UltimateRoadTripMachineNS.Objects
     
     public static List<string> Scrub(string command)
     {
-        
         string binguri = "http://www.bing.com/images/search?q=";
         Console.WriteLine("Searching for URLs...");
         string html = Scrubber.GetPageContent(binguri + command);
@@ -136,6 +135,28 @@ namespace UltimateRoadTripMachineNS.Objects
           }
         }
         return images;
-    } 
+    } // end func scrub
+    
+    // Dealing with the map
+    public static Uri GetMapOnLocation(string location)
+    {
+      string placeUri = "place?q=" + location;
+      return GetMap(placeUri);
+    }
+    private static Uri GetMap(string command)
+    {
+      string baseUri = "https://www.google.com/maps/embed/v1/";
+      string zoomLevel = "&zoom=5";
+      string apiKey = "&key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA";
+      Console.WriteLine("map route, command string: " + command);
+      Uri model = new Uri(baseUri + command + zoomLevel + apiKey);
+      return model;
+    }
+    public static Uri GetMapDirections(string start, string end)
+    {
+      start = "&origin="+start;
+      end = "&destination="+end;
+      return GetMap(start+end);
+    }
   } // end class
 } // end namespace
