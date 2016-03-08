@@ -3,34 +3,43 @@
   nav {
     width: 80%;
     margin:auto;
-  ul {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
-    padding: 34px 0 18px;
-      li {
-        a {
-          list-style: none;
-          text-decoration: none;
-          color: white;
-        }
-      i {
-        color: #ffb84d;
-      }
-      flex: 1;
-      padding: 5px 0;
-      font-size: 18px;
-      text-align: center;
-      font-family: 'Fjalla One', sans-serif;
-      list-style: none;
-      @media #{$brk-narrow} {
-        display: none;
-      }
-      }
-      li:nth-child(1) {
-        display: flex;
-        flex: 3;
+  }
+}
+
+.header-ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 34px 0 18px;
+  li {
+    flex: 1;
+    padding: 5px 0;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    list-style: none;
+    a {
+      text-decoration: none;
+      color: white;
+      &:hover {
+        color: #888;
       }
     }
+  i {
+    color: #ffb84d;
+  }
+  li:nth-child(6) {
+    display: none;
+  }
+  @media #{$brk-narrow} {
+    display: none;
+   }
+  }
+  li:nth-child(1) {
+    display: flex;
+    flex: 3;
+  }
+  li:nth-child(6) {
+    display: inline;
   }
 }

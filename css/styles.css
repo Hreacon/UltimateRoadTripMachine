@@ -131,59 +131,60 @@ footer {
     display: table; }
   footer .footer-primary-contacts {
     display: flex;
-    justify-content: flex-end; }
-    @media (max-width: 770px) {
-      footer .footer-primary-contacts {
-        flex-direction: column; } }
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; }
     footer .footer-primary-contacts li {
-      align-content: center;
       list-style: none;
-      margin-left: 16px;
+      margin-left: 10px;
       padding: 30px 10px 0 0; }
     footer .footer-primary-contacts a {
       color: white;
       text-decoration: none; }
-    footer .footer-primary-contacts li:nth-child(1), footer .footer-primary-contacts li:nth-child(2) {
-      flex: 1; }
-
-@media (max-width: 770px) {
-  .footer-primary-contacts li:nth-child(5), .footer-primary-contacts li:nth-child(6), .footer-primary-contacts li:nth-child(7) {
-    border: 5px solid red; }
-    .footer-primary-contacts li:nth-child(5) a, .footer-primary-contacts li:nth-child(6) a, .footer-primary-contacts li:nth-child(7) a {
-      border: 3px solid yellow; }
-    .footer-primary-contacts li:nth-child(5) i, .footer-primary-contacts li:nth-child(6) i, .footer-primary-contacts li:nth-child(7) i {
-      font-size: 2em;
-      border: 3px solid green; } }
+    footer .footer-primary-contacts i {
+      font-size: 2em; }
+    @media (max-width: 770px) {
+      footer .footer-primary-contacts li {
+        width: 100%; }
+      footer .footer-primary-contacts li:nth-child(5), footer .footer-primary-contacts li:nth-child(6), footer .footer-primary-contacts li:nth-child(7) {
+        width: 10%;
+        display: block; } }
 
 .header {
   background-color: #222; }
   .header nav {
     width: 80%;
     margin: auto; }
-    .header nav ul {
-      display: flex;
-      justify-content: space-around;
-      margin: 0 auto;
-      padding: 34px 0 18px; }
-      .header nav ul li {
-        flex: 1;
-        padding: 5px 0;
-        font-size: 18px;
-        text-align: center;
-        font-family: 'Fjalla One', sans-serif;
-        list-style: none; }
-        .header nav ul li a {
-          list-style: none;
-          text-decoration: none;
-          color: white; }
-        .header nav ul li i {
-          color: #ffb84d; }
-        @media (max-width: 770px) {
-          .header nav ul li {
-            display: none; } }
-      .header nav ul li:nth-child(1) {
-        display: flex;
-        flex: 3; }
+
+.header-ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 34px 0 18px; }
+  .header-ul li {
+    flex: 1;
+    padding: 5px 0;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    list-style: none; }
+    .header-ul li a {
+      text-decoration: none;
+      color: white; }
+      .header-ul li a:hover {
+        color: #888; }
+    .header-ul li i {
+      color: #ffb84d; }
+    .header-ul li li:nth-child(6) {
+      display: none; }
+    @media (max-width: 770px) {
+      .header-ul li {
+        display: none; } }
+  .header-ul li:nth-child(1) {
+    display: flex;
+    flex: 3; }
+  .header-ul li:nth-child(6) {
+    display: inline; }
 
 .photos .img {
   background-repeat: no-repeat;
