@@ -83,10 +83,7 @@ Database Tables:
     images
       id int identity(1,1)
       link varchar
-    results
-      id int identity(1,1)
-      term_id int
-      image_id int
+      search_terms_id int
 
 Scrubber Class:
   Methods:
