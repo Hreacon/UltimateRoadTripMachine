@@ -226,6 +226,24 @@ namespace UltimateRoadTripMachineNS.Objects
       }
     }
 
+    // public void MoveUp()
+    // {
+    //   if(this.GetId() = 0)
+    //   {
+    //     return("You Are at the Starting Position of Your Trip");
+    //   }
+    //   else if
+    //   {
+    //     List<Destination> tripDestinations = Find(this.GetRoadTripId()).GetDestinations();
+    //     update fruit a
+    //      inner join fruit b on a.id <> b.id
+    //        set a.color = b.color,
+    //            a.name = b.name,
+    //            a.calories = b.calories
+    //      where a.id in (2,5) and b.id in (2,5)
+    //   }
+    // }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
