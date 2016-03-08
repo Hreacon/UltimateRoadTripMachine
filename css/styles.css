@@ -7,18 +7,17 @@ html {
 .input-group-destination {
   margin: 20px 0;
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  margin-left: 25%;
-  width: 45vw;
+  position: fixed;
+  top: 10px;
+  right: 60px;
+  width: 60vw;
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   background-color: white; }
   @media (max-width: 770px) {
     .input-group-destination {
-      margin-left: 20px;
-      width: 90%; } }
+      right: 12px;
+      width: 90vw; } }
   .input-group-destination input[type="text"] {
     outline: 0;
     padding: 14px;
@@ -171,45 +170,27 @@ footer {
         display: block; } }
 
 .header {
-  background-color: #222; }
-  .header nav {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto; }
-    .header nav::after {
-      clear: both;
-      content: "";
-      display: table; }
-
-.header-ul {
-  display: flex;
-  justify-content: space-around;
   margin: 0 auto;
-  padding: 34px 0 18px; }
-  .header-ul li {
-    flex: 1;
-    padding: 5px 0;
-    font-size: 18px;
-    text-align: center;
-    font-family: 'Fjalla One', sans-serif;
-    list-style: none; }
-    .header-ul li a {
-      text-decoration: none;
-      color: white; }
-      .header-ul li a:hover {
-        color: #888; }
-    .header-ul li i {
-      color: #ffb84d; }
-    .header-ul li li:nth-child(6) {
-      display: none; }
-    @media (max-width: 770px) {
-      .header-ul li {
-        display: none; } }
-  .header-ul li:nth-child(1) {
-    display: flex;
-    flex: 3; }
-  .header-ul li:nth-child(6) {
-    display: inline; }
+  background-color: #222;
+  height: 120px; }
+  .header .header-ul {
+    margin: 0 auto;
+    padding: 34px 12px 18px; }
+    .header .header-ul li {
+      padding: 5px 0;
+      font-size: 18px;
+      font-family: 'Fjalla One', sans-serif;
+      list-style: none; }
+      @media (max-width: 770px) {
+        .header .header-ul li {
+          display: none; } }
+      .header .header-ul li a {
+        text-decoration: none;
+        color: #777; }
+        .header .header-ul li a:hover {
+          color: #999; }
+      .header .header-ul li i {
+        color: #ffb84d; }
 
 .photos .img {
   background-repeat: no-repeat;
