@@ -26,8 +26,8 @@ namespace UltimateRoadTripMachineNS
   public void Test_Equal_ReturnsTrueIfDescriptionsAreTheSameDestination()
   {
 
-    Destination firstDestination = new Destination("multnomah falls", 1, 1);
-    Destination secondDestination = new Destination("multnomah falls", 1, 1);
+    Destination firstDestination = new Destination("multnomah falls", 1);
+    Destination secondDestination = new Destination("multnomah falls", 1);
 
     Assert.Equal(firstDestination, secondDestination);
   }
@@ -50,7 +50,7 @@ namespace UltimateRoadTripMachineNS
   public void Test_Find_FindsDestinationInDataBaseDestination()
   {
     //Arrange
-    Destination testDestination = new Destination("multnomah falls", 1, 1);
+    Destination testDestination = new Destination("multnomah falls", 1);
     testDestination.Save();
 
     //Act
@@ -61,20 +61,27 @@ namespace UltimateRoadTripMachineNS
   }
 
   // [Fact]
-  // public void Test_MoveUp_SwapsThisDestinationWithPrevious()
+  // public void Test_CreateNewDestinationAndSetStop()
   // {
-  //   Destination firstDestination = new Destination("multnomah falls", 1, 1);
-  //   Destination secondDestination = new Destination("paradise falls", 2, 1);
-  //
-  //   secondDestination.MoveUp();
-  //
-  //   Assert.Equal(1, secondDestination.GetStop());
+  //   Destination newDestination = new Destination("multnomah falls", 1)
   // }
+
+  [Fact]
+  public void Test_MoveUp_SwapsThisDestinationWithPrevious()
+  {
+    Destination firstDestination = new Destination("multnomah falls", 1, 1);
+    Destination secondDestination = new Destination("paradise falls", 2, 1);
+
+    secondDestination.MoveUp();
+
+    Assert.Equal(1, secondDestination.GetStop());
+    Assert.Equal(2, firstDestination.GetStop());
+  }
 
   [Fact]
   public void Test_UpdateDestinationNameDestination()
   {
-      Destination newDestination = new Destination("multnomah falls", 1, 1);
+      Destination newDestination = new Destination("multnomah falls", 1);
       newDestination.Save();
       newDestination.SetName("paradise falls");
       newDestination.Update();

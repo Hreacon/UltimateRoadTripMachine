@@ -66,10 +66,10 @@ namespace UltimateRoadTripMachineNS
       RoadTrip newTrip = new RoadTrip("awesome adventure", "awesome adventure to somewhere");
       newTrip.Save();
       Console.WriteLine(newTrip.GetName()+" "+newTrip.GetId());
-      Destination firstDestination = new Destination("multnomah falls", 1, newTrip.GetId());
+      Destination firstDestination = new Destination("multnomah falls", newTrip.GetId());
       firstDestination.Save();
       Console.WriteLine(firstDestination.GetName()+" "+firstDestination.GetId());
-      Destination secondDestination = new Destination("mt tabor", 2, newTrip.GetId());
+      Destination secondDestination = new Destination("mt tabor", newTrip.GetId());
       secondDestination.Save();
       Console.WriteLine(secondDestination.GetName()+" "+secondDestination.GetId() + " "+ secondDestination.GetRoadTripId());
 
