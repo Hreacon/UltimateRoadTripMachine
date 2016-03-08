@@ -1,14 +1,7 @@
-@Html.Partial("header.cshtml")
-
-@if( Model["list"].Count > 0 )
+@if( Model.Count > 0 )
 {
-  <ul>
-    @foreach(var img in Model["list"])
+    @foreach(var img in Model)
     {
-      <img src="@img">
+      <div class="img clickhandler"><img src="@img"></div>
     }
-  </ul>
 }
-
-<h1>Bing Source Code</h1>
-@Model["bing"]
