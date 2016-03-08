@@ -1,13 +1,26 @@
 $(document).ready(function() {
-  $("#tesat").submit(function(event) {
+  $("#maptest").submit(function(event) {
     event.preventDefault();
-    var href = "/getPage";
-    var command = $("input[name='command']").val();
+    var href = "/map";
+    var start = $("#maptest input[name='start']").val();
     href = href;
     $.post(href, {
-        command: command 
+        start: start 
       }, function(data, status) {
-          $(".data").html(data);
+          $(".content").html(data);
+      }
+    );
+  });
+  $("#maptestdirections").submit(function(event) {
+    event.preventDefault();
+    var href = "/mapDirections";
+    var start = $("#maptestdirections input[name='start']").val();
+    var end = $("#maptestdirections input[name='end']").val();
+    href = href;
+    $.post(href, {
+        start: start 
+      }, function(data, status) {
+          $(".content").html(data);
       }
     );
   });
