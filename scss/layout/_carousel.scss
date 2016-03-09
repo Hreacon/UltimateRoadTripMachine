@@ -1,12 +1,25 @@
 .carousel {
+  width: 80%;
+  height: 60vh;
+  margin-left: auto;
+  margin-right: auto;
+  border: 8px solid white;
+
   ul {
     li {
       list-style: none;
+      display: flex;
+      justify-content: space-between;
     }
   }
-  .fa-chevron-left{
-    border: 2px solid red;
-    color: white;
-    font-size: 2em;
-  }
+    .fa-chevron-left {
+      color: white;
+      font-size: 2em;
+    }
+
+}
+
+.fa-chevron-right {
+  color: white;
+  font-size: 2em;
 }

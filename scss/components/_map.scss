@@ -24,3 +24,13 @@
   font-size: 1em;
   margin: 0;
 }
+
+.map {
+    margin-top: 10px;
+    width: 100%; height: 400px;
+    background: #ffffff;
+    text-align: center;
+}
+.overlay iframe{
+    pointer-events: none;
+}

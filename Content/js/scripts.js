@@ -50,10 +50,18 @@ $(document).ready(function() {
             fixImages();
         }
       );
-    } else { 
+    } else {
       console.log("Command not sent, no command found");
     }
   });
 });
 
+$(document).ready(function() {
+    $('.overlay').click(function () {
+        $('.overlay iframe').css("pointer-events", "auto");
+    });
 
+    $( ".overlay" ).mouseleave(function() {
+      $('.overlay iframe').css("pointer-events", "none");
+    });
+ }); 
