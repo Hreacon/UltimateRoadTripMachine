@@ -123,11 +123,11 @@ Javascript
 maximg - Keep aspect ratio of image - DONE
 Resizing map - recenter focus on trip - DONE
 fiximg not centering properly - CLOSE ENOUGH
-maximg - carousel?
-Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd.
+Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd. DONE
 Zoom to the newely added routes
-http://stackoverflow.com/questions/21992498/disable-mouse-scroll-wheel-zoom-on-embedded-google-maps
-
+maximg - carousel?
+Add function to undisable the input when the return is not proper
+Prevent maps from preventing scrolling - DONE
 
 C#:
 Insert images/search terms into the database
