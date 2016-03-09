@@ -84,7 +84,7 @@ namespace UltimateRoadTripMachineNS.Objects
       int output = 0;
       foreach(string c in commands)
       {
-        if(link.Contains(c))
+        if(link.Contains(c) && c.Length > 3)
           output += 1;
       }
       if(link.Contains("thumb"))
