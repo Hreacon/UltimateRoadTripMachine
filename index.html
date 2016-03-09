@@ -22,9 +22,6 @@
       </nav>
     </header>
     <!-- //search field for new destination// -->
-
-
-
     <div class="map" id="map_canvas">
       <iframe  frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?origin=portland%20or&amp;destination=the%20dalles%20or&amp;key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA">
       </iframe>
@@ -44,16 +41,60 @@
       <div class="img photo6">
       </div>
     </div>
+    <!-- // carousel for images// -->
+    <div class="carousel">
+      <input type="radio" id="carousel-1" name="carousel[]" checked>
+      <input type="radio" id="carousel-2" name="carousel[]">
+      <input type="radio" id="carousel-3" name="carousel[]">
+      <input type="radio" id="carousel-4" name="carousel[]">
+      <input type="radio" id="carousel-5" name="carousel[]">
+      <input type="radio" id="carousel-6" name="carousel[]">
+      <ul class="carousel__items">
+        <li class="carousel__item"><img src="img/alvard1.jpeg" alt=""></li>
+        <li class="carousel__item"><img src="img/alvard2.jpeg" alt=""></li>
+        <li class="carousel__item"><img src="img/alvard3.jpg" alt=""></li>
+        <li class="carousel__item"><img src="img/alvard4.jpg" alt=""></li>
+        <li class="carousel__item"><img src="img/alvard5.jpg" alt=""></li>
+        <li class="carousel__item"><img src="img/alvard6.jpg" alt=""></li>
+      </ul>
+      <div class="carousel__prev">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+        <label for="carousel-4"></label>
+        <label for="carousel-5"></label>
+        <label for="carousel-6"></label>
+      </div>
+      <div class="carousel__next">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+        <label for="carousel-4"></label>
+        <label for="carousel-5"></label>
+        <label for="carousel-6"></label>
+      </div>
+      <div class="carousel__nav">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+        <label for="carousel-4"></label>
+        <label for="carousel-5"></label>
+        <label for="carousel-6"></label>
+      </div>
+    </div>
+
+
+
     <!-- //videos displayed from search// -->
     <div class="videos">
 
     </div>
-    
+
 
   <!-- //footer// -->
   <footer>
     <ul class="footer-primary-contacts">
-      <li><a href="#">About</a></li>
+      <li><a href="#"><i class="fa fa-road"></i> Road Trip</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">Terms and Conditions</a></li>
       <li><a href="#">Privacy Policy</a></li>
