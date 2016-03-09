@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/content/css/maximg.css" media="screen" title="no title" charset="utf-8">
     <title>Ultimate Road Trip Machine</title>
   </head>
   <body>
@@ -18,8 +19,10 @@
           <!-- <li><a href="#"><i class="fa fa-fort-awesome"></i></a></li> -->
         </ul>
         <div class="input-group-destination">
-          <input type="text" placeholder="destination" name="name" value="">
-          <input type="button" name="name" value="search">
+          <form id="commandLine" method="post">
+            <input type="text" placeholder="destination" name="command" value="">
+            <input type="submit" name="submit" value="search">
+          </form>
         </div>
       </nav>
     </header>
