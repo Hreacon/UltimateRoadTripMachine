@@ -67,8 +67,9 @@ namespace UltimateRoadTripMachineNS
   // }
 
   [Fact]
-  public void Test_MoveUp_SwapsThisDestinationWithPrevious()
+  public void Test_AddImageLinkToDatabase()
   {
+
   }
 
   [Fact]

@@ -89,29 +89,23 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd new SqlCommand("INSERT INTO images (link) OUTPUT INSERTED.id VALUES (@Link);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO images (link, search_terms_id) OUTPUT INSERTED.id VALUES (@Link, termId);", conn);
       SqlParameter LinkParameter = new SqlParameter();
       LinkParameter.ParameterName = "@Link";
       LinkParameter.Value = link;
-      int linkId = 0;
 
       cmd.Parameters.Add(LinkParameter);
 
       rdr = cmd.ExecuteReader();
 
-      While(rdr.Read())
-      {
-        linkId = rdr.GetInt32(0);
-      }
-      if(rdr != null);
+      if(rdr != null)
       {
         rdr.Close();
       }
-      if(conn != null);
+      if(conn != null)
       {
         conn.Close();
       }
-      return linkId;
     }
 
     public static string GetPageContent(string url)
