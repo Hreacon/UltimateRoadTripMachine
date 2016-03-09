@@ -5,6 +5,7 @@ function fixImages()
     var img = $(this).find("img");
     img.on('load', function() {
       var aspect = img.width() / img.height();
+      img.attr("data-aspect", aspect);
       console.log("Aspect Ratio: " + aspect);
       if(aspect < 1) {
         img.width($(this).parent().height() * aspect-4);
@@ -17,12 +18,26 @@ function fixImages()
       // todo set margin to center img
     });
     $(this).click(function() {
-      var src = $(this).children("img").attr('src');
+      console.log("MaxImg:");
+      var img = $(this).children("img");
+      var src = img.attr('src');
     $('.maximg img').attr('src', src);
       if( window.innerWidth > 1000 ) {
         $('.maximg div').attr('top', '5%');
       }
-      $('.maximg img').attr('width', window.innerWidth - window.innerWidth*.2);
+      var width = 0;
+      var height = 0;
+      var aspect = img.attr('data-aspect');
+      console.log("Aspect: " + aspect);
+      if( aspect > 1 ) {
+        width = window.innerWidth - window.innerWidth*.2;
+        height = width * aspect;
+      } else {
+        height = window.innerHeight - window.innerHeight*.1;
+        width = height * aspect;
+      }
+      $('.maximg img').attr('height', height );
+      $('.maximg img').attr('width', width );
       $('.maximg').show();
     });
     $(this).removeClass("clickhandler");

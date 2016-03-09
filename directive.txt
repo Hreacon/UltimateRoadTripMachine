@@ -120,8 +120,8 @@ Google Developer API key AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA
 NOTE -------------- ?'s mean after MVP, as in not important. Do them if you have free time. ------------------ NOTE
 
 Javascript
+maximg - Keep aspect ratio of image - DONE
 Resizing map - recenter focus on trip
-maximg - Keep aspect ratio of image
 maximg - carousel?
 Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd
 
