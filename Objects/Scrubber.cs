@@ -89,12 +89,17 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO images (link, search_terms_id) OUTPUT INSERTED.id VALUES (@Link, termId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO images (link, search_terms_id) VALUES (@Link, @TermId);", conn);
       SqlParameter LinkParameter = new SqlParameter();
       LinkParameter.ParameterName = "@Link";
       LinkParameter.Value = link;
 
+      SqlParameter TermIdParameter = new SqlParameter();
+      TermIdParameter.ParameterName = "@TermId";
+      TermIdParameter.Value = termId;
+
       cmd.Parameters.Add(LinkParameter);
+      cmd.Parameters.Add(TermIdParameter);
 
       rdr = cmd.ExecuteReader();
 
@@ -230,6 +235,13 @@ namespace UltimateRoadTripMachineNS.Objects
       start = "origin="+start;
       end = "&destination="+end;
       return GetMap("directions?"+start+end);
+    }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM search_terms; DELETE FROM images;", conn);
+      cmd.ExecuteNonQuery();
     }
   } // end class
 } // end namespace
