@@ -80,7 +80,7 @@ $(document).ready(function() {
             $("#commandLine input[type=submit]").prop('disabled', false);
         }
       );
-    } else { 
+    } else {
       console.log("Command not sent, no command found");
     }
   });
@@ -91,4 +91,12 @@ $(document).ready(function() {
   });
 });
 
-
+// $(document).ready(function() {
+//     $('.overlay').click(function () {
+//         $('.overlay iframe').css("pointer-events", "auto");
+//     });
+//
+//     $( ".overlay" ).mouseleave(function() {
+//       $('.overlay iframe').css("pointer-events", "none");
+//     });
+//  });
