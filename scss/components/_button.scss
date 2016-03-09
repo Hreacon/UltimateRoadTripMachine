@@ -1,15 +1,17 @@
 .input-group-destination {
    margin: 20px 0;
    display: flex;
+   justify-content: center;
    position: fixed;
    top: 10px;
-   right: 60px;
-   width: 60vw;
+   left: 35%;
+   width: 50%;
+   max-width: 700px;
    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
    border-radius: 4px;
    background-color: white;
    @media #{$brk-narrow} {
-     right: 12px;
+     left: 22px;
      width: 90vw;
    }
    input[type="text"] {
@@ -17,11 +19,11 @@
      padding: 14px;
      border-top-left-radius: 4px;
      border-bottom-left-radius: 4px;
-     flex: 1;
+     flex: 3;
      font-size: 1.2rem;
      border: none;
    }
-   input[type="button"]{
+   input[type="submit"]{
      outline:0;
      background-color: #42A8D1;
      color: white;
