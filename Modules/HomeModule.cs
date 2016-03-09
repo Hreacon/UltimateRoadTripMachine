@@ -45,8 +45,8 @@ namespace UltimateRoadTripMachineNS
       //   Dictionary<string,object> model = new Dictionary<string,object>(){};
       //   model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName()));
       //   model.Add("roadTripId", newTrip.GetId());
-      Console.WriteLine("Return View");//   
-      return View["stop.cshtml", model];
+      // Console.WriteLine("Return View");//   
+      // return View["stop.cshtml", model];
       // }; 
       Post["/addStop"] = _ => {
         Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
