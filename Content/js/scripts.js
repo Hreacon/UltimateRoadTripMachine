@@ -56,12 +56,12 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
-    $('.overlay').click(function () {
-        $('.overlay iframe').css("pointer-events", "auto");
-    });
-
-    $( ".overlay" ).mouseleave(function() {
-      $('.overlay iframe').css("pointer-events", "none");
-    });
- }); 
+// $(document).ready(function() {
+//     $('.overlay').click(function () {
+//         $('.overlay iframe').css("pointer-events", "auto");
+//     });
+//
+//     $( ".overlay" ).mouseleave(function() {
+//       $('.overlay iframe').css("pointer-events", "none");
+//     });
+//  });

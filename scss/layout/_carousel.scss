@@ -3,23 +3,16 @@
   height: 60vh;
   margin-left: auto;
   margin-right: auto;
-  border: 8px solid white;
-
-  ul {
-    li {
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  i {
+    color: white;
+    opacity: 0.2;
+    font-size: 2em;
+    margin: .5em;
+    &:hover {
+      opacity: 1;
     }
   }
-    .fa-chevron-left {
-      color: white;
-      font-size: 2em;
-    }
-
-}
-
-.fa-chevron-right {
-  color: white;
-  font-size: 2em;
 }

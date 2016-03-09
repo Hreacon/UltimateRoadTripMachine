@@ -1,3 +1,13 @@
+.map {
+    margin-top: 11vh;
+    width: 100%;
+    height: 400px;
+    background: #ffffff;
+}
+.overlay iframe {
+    pointer-events: none;
+}
+
 #map_canvas {
   min-height: 400px;
   width: 100%;
@@ -23,14 +33,4 @@
 #map_canvas #bodyContent p {
   font-size: 1em;
   margin: 0;
-}
-
-.map {
-    margin-top: 10px;
-    width: 100%; height: 400px;
-    background: #ffffff;
-    text-align: center;
-}
-.overlay iframe{
-    pointer-events: none;
 }
