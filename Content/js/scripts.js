@@ -45,6 +45,19 @@ function fixImages()
   $('.maximg').click(function() {
     $(this).hide();
   });
+} // end fix image add click
+function fixImageSize(img)
+{
+  var aspect = img.attr('data-aspect');
+  if(aspect < 1) {
+    img.width(img.parent().height() * aspect-4);
+    console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
+    img.css("margin-left", ((img.parent().width() - img.width()/2)/(img.parent().width())*100)/2.8 + "%");
+  } else {
+    img.width(img.parent().width()-4);
+    // img.css("margin-top", (img.parent().height() - img.height()) / 2 + "px");
+    img.parent().height(img.height()+4);
+  }
 }
 
 $(document).ready(function() {
