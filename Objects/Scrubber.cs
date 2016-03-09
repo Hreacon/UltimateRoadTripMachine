@@ -24,19 +24,15 @@ namespace UltimateRoadTripMachineNS.Objects
       TermParameter.Value = term;
       cmd.Parameters.Add(TermParameter);
 
-
-      // SqlParameter LimitParameter = new SqlParameter();
-      // LimitParameter.ParameterName = "@Limit";
-      // LimitParameter.Value = limit;
-      // cmd.Parameters.Add(LimitParameter);
       rdr = cmd.ExecuteReader();
-
 
       while(rdr.Read())
       {
         if(!(rdr.HasRows))
         {
-          return Scrubber.Scrub(term, limit);
+          urls= Scrubber.Scrub(term, limit);
+          int termId = AddSearch(term);
+
         }
         else
         {
@@ -45,9 +41,78 @@ namespace UltimateRoadTripMachineNS.Objects
           urls.Add(link);
         }
       }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
       return urls;
     }
-    /**/
+
+    public static int AddSearch(string term)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO search_terms (term) OUTPUT INSERTED.id VALUES (@Term);", conn);
+      SqlParameter TermParameter = new SqlParameter();
+      TermParameter.ParameterName = "@Term";
+      TermParameter.Value = term;
+      int termId = 0;
+
+      cmd.Parameters.Add(TermParameter);
+
+      rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        termId = rdr.GetInt32(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return termId;
+    }
+
+    public static void AddImageLink(string link, int termId)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO images (link, search_terms_id) VALUES (@Link, @TermId);", conn);
+      SqlParameter LinkParameter = new SqlParameter();
+      LinkParameter.ParameterName = "@Link";
+      LinkParameter.Value = link;
+
+      SqlParameter TermIdParameter = new SqlParameter();
+      TermIdParameter.ParameterName = "@TermId";
+      TermIdParameter.Value = termId;
+
+      cmd.Parameters.Add(LinkParameter);
+      cmd.Parameters.Add(TermIdParameter);
+
+      rdr = cmd.ExecuteReader();
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static string GetPageContent(string url)
     {
       string output = String.Empty;
@@ -69,7 +134,7 @@ namespace UltimateRoadTripMachineNS.Objects
     {
       List<string> output = new List<string>(){};
       bool done = false;
-      while(!done && html.Length>100) 
+      while(!done && html.Length>100)
       {
         int position = html.IndexOf(start, 0);
         int endposition = 0;
@@ -102,7 +167,7 @@ namespace UltimateRoadTripMachineNS.Objects
         output -= 10;
       return output > 0;
     }
-    
+
     public static List<string> Scrub(string command, int limit = 30)
     {
         string binguri = "http://www.bing.com/images/search?q=";
@@ -129,7 +194,7 @@ namespace UltimateRoadTripMachineNS.Objects
             {
               // filter out the links that reference something on the page and instead focus on the links that link directly to the image, but this has to be checked at the img src level
               //  sourceImg.Substring(0,2) == "ht" || sourceImg.Substring(0,2) == "//"
-              
+
               if(Scrubber.CheckLink(sourceImg, command)) // check to see if the image tag has a word from the original command in it, attempting to circumvent getting useless photos
               {
                 Console.WriteLine("Source of scrub " + sourceImg);
@@ -137,13 +202,13 @@ namespace UltimateRoadTripMachineNS.Objects
                 char endQuote = '"';
                 if(position < 0)
                   position = sourceImg.IndexOf("src=")+5; // not found with http? try src
-                endQuote = sourceImg[position-1]; 
+                endQuote = sourceImg[position-1];
                 string src = sourceImg.Substring(position); // get the link to the actual image
                 Console.WriteLine("src: " + src);
                 try { // try to catch 404 exceptions... etc
                   src = src.Substring(0, src.IndexOf(endQuote)); // cut off the rest of the string after the link ends
                 } catch(Exception e) {} // empty catch - ignore errors!
-                if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") // make sure the link starts with http or // so its a full path link. 
+                if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") // make sure the link starts with http or // so its a full path link.
                   images.Add(src);
                 Console.WriteLine("Adding Image: " + src);
                 if(images.Count >= limit)
@@ -154,7 +219,7 @@ namespace UltimateRoadTripMachineNS.Objects
         }
         return images;
     } // end func scrub
-    
+
     // Dealing with the map
     public static string GetMapOnLocation(string location)
     {
@@ -175,6 +240,13 @@ namespace UltimateRoadTripMachineNS.Objects
       start = "origin="+start;
       end = "&destination="+end;
       return GetMap("directions?"+start+end);
+    }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM search_terms; DELETE FROM images;", conn);
+      cmd.ExecuteNonQuery();
     }
   } // end class
 } // end namespace
