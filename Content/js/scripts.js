@@ -43,7 +43,7 @@ function fixImageSize(img)
   var aspect = img.attr('data-aspect');
   if(aspect < 1) {
     img.width(img.parent().height() * aspect-4);
-    console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
+    // console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
     img.css("margin-left", ((img.parent().width() - img.width()/2)/(img.parent().width())*100)/2.8 + "%");
   } else {
     img.width(img.parent().width()-4);
@@ -55,12 +55,14 @@ function fixImageSize(img)
 
 $(document).ready(function() {
   $("#commandLine").submit(function(event) {
-    var commandLine = $("#commandLine");
+    var commandLine = $("input[name=command]");
+    $("#commandLine input[type=submit]").prop('disabled', true);
+    console.log(commandLine);
+    var command = commandLine.val();
     commandLine.val("Loading......");
     commandLine.prop('disabled', true);
     event.preventDefault();
     var href = "/addStop";
-    var command = $("#commandLine input[name='command']").val();
     if(command.trim().length > 0) {
       console.log("Command sent to server at " + href + " with command " + command);
       var roadTripId = 0;
@@ -72,9 +74,10 @@ $(document).ready(function() {
             console.log("Data returned from server");
             $(".content").append(data);
             fixImageAddClick();
-            var commandLine = $("#commandLine");
+            var commandLine = $("input[name=command]");
             commandLine.prop('disabled', false);
             commandLine.val("");
+            $("#commandLine input[type=submit]").prop('disabled', false);
         }
       );
     } else { 
