@@ -85,6 +85,15 @@ namespace UltimateRoadTripMachineNS
   }
 
   [Fact]
+  public void Test_SearchForLinksFromTerm()
+  {
+  List<string> urls = Scrubber.Search("poptarts");
+
+  Assert.Equal(2, urls.Count);
+  }
+
+
+  [Fact]
   public void Test_UpdateDestinationNameDestination()
   {
       Destination newDestination = new Destination("multnomah falls", 1);

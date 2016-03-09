@@ -18,29 +18,34 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
+      SqlCommand cmd = new SqlCommand("SELECT TOP " +limit+" images.link FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
       SqlParameter TermParameter = new SqlParameter();
       TermParameter.ParameterName = "@Term";
       TermParameter.Value = term;
       cmd.Parameters.Add(TermParameter);
+
+
+      // SqlParameter LimitParameter = new SqlParameter();
+      // LimitParameter.ParameterName = "@Limit";
+      // LimitParameter.Value = limit;
+      // cmd.Parameters.Add(LimitParameter);
       rdr = cmd.ExecuteReader();
+
 
       while(rdr.Read())
       {
-          if(term=0)
-          {
-            Scrubber.Scrub();
-          }
-          else
-          {
-            string link = rdr.GetString(1);
-            
-            urls.Add(link)
-          }
-          return urls;
+        if(!(rdr.HasRows))
+        {
+          return Scrubber.Scrub(term, limit);
+        }
+        else
+        {
+          string link = rdr.GetString(0);
+
+          urls.Add(link);
+        }
       }
-
-
+      return urls;
     }
 
     public static string GetPageContent(string url)
@@ -96,7 +101,7 @@ namespace UltimateRoadTripMachineNS.Objects
       return output > 0;
     }
 
-    public static List<string> Scrub(string command)
+    public static List<string> Scrub(string command, int limit)
     {
 
         string binguri = "http://www.bing.com/images/search?q=";
