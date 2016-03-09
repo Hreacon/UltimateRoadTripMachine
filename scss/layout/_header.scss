@@ -2,15 +2,13 @@
   margin: 0 auto;
   background-color: #222;
   height: 120px;
+  position: fixed;
+  top: 0;
+  width: 100vw;
   nav {
-    max-width: 1200px;
+    max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
-  }
-  @media #{$brk-narrow} {
-    position: fixed;
-    width: 100vw;
-    top: 0;
   }
   .header-ul {
     margin: 0 auto;
@@ -33,7 +31,6 @@
       i {
         color: #ffb84d;
       }
-
     }
   }
 

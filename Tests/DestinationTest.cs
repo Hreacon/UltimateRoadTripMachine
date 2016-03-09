@@ -67,14 +67,22 @@ namespace UltimateRoadTripMachineNS
   // }
 
   [Fact]
-  public void Test_MoveUp_SwapsThisDestinationWithPrevious()
+  public void Test_AddImageLinkToDatabase()
   {
+
   }
 
   [Fact]
   public void Test_SearchForLinksFromTerm()
   {
-  List<string> urls = Scrubber.Search("poptarts");
+  // Destination newDestination = new Destination("multnomah falls", 1);
+  // newDestination.AddSearch();
+  int termId;
+  termId = Scrubber.AddSearch("multnomah falls");
+  Scrubber.AddImageLink("www.mfalls.com", termId);
+  Scrubber.AddImageLink("www.multnomahfalls.com", termId);
+
+  List<string> urls = Scrubber.Search("multnomah falls");
 
   Assert.Equal(2, urls.Count);
   }
@@ -110,6 +118,7 @@ namespace UltimateRoadTripMachineNS
    {
      Destination.DeleteAll();
      RoadTrip.DeleteAll();
+     Scrubber.DeleteAll();
    }
  }
 }

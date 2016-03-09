@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/content/css/maximg.css" media="screen" title="no title" charset="utf-8">
+    <script src="content/js/scripts.js" type="text/javascript"></script>
     <title>Ultimate Road Trip Machine</title>
   </head>
   <body>
@@ -21,14 +22,15 @@
         </div>
       </nav>
     </header>
+    <div class="content">
     <!-- //search field for new destination// -->
-
-
-
     <div class="map" id="map_canvas">
-      <iframe  frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?origin=portland%20or&amp;destination=the%20dalles%20or&amp;key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA">
-      </iframe>
+      <div class="overlay">
+        <iframe  frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?origin=portland%20or&amp;destination=the%20dalles%20or&amp;key=AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA">
+        </iframe>
+      </div>
     </div>
+
    <!-- //images displayed from search// -->
     <div class="photos">
       <div class="img photo1">
@@ -44,16 +46,25 @@
       <div class="img photo6">
       </div>
     </div>
+    <!-- // carousel for images// -->
+    <div class="carousel">
+      <i class="fa fa-chevron-left"></i>
+      <i class="fa fa-chevron-right"></i>
+    </div>
+
+
+
+
     <!-- //videos displayed from search// -->
     <div class="videos">
 
     </div>
-    
 
+    </div>
   <!-- //footer// -->
   <footer>
     <ul class="footer-primary-contacts">
-      <li><a href="#">About</a></li>
+      <li><a href="#"><i class="fa fa-road"></i> Road Trip</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">Terms and Conditions</a></li>
       <li><a href="#">Privacy Policy</a></li>

@@ -16,14 +16,19 @@ body {
 
 .photos {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
   @include outer-container;
+  margin: auto;
+  padding: 1.5em 0 0;
 /* clearfix wtf? */
   .img {
     height: 300px;
-    width: 100%;
-    @include span-columns(4);
+    width: calc(33.3% - 1em);
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;
+    &:nth-child(3n){
+      margin-right: 0;
+    }
 
     @extend %image-position;
     // margin-top: 2px;
@@ -31,10 +36,20 @@ body {
       border: 2px solid white;
     }
     @media #{$brk-medium} {
-      @include span-columns(6);
+      width: calc(50% - 0.75em);
+      margin-right: 1.5em;
+      &:nth-child(3n){
+        margin-right: 1.5em;
+      }
+      &:nth-child(2n){
+        margin-right: 0;
+      }
     }
     @media #{$brk-narrow} {
-      @include span-columns(12);
+      width: 100%;
+      &:nth-child(n){
+        margin-right: 0;
+      }
     }
 }
 

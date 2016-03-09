@@ -1,0 +1,18 @@
+.carousel {
+  width: 80%;
+  height: 60vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  i {
+    color: white;
+    opacity: 0.2;
+    font-size: 2em;
+    margin: .5em;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
