@@ -113,6 +113,17 @@ Can we make scrolling the website “snap” a little to certain places?
 gallery - store the url of all the pictures and videos found. Need a C# class and some javascript
 Have a way to store cars and pictures and show the rides used to go on the roadtrip
 
+TODO (This is the above tree with items marked as DONE removed):
+
+Scrubber Class:
+  Methods:
+    Static Methods:
+      Search - Search the database for a search term and the images
+        return results as a list of strings (urls for images)
+        if the search hasn't been done before, call Scrape(term), save the results to the database and return those results.
+      AddTerm - Store the search term in the database
+      AddImage - store the image in the database and store the relationship in the database
+
 
 Other notes:
 
@@ -128,7 +139,7 @@ Test map for front-end
 TODO:
 When resizing the page the map doesn't keep centered over the target location.
 
-Fix the image resizing
+Fix the image resizing - DONE
 View all roadtrips
 
 give quick links to go to different stops
@@ -148,6 +159,22 @@ scrolling while
 C#: Add image, add term
 Add more stuff for the C# team to do
 
-WHEN checking links make sure the comparison string is longer than 3 characters
+WHEN checking links make sure the comparison string is longer than 3 characters - DONE
 
 change timeout when scrubbing
+
+Javascript
+Resizing map - recenter focus on trip
+maximg - Keep aspect ratio of image
+maximg - carousel?
+Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd
+
+C# View/Front End:
+Add the title to the stops and allow moving and editing and deleting
+
+C#:
+Insert images/search terms into the database
+
+
+Front-End:
+View All Roadtrips
