@@ -120,18 +120,25 @@ Google Developer API key AIzaSyCw5z-eino8TADQRsp4NX0pxg4C6ZnMKSA
 NOTE -------------- ?'s mean after MVP, as in not important. Do them if you have free time. ------------------ NOTE
 
 Javascript
-Resizing map - recenter focus on trip
-maximg - Keep aspect ratio of image
+maximg - Keep aspect ratio of image - DONE
+Resizing map - recenter focus on trip - DONE
+fiximg not centering properly - CLOSE ENOUGH
+Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd. DONE
+Prevent maps from preventing scrolling - DONE
+Zoom to the newely added routes
 maximg - carousel?
-Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd
+Add function to undisable the input when the return is not proper
 
-C# View/Front End:
-Add the title to the "stops" and add buttons for moving, editing and deleting
 
 C#:
 Insert images/search terms into the database
 When search calls Scrub, insert the image(links) and search term into the database
-change timeout when scrubbing
+Get directions working properly
+Detect images that are 404 - http://stackoverflow.com/questions/11082804/detecting-image-url-in-c-net
+change timeout when scrubbing - DONE
+
+C# View/Front End:
+Add the title to the "stops" and add buttons for moving, editing and deleting
 
 Front-End:
 View All Roadtrips?
