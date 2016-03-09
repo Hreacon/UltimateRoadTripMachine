@@ -1,21 +1,13 @@
-function fixImages()
+function fixImageAddClick()
 {
-  console.log("Fix Images");
+  console.log("Fix Image Add Click");
   $(".clickhandler").each(function() {
     var img = $(this).find("img");
     img.on('load', function() {
       var aspect = img.width() / img.height();
       img.attr("data-aspect", aspect);
       console.log("Aspect Ratio: " + aspect);
-      if(aspect < 1) {
-        img.width($(this).parent().height() * aspect-4);
-        img.css("margin-left", ($(this).parent().width() - img.width()) / 2 + "px");
-      } else {
-        img.width($(this).parent().width()-4);
-        // img.css("margin-top", ($(this).parent().height() - img.height()) / 2 + "px");
-        $(this).parent().height(img.height()+4);
-      }
-      // todo set margin to center img
+      fixImageSize(img);
     });
     $(this).click(function() {
       console.log("MaxImg:");
@@ -58,10 +50,14 @@ function fixImageSize(img)
     // img.css("margin-top", (img.parent().height() - img.height()) / 2 + "px");
     img.parent().height(img.height()+4);
   }
+  // todo set margin to center img
 }
 
 $(document).ready(function() {
   $("#commandLine").submit(function(event) {
+    var commandLine = $("#commandLine");
+    commandLine.val("Loading......");
+    commandLine.prop('disabled', true);
     event.preventDefault();
     var href = "/addStop";
     var command = $("#commandLine input[name='command']").val();
@@ -75,12 +71,20 @@ $(document).ready(function() {
         }, function(data, status) {
             console.log("Data returned from server");
             $(".content").append(data);
-            fixImages();
+            fixImageAddClick();
+            var commandLine = $("#commandLine");
+            commandLine.prop('disabled', false);
+            commandLine.val("");
         }
       );
     } else { 
       console.log("Command not sent, no command found");
     }
+  });
+  $(window).resize(function() {
+    $("img[data-aspect]").each(function() {
+      fixImageSize($(this));
+    });
   });
 });
 
