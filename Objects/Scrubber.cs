@@ -52,11 +52,16 @@ namespace UltimateRoadTripMachineNS.Objects
     {
       string output = String.Empty;
       WebRequest req = WebRequest.Create(new Uri(url).AbsoluteUri);
-      WebResponse response = req.GetResponse();
-      Stream data = response.GetResponseStream();
-      using(StreamReader sr = new StreamReader(data))
-      {
-        output = sr.ReadToEnd();
+      req.Timeout = 1000;
+      try{
+        WebResponse response = req.GetResponse();
+        Stream data = response.GetResponseStream();
+        using(StreamReader sr = new StreamReader(data))
+        {
+          output = sr.ReadToEnd();
+        }
+      } catch(WebException e) {
+        Console.WriteLine("Timeout. URL: " + url);
       }
       return output;
     }
