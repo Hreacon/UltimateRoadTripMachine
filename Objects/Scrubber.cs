@@ -11,6 +11,7 @@ namespace UltimateRoadTripMachineNS.Objects
   {
     public static List<string> Search(string term, int limit = 6)
     {
+      Console.WriteLine("Starting Search");
       List<string> terms = new List<string>(){};
       List<string> urls = new List<string>(){};
 
@@ -25,19 +26,24 @@ namespace UltimateRoadTripMachineNS.Objects
       cmd.Parameters.Add(TermParameter);
 
       rdr = cmd.ExecuteReader();
+      Console.WriteLine("Reader Reading");
 
-      while(rdr.Read())
-      {
+
+        Console.WriteLine("In While Loop");
+
         if(!(rdr.HasRows))
         {
+          Console.WriteLine("reverting to scrub");
           urls= Scrubber.Scrub(term, limit);
           int termId = AddSearch(term);
 
         }
         else
         {
+          while(rdr.Read())
+        {
           string link = rdr.GetString(0);
-
+          Console.WriteLine("adding image link: "+link);
           urls.Add(link);
         }
       }
