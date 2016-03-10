@@ -1,26 +1,39 @@
+// To do the carousel:
+// On opening the maximg div, store the source of the image and the nth child it is
+// On Click right - go to the next nth child img of the gallery
+// on click left - go to the prev child of the gallery
+
 function fixImageAddClick()
 {
   console.log("Fix Image Add Click");
+  var uniqueId=Math.floor((Math.random()*1000000) + 1);
+  $(".clickhandler").parent().attr('data-id', uniqueId);
+  console.log("UniqueId: "+uniqueId);
+  var i = 0;
   $(".clickhandler").each(function() {
     var img = $(this).find("img");
     img.on('load', function() {
       var aspect = img.width() / img.height();
       img.attr("data-aspect", aspect);
-      console.log("Aspect Ratio: " + aspect);
+      console.log("Image number: " + i + "Aspect Ratio: " + aspect);
+      img.attr('data-index', i);
+      i++;
       fixImageSize(img);
     });
+    // Add MaxImg click handler
     $(this).click(function() {
       console.log("MaxImg:");
       var img = $(this).children("img");
       var src = img.attr('src');
-    $('.maximg img').attr('src', src);
+      // carousel info
+      $(".maximg").attr('data-gallery', $(this).parent().attr('data-id'));
+      $(".maximg").attr('data-index', img.attr('data-index'));
       if( window.innerWidth > 1000 ) {
-        $('.maximg div').attr('top', '5%');
+        $('.maximg .maximginner').attr('top', '5%');
       }
       var width = 0;
       var height = 0;
       var aspect = img.attr('data-aspect');
-      console.log("Aspect: " + aspect);
       if( aspect > 1 ) {
         width = window.innerWidth - window.innerWidth*.2;
         height = width * aspect;
@@ -28,9 +41,19 @@ function fixImageAddClick()
         height = window.innerHeight - window.innerHeight*.1;
         width = height * aspect;
       }
-      $('.maximg img').attr('height', height );
-      $('.maximg img').attr('width', width );
-      $('.maximg').show();
+      var maximgImg = $(".maximginner").find("img");
+      maximgImg.attr('src', src);
+      maximgImg.attr('height', height );
+      maximgImg.attr('width', width );
+      $('.maximg').css('display', 'flex');
+      $(".left-arrow").click(function() {
+        var galleryId = $("maximg").attr('data-gallery');
+        var index = $("maximg").attr('data-index');
+        index++;
+        if(index > 5) index = 0;
+        if(index < 0) index = 5;
+        $("[data-id="+galleryId+"]").find()
+      })
     });
     $(this).removeClass("clickhandler");
   });
@@ -41,16 +64,62 @@ function fixImageAddClick()
 function fixImageSize(img)
 {
   var aspect = img.attr('data-aspect');
+  img.css('position', 'relative');
+
   if(aspect < 1) {
     img.width(img.parent().height() * aspect-4);
-    // console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
-    img.css("margin-left", ((img.parent().width() - img.width()/2)/(img.parent().width())*100)/2.8 + "%");
   } else {
+    // for landscape set the width and let the height figure itself out and set margin to center it vertically
     img.width(img.parent().width()-4);
-    // img.css("margin-top", (img.parent().height() - img.height()) / 2 + "px");
-    img.parent().height(img.height()+4);
+    img.height(img.width()/aspect);
+    if(img.height() > img.parent().height()-10)
+    {
+      img.height( img.parent().height()-4 );
+      img.width(img.parent().height() * aspect-4);
+    }
   }
-  // todo set margin to center img
+     if( window.innerWidth < 780 )
+      {
+        img.parent().height(img.height()+4);
+        if(img.parent().width() > img.width()+5 && img.parent().height() < 300)
+        {
+          if((img.parent().width()-4) / aspect < 300)
+          {
+            img.height((img.parent().width()-4)/aspect);
+          } else {
+            img.height(300);
+          }
+            img.width(img.height()*aspect-4);
+        }
+      } else {
+        img.parent().height("300px");
+      }
+      if(img.parent().width()-10 > img.width())
+      {
+        // center horizontally
+        var margin = (((img.parent().width() - img.width())/2)/(img.parent().width())*100);
+        if(margin > 2){
+          img.css("margin-left", (margin-2) + "%");
+          img.css("margin-top", 0);
+        } else {
+          img.css("margin-top", 0);
+          img.css("margin-left", 0);
+      }
+      } else if(img.parent().height()-10 > img.height())
+      {
+        // center vertically
+        var margin = (((img.parent().height() - img.height())/2)/(img.parent().height())*100);
+        if(margin > 2) {
+          img.css("margin-top", (margin-2) + "%");
+          img.css("margin-left", 0);
+        } else {
+          img.css("margin-top", 0);
+          img.css("margin-left", 0);
+      }
+      } else {
+          img.css("margin-top", 0);
+          img.css("margin-left", 0);
+      }
 }
 
 $(document).ready(function() {
@@ -70,16 +139,23 @@ $(document).ready(function() {
       $.post(href, {
           command: command,
           roadTripId: roadTripId,
-        }, function(data, status) {
+        }).done(function(data, status) {
             console.log("Data returned from server");
-            $(".content").append(data);
+            $(".content").append("<div id='scrollToHere'>"+data+"</div>");
             fixImageAddClick();
             var commandLine = $("input[name=command]");
-            commandLine.prop('disabled', false);
+            document.getElementById('scrollToHere').scrollIntoView();
+            $("#scrollToHere").attr('id', '');
+            commandLine.focus();
+            window.scrollBy(0,-200);
             commandLine.val("");
-            $("#commandLine input[type=submit]").prop('disabled', false);
         }
-      );
+      ).fail(function(){
+        commandLine.val("Failure..");
+      }).always(function() {
+        commandLine.prop('disabled', false);
+        $("#commandLine input[type=submit]").prop('disabled', false);
+      });
     } else {
       console.log("Command not sent, no command found");
     }
@@ -90,6 +166,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 $(document).ready(function() {
     $('.overlay').click(function () {

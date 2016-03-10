@@ -45,9 +45,9 @@ namespace UltimateRoadTripMachineNS
       //   Dictionary<string,object> model = new Dictionary<string,object>(){};
       //   model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName()));
       //   model.Add("roadTripId", newTrip.GetId());
-      // Console.WriteLine("Return View");//   
+      // Console.WriteLine("Return View");//
       // return View["stop.cshtml", model];
-      // }; 
+      // };
       Post["/addStop"] = _ => {
         Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
         int roadTripId = 0;
@@ -58,7 +58,7 @@ namespace UltimateRoadTripMachineNS
         RoadTrip rtrip;
         if(roadTripId == 0) // there is no road trip yet
         {
-          rtrip = new RoadTrip("The awesome " + destinationName + " Road Trip!", ""); // so make a road trip 
+          rtrip = new RoadTrip("The awesome " + destinationName + " Road Trip!", ""); // so make a road trip
           rtrip.Save(); // save road trip to db
           roadTripId = rtrip.GetId();
         } else rtrip = RoadTrip.Find(roadTripId);
@@ -70,8 +70,9 @@ namespace UltimateRoadTripMachineNS
         } else { // there are already multiple stops in the trip
           model.Add("map", Scrubber.GetMapDirections(rtrip.GetDestinations()[rtrip.GetDestinations().Count-1].GetName(), newStop.GetName())); // show direciton map
         }
-        model.Add("images", Scrubber.Scrub(newStop.GetName(), 6));
+        model.Add("images", Scrubber.Search(newStop.GetName(), 6));
         model.Add("roadTripId", roadTripId);
+        model.Add("destination", newStop);
         Console.WriteLine(model);
         Console.WriteLine("Return View");
         return View["stop.cshtml", model];
@@ -79,7 +80,7 @@ namespace UltimateRoadTripMachineNS
       Post["/getPage"] = _ => {
         Console.WriteLine("Get Page");
         string command = Request.Form["command"];
-        List<string> images = Scrubber.Scrub(command);
+        List<string> images = Scrubber.Search(command);
         Dictionary<string, object> model = new Dictionary<string, object>(){};
         model.Add("list", images);
         string binguri = "http://www.bing.com/images/search?q="; // this is for testing, it is not needed for production

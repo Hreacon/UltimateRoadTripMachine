@@ -125,14 +125,12 @@ Resizing map - recenter focus on trip - DONE
 fiximg not centering properly - CLOSE ENOUGH
 Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd. DONE
 Prevent maps from preventing scrolling - DONE
-Zoom to the newely added routes
 maximg - carousel?
-Add function to undisable the input when the return is not proper
 
 
 C#:
-Insert images/search terms into the database
-When search calls Scrub, insert the image(links) and search term into the database
+Insert images/search terms into the database DONE
+When search calls Scrub, insert the image(links) and search term into the database DONE
 Get directions working properly
 Detect images that are 404 - http://stackoverflow.com/questions/11082804/detecting-image-url-in-c-net
 Try to filter out tiny images? anything less than 300x300
@@ -142,14 +140,32 @@ change timeout when scrubbing - DONE
 C# View/Front End:
 Add the title to the "stops" and add buttons for moving, editing and deleting
 
-Front-End:
-View All Roadtrips?
-Quick Links to go to different Stops? on a road trip
 
 
 Last Day:
-Make the carousel working
+C#:
 directions/single destination map working correctly 
-detect 404 images
-detect tiny images 
+Nick:
+Make image aspect ratio and center properly through the entire range - DONE
+Zoom to the newely added routes - DONE
+Add function to undisable the input when the return is not proper. - DONE. I think. Hard to test.
+detect 404 images? DONE
+detect tiny images? DONE
+Fix the map route - it currently displays a directions map to and from the same destination.
+Get the carousel working?
+Make sure the image doesn't strech during maximg, make the image only scale up to its original size?
+CSS:
 add title to the stops and add buttons for moving editing and deleteing
+finish make styling look right
+
+Past MVP:
+View All Roadtrips?
+Quick Links to go to different Stops? on a road trip
+
+Make the moveup movedown and delete buttons work 
+make the disappear when not available
+
+
+map 1em margin top
+header zindex 900
+results header is accidentally on the photos class
