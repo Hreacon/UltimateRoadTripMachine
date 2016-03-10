@@ -1,8 +1,6 @@
 html {
   box-sizing: border-box; }
-.content {
-  padding-top:11em;
-}
+
 *, *::after, *::before {
   box-sizing: inherit; }
 
@@ -44,12 +42,12 @@ html {
       background-color: #47BCEB; }
 
 .map {
-  margin-top: 1em;
+  margin-top: 11vh;
   width: 100%;
   height: 400px;
   background: #ffffff; }
 
- iframe {
+.overlay iframe {
   pointer-events: none; }
 
 #map_canvas {
@@ -84,8 +82,7 @@ html {
 
 .content {
   flex: 1;
-  display:block;
-  background-image: url(img/roadtrip.jpg);
+  background-image: url(../../img/roadtrip.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
@@ -123,7 +120,7 @@ html {
     @media (max-width: 770px) {
       .results-header i {
         flex: 2; } }
-   .photos {
+  .results-header .photos {
     display: flex;
     flex-flow: row wrap;
     max-width: 1200px;
@@ -132,31 +129,31 @@ html {
     margin: auto;
     padding: 1.5em 0 0;
     /* clearfix wtf? */ }
-     .photos::after {
+    .results-header .photos::after {
       clear: both;
       content: "";
       display: table; }
-     .photos .img {
+    .results-header .photos .img {
       height: 300px;
       width: calc(33.3% - 1em);
       margin-right: 1.5em;
       margin-bottom: 1.5em; }
-       .photos .img:nth-child(3n) {
+      .results-header .photos .img:nth-child(3n) {
         margin-right: 0; }
-       .photos .img:hover {
+      .results-header .photos .img:hover {
         border: 2px solid white; }
       @media (max-width: 1040px) {
-         .photos .img {
+        .results-header .photos .img {
           width: calc(50% - 0.75em);
           margin-right: 1.5em; }
-           .photos .img:nth-child(3n) {
+          .results-header .photos .img:nth-child(3n) {
             margin-right: 1.5em; }
-           .photos .img:nth-child(2n) {
+          .results-header .photos .img:nth-child(2n) {
             margin-right: 0; } }
       @media (max-width: 770px) {
-         .photos .img {
+        .results-header .photos .img {
           width: 100%; }
-           .photos .img:nth-child(n) {
+          .results-header .photos .img:nth-child(n) {
             margin-right: 0; } }
 
 .photo1 {
@@ -186,7 +183,7 @@ footer {
   width: 100%;
   background-color: #222;
   min-height: 100px;
-  margin-top: 2em; }
+  margin-top: 1px; }
   footer .footer-primary-contacts {
     max-width: 1300px;
     display: flex;
@@ -219,7 +216,6 @@ footer {
         display: block; } }
 
 .header {
-  z-index:900;
   margin: 0 auto;
   background-color: #222;
   height: 120px;
@@ -254,7 +250,7 @@ footer {
 .results-header .photos .img {
   background-repeat: no-repeat;
   background-size: cover; }
-  
+
 .carousel {
   margin-left: auto;
   margin-right: auto;
