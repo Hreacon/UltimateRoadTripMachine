@@ -202,6 +202,7 @@ namespace UltimateRoadTripMachineNS.Objects
 
     public List<Destination> GetDestinations()
     {
+      Console.WriteLine("RoadTrip.GetDestinations(): " + GetId());
       SqlConnection conn = DB.Connection();
       SqlDataReader rdr = null;
       conn.Open();
@@ -220,8 +221,10 @@ namespace UltimateRoadTripMachineNS.Objects
         string DestinationName = rdr.GetString(1);
         int DestinationRoadtrip_id = rdr.GetInt32(2);
         int DestinationStop = rdr.GetInt32(3);
+        Console.WriteLine("Getting Destination: " + DestinationName);
         Destination newDestination = new Destination(DestinationName, DestinationRoadtrip_id, DestinationStop, DestinationId);
         destinations.Add(newDestination);
+        Console.WriteLine("Destination Count" + destinations.Count);
       }
       if (rdr != null)
       {

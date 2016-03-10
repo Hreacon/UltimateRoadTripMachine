@@ -1,15 +1,19 @@
 # Ultimate Road Trip Machine
 
-#### Lets you visually plan a road trip, March 7th, 2016
+#### Lets you visually plan a road trip, March 10th, 2016
 
 #### By Nicholas Jensen-Hay, Michael Dada, Chris Kuiper, Chris Berry
 
 ## Description
 
-Let the user plan and view a road trip. At the end of planning the user will be able to scroll through the road trip and view the destinations in pictures and video
-
+Let the user plan and view a road trip. At the end of planning the user will be able to scroll through the road trip and view the destinations in pictures
 ## Setup/Installation Requirements
-
+Clone to your computer
+Import Database in SSMS
+user terminal and change your current * directory to the project directory
+run 'dnu restore'
+run 'dnx kestrel'
+in web browser, go to url http://localhost:5004_
 
 ## Known Bugs
 

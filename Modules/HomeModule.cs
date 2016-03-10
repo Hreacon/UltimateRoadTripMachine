@@ -15,6 +15,7 @@ namespace UltimateRoadTripMachineNS
         Console.WriteLine("Return View");
         return View["index.cshtml"];
       };
+
       Post["/map"] = _ => {
         string command = Request.Form["start"];
         Console.WriteLine("Retrieving Map Location: "+ command);
@@ -66,9 +67,11 @@ namespace UltimateRoadTripMachineNS
         newStop.Save(); // save the new stop to the database
         if(newStop.GetStop() == 1) // if theres only one stop in the road trip so far
         {
+          Console.WriteLine("First Stop");
           model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName())); // show the map with only one location
         } else { // there are already multiple stops in the trip
-          model.Add("map", Scrubber.GetMapDirections(rtrip.GetDestinations()[rtrip.GetDestinations().Count-1].GetName(), newStop.GetName())); // show direciton map
+          Console.WriteLine("Not First Stop");
+          model.Add("map", Scrubber.GetMapDirections(rtrip.GetDestinations()[rtrip.GetDestinations().Count-2].GetName(), newStop.GetName())); // show direciton map
         }
         model.Add("images", Scrubber.Search(newStop.GetName(), 6));
         model.Add("roadTripId", roadTripId);
