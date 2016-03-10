@@ -1,6 +1,8 @@
 html {
   box-sizing: border-box; }
-
+.content {
+  padding-top:11em;
+}
 *, *::after, *::before {
   box-sizing: inherit; }
 
@@ -141,9 +143,7 @@ body {
 
 .photo6 {
   background-image: url(../img/alvard6.jpg); }
-.content {
-  padding-top:140px;
-}
+
 footer {
   background-color: #222;
   min-height: 100px; }
@@ -214,27 +214,28 @@ footer {
   background-repeat: no-repeat;
   background-size: cover; }
 
-  .carousel {
-    width: 80%;
-    height: 60vh;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(../img/alvard1.jpeg);
+.carousel {
+  width: 80%;
+  height: 60vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url(../img/alvard1.jpeg);
+  display: flex;
+  justify-content: space-between; }
+  .carousel .left-arrow, .carousel .right-arrow {
+    width: 28%;
+    height: 100%;
     display: flex;
-    justify-content: space-between; }
-    .carousel .left-arrow, .carousel .right-arrow {
-      width: 28%;
-      height: 100%;
-      display: flex;
-      align-content: center; }
-      .carousel .left-arrow:hover i, .carousel .right-arrow:hover i {
-        opacity: 1; }
-      .carousel .left-arrow i, .carousel .right-arrow i {
-        align-self: center;
-        width: 100%;
-        color: white;
-        opacity: 0.003;
-        font-size: 2.5em;
-        text-align: center;
-        z-index: 999; }
+    align-content: center; }
+    .carousel .left-arrow:hover i, .carousel .right-arrow:hover i {
+      opacity: 1; }
+    .carousel .left-arrow i, .carousel .right-arrow i {
+      align-self: center;
+      width: 100%;
+      color: white;
+      opacity: 0.003;
+      font-size: 2.5em;
+      text-align: center;
+      z-index: 999; }
+
 /*# sourceMappingURL=styles.css.map */
