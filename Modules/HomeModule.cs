@@ -72,6 +72,7 @@ namespace UltimateRoadTripMachineNS
         }
         model.Add("images", Scrubber.Search(newStop.GetName(), 6));
         model.Add("roadTripId", roadTripId);
+        model.Add("destination", newStop);
         Console.WriteLine(model);
         Console.WriteLine("Return View");
         return View["stop.cshtml", model];

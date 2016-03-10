@@ -161,3 +161,6 @@ finish make styling look right
 Past MVP:
 View All Roadtrips?
 Quick Links to go to different Stops? on a road trip
+
+Make the moveup movedown and delete buttons work 
+make the disappear when not available

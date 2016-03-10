@@ -6,6 +6,7 @@
 function fixImageAddClick()
 {
   console.log("Fix Image Add Click");
+  var uniqueId=Math.floor((Math.random()*1000000) + 1);
   $(".clickhandler").parent().attr('data-id', uniqueId);
   console.log("UniqueId: "+uniqueId);
   var i = 0;
@@ -15,7 +16,6 @@ function fixImageAddClick()
       var aspect = img.width() / img.height();
       img.attr("data-aspect", aspect);
       console.log("Image number: " + i + "Aspect Ratio: " + aspect);
-      var uniqueId=Math.floor((Math.random()*1000000) + 1);
       img.attr('data-index', i);
       i++;
       fixImageSize(img);
@@ -45,13 +45,14 @@ function fixImageAddClick()
       maximgImg.attr('src', src);
       maximgImg.attr('height', height );
       maximgImg.attr('width', width );
-      $('.maximg').show();
+      $('.maximg').css('display', 'flex');
       $(".left-arrow").click(function() {
         var galleryId = $("maximg").attr('data-gallery');
         var index = $("maximg").attr('data-index');
         index++;
         if(index > 5) index = 0;
         if(index < 0) index = 5;
+        $("[data-id="+galleryId+"]").find()
       })
     });
     $(this).removeClass("clickhandler");
@@ -166,12 +167,12 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
-    $('.overlay').click(function () {
-        $('.overlay iframe').css("pointer-events", "auto");
-    });
-
-    $( ".overlay" ).mouseleave(function() {
-      $('.overlay iframe').css("pointer-events", "none");
-    });
- });
+// $(document).ready(function() {
+//     $('.overlay').click(function () {
+//         $('.overlay iframe').css("pointer-events", "auto");
+//     });
+//
+//     $( ".overlay" ).mouseleave(function() {
+//       $('.overlay iframe').css("pointer-events", "none");
+//     });
+//  });
