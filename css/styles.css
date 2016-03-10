@@ -219,15 +219,23 @@ footer {
   height: 60vh;
   margin-left: auto;
   margin-right: auto;
+  background-image: url(../img/alvard1.jpeg);
   display: flex;
-  justify-content: space-between;
-  align-items: center; }
-  .carousel i {
-    color: white;
-    opacity: 0.2;
-    font-size: 2em;
-    margin: .5em; }
-    .carousel i:hover {
+  justify-content: space-between; }
+  .carousel .left-arrow, .carousel .right-arrow {
+    width: 28%;
+    height: 100%;
+    display: flex;
+    align-content: center; }
+    .carousel .left-arrow:hover i, .carousel .right-arrow:hover i {
       opacity: 1; }
+    .carousel .left-arrow i, .carousel .right-arrow i {
+      align-self: center;
+      width: 100%;
+      color: white;
+      opacity: 0.003;
+      font-size: 2.5em;
+      text-align: center;
+      z-index: 999; }
 
 /*# sourceMappingURL=styles.css.map */

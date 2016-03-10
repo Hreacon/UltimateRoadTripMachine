@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.IO;
@@ -20,7 +19,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT TOP " +limit+" images.link FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
+      SqlCommand cmd = new SqlCommand("SELECT TOP " +limit+" images.link, search_terms.id FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
       SqlParameter TermParameter = new SqlParameter();
       TermParameter.ParameterName = "@Term";
       TermParameter.Value = term;
@@ -42,18 +41,26 @@ namespace UltimateRoadTripMachineNS.Objects
             Console.WriteLine(link);
             AddImageLink(link, termId);
           }
-
-
-
         }
         else
         {
+          int termId = 0;
           while(rdr.Read())
           {
+            termId = rdr.GetInt32(1);
             Console.WriteLine("We made it here! false");
             string link = rdr.GetString(0);
             Console.WriteLine("adding image link: "+link);
             urls.Add(link);
+          }
+          if(urls.Count < limit)
+          {
+            List<string> addImages = Scrub(term, limit - urls.Count);
+            foreach( string img in addImages)
+            {
+              AddImageLink(img, termId);
+            }
+            urls.AddRange(addImages);
           }
         }
       Console.WriteLine("We made it here! true");
@@ -184,6 +191,22 @@ namespace UltimateRoadTripMachineNS.Objects
         output -= 10;
       return output > 0;
     }
+    private static bool CheckForImage(string url)
+    {
+      int minsize = 20000; // Minimum image size in bits
+      int maxsize = 1200000;// max image size in bits
+      bool output = false;
+      WebRequest req = WebRequest.Create(new Uri(url).AbsoluteUri);
+      req.Timeout = 1000;
+      req.Method="HEAD";
+      try{
+        WebResponse response = req.GetResponse();
+        output = response.ContentLength > minsize && response.ContentLength < maxsize && response.ContentType.StartsWith("image/");
+      } catch(WebException e) {
+        Console.WriteLine("Timeout Checking Image. URL: " + url);
+      }
+      return output;
+    }
 
     public static List<string> Scrub(string command, int limit = 30)
     {
@@ -225,9 +248,11 @@ namespace UltimateRoadTripMachineNS.Objects
                 try { // try to catch 404 exceptions... etc
                   src = src.Substring(0, src.IndexOf(endQuote)); // cut off the rest of the string after the link ends
                 } catch(Exception e) {} // empty catch - ignore errors!
-                if(src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") // make sure the link starts with http or // so its a full path link.
+                if((src.Substring(0,2) == "ht" || src.Substring(0,2) == "//") && CheckForImage(src)){ // make sure the link starts with http or // so its a full path link.
                   images.Add(src);
-                Console.WriteLine("Adding Image: " + src);
+                  Console.WriteLine("Adding Image: " + src);
+                }
+                Console.WriteLine("Image COunt: " + images.Count);
                 if(images.Count >= limit)
                   return images;
               }
