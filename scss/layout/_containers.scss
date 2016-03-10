@@ -9,6 +9,8 @@
   flex: 1;
   background-image: url(img/roadtrip.jpg);
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
 }
 
@@ -95,8 +97,8 @@
 
 }
 .photo1 {
-  background-color: tomato;
-  background-image: url(../img/alvard1.jpeg);
+  background: radial-gradient
+  background-image: url(../../img/alvard1.jpeg);
 }
 .photo2 {
   background-color: tomato;

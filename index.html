@@ -13,9 +13,9 @@
   </head>
   <body class="site">
     <header class="header">
-      <nav>
+      <nav class="header-nav">
         <ul class="header-ul">
-          <li><a href="#"><i class="fa fa-road"></i> Road Trip</a></li>
+          <li><i class="fa fa-road"></i><a href="#"> Road Trip</a></li>
         </ul>
         <div>
           <form class="input-group-destination" id="commandLine" method="post">
@@ -23,8 +23,21 @@
             <input type="submit" name="submit" value="search">
           </form>
         </div>
+        <button type="button" class="js-menu-trigger sliding-panel-button"><i class="fa fa-list"></i></button>
+          <nav class="js-menu sliding-panel-content">
+            <ul>
+              <li>Search Results</li>
+              <li><a href="javascript:void(0)">Item 1</a></li>
+              <li><a href="javascript:void(0)">Item 2</a></li>
+              <li><a href="javascript:void(0)">Item 3</a></li>
+            </ul>
+          </nav>
+        <div class="js-menu-screen sliding-panel-fade-screen">
+        </div>
       </nav>
+
     </header>
+
 
     <div class="content">
          <!-- //search field for new destination// -->
@@ -71,11 +84,12 @@
       <!-- //videos displayed from search// -->
       <div class="videos">
       </div>
+
     </div>
-  <!-- //footer// -->
+    <!-- //footer// -->
   <footer>
     <ul class="footer-primary-contacts">
-      <li><a href="#"><i class="fa fa-road"></i><span> Road Trip</span> </a></li>
+      <li><i class="fa fa-road"></i><a href="#"> Road Trip</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">Terms and Conditions</a></li>
       <li><a href="#">Privacy Policy</a></li>
