@@ -13,6 +13,7 @@ namespace UltimateRoadTripMachineNS.Objects
       Console.WriteLine("Starting Search");
       List<string> links = new List<string>(){};
       List<string> urls = new List<string>(){};
+      List<string> additionalUrls = new List<string>(){};
 
       SqlConnection conn = DB.Connection();
       SqlDataReader rdr = null;
@@ -27,6 +28,7 @@ namespace UltimateRoadTripMachineNS.Objects
 
       rdr = cmd.ExecuteReader();
       Console.WriteLine("Reader Reading");
+
 
         if(!(rdr.HasRows))
         {
@@ -72,6 +74,7 @@ namespace UltimateRoadTripMachineNS.Objects
       }
       return urls;
     }
+    
 
     public static int AddSearch(string term)
     {
