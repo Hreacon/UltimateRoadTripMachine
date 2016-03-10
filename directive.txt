@@ -149,9 +149,11 @@ Nick:
 Make image aspect ratio and center properly through the entire range - DONE
 Zoom to the newely added routes - DONE
 Add function to undisable the input when the return is not proper. - DONE. I think. Hard to test.
-detect 404 images? 
-detect tiny images? 
+detect 404 images? DONE
+detect tiny images? DONE
+Fix the map route - it currently displays a directions map to and from the same destination.
 Get the carousel working?
+Make sure the image doesn't strech during maximg, make the image only scale up to its original size?
 CSS:
 add title to the stops and add buttons for moving editing and deleteing
 finish make styling look right

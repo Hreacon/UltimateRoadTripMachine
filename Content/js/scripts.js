@@ -1,26 +1,39 @@
+// To do the carousel:
+// On opening the maximg div, store the source of the image and the nth child it is
+// On Click right - go to the next nth child img of the gallery
+// on click left - go to the prev child of the gallery
+
 function fixImageAddClick()
 {
   console.log("Fix Image Add Click");
+  $(".clickhandler").parent().attr('data-id', uniqueId);
+  console.log("UniqueId: "+uniqueId);
+  var i = 0;
   $(".clickhandler").each(function() {
     var img = $(this).find("img");
     img.on('load', function() {
       var aspect = img.width() / img.height();
       img.attr("data-aspect", aspect);
-      console.log("Aspect Ratio: " + aspect);
+      console.log("Image number: " + i + "Aspect Ratio: " + aspect);
+      var uniqueId=Math.floor((Math.random()*1000000) + 1);
+      img.attr('data-index', i);
+      i++;
       fixImageSize(img);
     });
+    // Add MaxImg click handler
     $(this).click(function() {
       console.log("MaxImg:");
       var img = $(this).children("img");
       var src = img.attr('src');
-    $('.maximg img').attr('src', src);
+      // carousel info
+      $(".maximg").attr('data-gallery', $(this).parent().attr('data-id'));
+      $(".maximg").attr('data-index', img.attr('data-index'));
       if( window.innerWidth > 1000 ) {
-        $('.maximg div').attr('top', '5%');
+        $('.maximg .maximginner').attr('top', '5%');
       }
       var width = 0;
       var height = 0;
       var aspect = img.attr('data-aspect');
-      console.log("Aspect: " + aspect);
       if( aspect > 1 ) {
         width = window.innerWidth - window.innerWidth*.2;
         height = width * aspect;
@@ -28,9 +41,18 @@ function fixImageAddClick()
         height = window.innerHeight - window.innerHeight*.1;
         width = height * aspect;
       }
-      $('.maximg img').attr('height', height );
-      $('.maximg img').attr('width', width );
+      var maximgImg = $(".maximginner").find("img");
+      maximgImg.attr('src', src);
+      maximgImg.attr('height', height );
+      maximgImg.attr('width', width );
       $('.maximg').show();
+      $(".left-arrow").click(function() {
+        var galleryId = $("maximg").attr('data-gallery');
+        var index = $("maximg").attr('data-index');
+        index++;
+        if(index > 5) index = 0;
+        if(index < 0) index = 5;
+      })
     });
     $(this).removeClass("clickhandler");
   });
@@ -45,11 +67,9 @@ function fixImageSize(img)
  
   if(aspect < 1) {
     img.width(img.parent().height() * aspect-4);
-    // console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
   } else {
     // for landscape set the width and let the height figure itself out and set margin to center it vertically
     img.width(img.parent().width()-4);
-    // console.log("Landscape image height: "+ img.height());
     img.height(img.width()/aspect);
     if(img.height() > img.parent().height()-10)
     {
@@ -99,15 +119,6 @@ function fixImageSize(img)
           img.css("margin-top", 0);
           img.css("margin-left", 0);
       }
-    // }
-    
-    // if(img.parent().height() - img.height() > 100)
-    //   img.parent().height(img.height()+4);
-    // img.height(img.width()/aspect);
-    // img.css("margin-top", (img.parent().height() - img.height()) / 2 + "px");
-    // if(img.height()+4<300)
-    //   img.parent().height(img.height()+4);
-  // todo set margin to center img
 }
 
 $(document).ready(function() {
