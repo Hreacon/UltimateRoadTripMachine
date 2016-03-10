@@ -131,8 +131,8 @@ Add function to undisable the input when the return is not proper
 
 
 C#:
-Insert images/search terms into the database
-When search calls Scrub, insert the image(links) and search term into the database
+Insert images/search terms into the database DONE
+When search calls Scrub, insert the image(links) and search term into the database DONE
 Get directions working properly
 Detect images that are 404 - http://stackoverflow.com/questions/11082804/detecting-image-url-in-c-net
 change timeout when scrubbing - DONE
