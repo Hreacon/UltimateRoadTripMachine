@@ -16,6 +16,13 @@ namespace UltimateRoadTripMachineNS
         return View["index.cshtml"];
       };
 
+      Delete["/deleteDestination/{id}"] = parameters => {
+        Destination selectedDestination = Destination.Find(parameters.id)
+        selectedDestination.Delete();
+        return View["empty.cshtml"]
+
+      }
+
       Post["/map"] = _ => {
         string command = Request.Form["start"];
         Console.WriteLine("Retrieving Map Location: "+ command);
