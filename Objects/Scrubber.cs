@@ -64,7 +64,6 @@ namespace UltimateRoadTripMachineNS.Objects
             urls.AddRange(addImages);
           }
         }
-      Console.WriteLine("We made it here! true");
       if (rdr != null)
       {
         rdr.Close();
