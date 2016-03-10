@@ -3,7 +3,7 @@
   <h1 class="search-title">@Model["destination"].GetName()</h1>
   <i class="fa fa-arrow-circle-down"></i>
   <i class="fa fa-arrow-circle-up"></i>
-  <i class="fa fa-times-circle"></i>
+  <a href="/deleteDestination/@Model["destination"].GetId()"><i class="fa fa-times-circle"></i></a>
 </div>
 <div class="map" id="map_canvas">
   @Html.Partial("map.cshtml", Model["map"])

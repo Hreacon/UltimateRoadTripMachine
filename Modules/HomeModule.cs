@@ -17,12 +17,24 @@ namespace UltimateRoadTripMachineNS
       };
 
 
-      Delete["/deleteDestination/{id}"] = parameters => {
-        Destination selectedDestination = Destination.Find(parameters.id)
-        selectedDestination.Delete();
-        return View["empty.cshtml"]
+      Get["/deleteDestination/{id}"] = parameters => {
 
-      }
+        Destination selectedDestination = Destination.Find(parameters.id);
+        selectedDestination.Delete();
+        return View["empty.cshtml"];
+      };
+
+      Get["/moveUp/{id}"] = parameters => {
+        Destination selectedDestination = Destination.Find(parameters.id);
+        selectedDestination.MoveUp();
+        return View["empty.cshtml"];
+      };
+
+      Get["/moveDown/{id}"] = parameters => {
+        Destination selectedDestination = Destination.Find(parameters.id);
+        selectedDestination.MoveDown();
+        return View["empty.cshtml"];
+      };
 
       Post["/map"] = _ => {
         string command = Request.Form["start"];
