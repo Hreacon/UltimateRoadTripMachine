@@ -127,20 +127,23 @@ $(document).ready(function() {
       $.post(href, {
           command: command,
           roadTripId: roadTripId,
-        }, function(data, status) {
+        }).done(function(data, status) {
             console.log("Data returned from server");
             $(".content").append("<div id='scrollToHere'>"+data+"</div>");
             fixImageAddClick();
             var commandLine = $("input[name=command]");
-            commandLine.prop('disabled', false);
-            commandLine.val("");
-            $("#commandLine input[type=submit]").prop('disabled', false);
             document.getElementById('scrollToHere').scrollIntoView();
             $("#scrollToHere").attr('id', '');
             commandLine.focus();
             window.scrollBy(0,-200);
+            commandLine.val("");
         }
-      );
+      ).fail(function(){
+        commandLine.val("Failure..");
+      }).always(function() {
+        commandLine.prop('disabled', false);
+        $("#commandLine input[type=submit]").prop('disabled', false);
+      });
     } else {
       console.log("Command not sent, no command found");
     }
