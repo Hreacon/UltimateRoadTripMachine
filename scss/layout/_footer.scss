@@ -3,6 +3,9 @@ footer {
   background-color: #222;
   min-height: 100px;
   .footer-primary-contacts {
+    li:nth-child(1) {
+      display: none;
+    }
     @include outer-container;
     display: flex;
     align-items: center;
@@ -32,6 +35,9 @@ footer {
       }
       li:nth-child(5), li:nth-child(6), li:nth-child(7) {
         width: 10%;
+        display: block;
+      }
+      li:nth-child(1) {
         display: block;
       }
     }
