@@ -44,31 +44,40 @@ function fixImageSize(img)
   img.css('position', 'relative');
  
   if(aspect < 1) {
-    img.css('left','25%');
     img.width(img.parent().height() * aspect-4);
     // console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
   } else {
     // for landscape set the width and let the height figure itself out and set margin to center it vertically
     img.width(img.parent().width()-4);
-    console.log("Landscape image height: "+ img.height());
+    // console.log("Landscape image height: "+ img.height());
     img.height(img.width()/aspect);
     if(img.height() > img.parent().height()-10)
     {
       img.height( img.parent().height()-4 );
       img.width(img.parent().height() * aspect-4);
     }
+  }
      if( window.innerWidth < 780 )
       {
         img.parent().height(img.height()+4);
-        if(img.parent().width() > img.width()+25 && img.parent().height < 300)
-          img.parent().height(img.parent().height()+10);
+        if(img.parent().width() > img.width()+5 && img.parent().height() < 300)
+        {
+          console.log("consider reset height");
+          if((img.parent().width()-4) / aspect < 300)
+          {
+            console.log("reset height");
+            img.height((img.parent().width()-4)/aspect);
+          } else {
+            img.height(300);
+          }
+            img.width(img.height()*aspect-4);
+        }
       } else {
         img.parent().height("300px");
       }
       if(img.parent().width()-10 > img.width())
       {
         // center horizontally
-        // img.css('left','25%');
         var margin = (((img.parent().width() - img.width())/2)/(img.parent().width())*100);
         if(margin > 2){
           img.css("margin-left", (margin-2) + "%");
@@ -100,7 +109,6 @@ function fixImageSize(img)
     // img.css("margin-top", (img.parent().height() - img.height()) / 2 + "px");
     // if(img.height()+4<300)
     //   img.parent().height(img.height()+4);
-  }
   // todo set margin to center img
 }
 
