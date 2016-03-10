@@ -164,3 +164,8 @@ Quick Links to go to different Stops? on a road trip
 
 Make the moveup movedown and delete buttons work 
 make the disappear when not available
+
+
+map 1em margin top
+header zindex 900
+results header is accidentally on the photos class
