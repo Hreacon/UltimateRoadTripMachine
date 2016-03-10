@@ -65,7 +65,7 @@ function fixImageSize(img)
 {
   var aspect = img.attr('data-aspect');
   img.css('position', 'relative');
- 
+
   if(aspect < 1) {
     img.width(img.parent().height() * aspect-4);
   } else {
@@ -107,7 +107,7 @@ function fixImageSize(img)
       }
       } else if(img.parent().height()-10 > img.height())
       {
-        // center vertically 
+        // center vertically
         var margin = (((img.parent().height() - img.height())/2)/(img.parent().height())*100);
         if(margin > 2) {
           img.css("margin-top", (margin-2) + "%");
@@ -167,12 +167,20 @@ $(document).ready(function() {
   });
 });
 
-// $(document).ready(function() {
-//     $('.overlay').click(function () {
-//         $('.overlay iframe').css("pointer-events", "auto");
-//     });
-//
-//     $( ".overlay" ).mouseleave(function() {
-//       $('.overlay iframe').css("pointer-events", "none");
-//     });
-//  });
+
+$(document).ready(function() {
+    $('.overlay').click(function () {
+        $('.overlay iframe').css("pointer-events", "auto");
+    });
+
+    $( ".overlay" ).mouseleave(function() {
+      $('.overlay iframe').css("pointer-events", "none");
+    });
+ });
+
+ $(document).ready(function(){
+  $('.sliding-panel-button,.sliding-panel-fade-screen,.sliding-panel-close').on('click touchstart',function (e) {
+    $('.sliding-panel-content,.sliding-panel-fade-screen').toggleClass('is-visible');
+    e.preventDefault();
+  });
+});

@@ -6,10 +6,12 @@
   top: 0;
   left: 0;
   width: 100vw;
-  nav {
+  .header-nav {
     max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
+    // display: flex;
+    // justify-content: space-between;
   }
   .header-ul {
     margin: 0 auto;
@@ -31,6 +33,7 @@
       }
       i {
         color: #ffb84d;
+        font-size: 2em;
       }
     }
   }
