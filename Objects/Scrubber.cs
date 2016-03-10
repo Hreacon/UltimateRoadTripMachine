@@ -18,7 +18,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT TOP " +limit+" images.link FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
+      SqlCommand cmd = new SqlCommand("SELECT TOP " +limit+" images.link, search_terms.id FROM images JOIN search_terms ON (images.search_terms_id = search_terms.id) WHERE search_terms.term = @Term", conn);
       SqlParameter TermParameter = new SqlParameter();
       TermParameter.ParameterName = "@Term";
       TermParameter.Value = term;
@@ -39,18 +39,26 @@ namespace UltimateRoadTripMachineNS.Objects
             Console.WriteLine(link);
             AddImageLink(link, termId);
           }
-
-
-
         }
         else
         {
+          int termId = 0;
           while(rdr.Read())
           {
+            termId = rdr.GetInt32(1);
             Console.WriteLine("We made it here! false");
             string link = rdr.GetString(0);
             Console.WriteLine("adding image link: "+link);
             urls.Add(link);
+          }
+          if(urls.Count < limit)
+          {
+            List<string> addImages = Scrub(term, limit - urls.Count);
+            foreach( string img in addImages)
+            {
+              AddImageLink(img, termId);
+            }
+            urls.AddRange(addImages);
           }
         }
       Console.WriteLine("We made it here! true");
@@ -183,7 +191,7 @@ namespace UltimateRoadTripMachineNS.Objects
     private static bool CheckForImage(string url)
     {
       int minsize = 20000; // Minimum image size in bits
-      int maxsize = 1000000;// max image size in bits
+      int maxsize = 1200000;// max image size in bits
       bool output = false;
       WebRequest req = WebRequest.Create(new Uri(url).AbsoluteUri);
       req.Timeout = 1000;
