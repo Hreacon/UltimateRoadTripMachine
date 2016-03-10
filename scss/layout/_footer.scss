@@ -1,15 +1,16 @@
 footer {
-
+  width: 100%;
   background-color: #222;
   min-height: 100px;
+  margin-top: 2em;
   .footer-primary-contacts {
+    max-width: 1300px;
     li:nth-child(1) {
       display: none;
     }
-    @include outer-container;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     @media #{$brk-narrow} {
       justify-content: flex-start;
@@ -17,7 +18,7 @@ footer {
     li {
       list-style: none;
       margin-left: 10px;
-      padding: 30px 10px 0 0;
+      padding: 10px 10px 10px 0;
     }
     a {
       color: white;

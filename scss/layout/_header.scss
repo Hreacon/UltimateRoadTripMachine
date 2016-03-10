@@ -4,6 +4,7 @@
   height: 120px;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100vw;
   nav {
     max-width: 1300px;
@@ -20,7 +21,6 @@
       list-style: none;
       @media #{$brk-narrow} {
         display: none;
-      
       }
       a {
         text-decoration: none;
