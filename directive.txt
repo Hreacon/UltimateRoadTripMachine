@@ -135,6 +135,8 @@ Insert images/search terms into the database
 When search calls Scrub, insert the image(links) and search term into the database
 Get directions working properly
 Detect images that are 404 - http://stackoverflow.com/questions/11082804/detecting-image-url-in-c-net
+Try to filter out tiny images? anything less than 300x300
+Filter out images that match search terms based on the url - ie ignore ://.*/ - DONE
 change timeout when scrubbing - DONE
 
 C# View/Front End:
@@ -142,4 +144,12 @@ Add the title to the "stops" and add buttons for moving, editing and deleting
 
 Front-End:
 View All Roadtrips?
-Quick Links to go to different Stops?
+Quick Links to go to different Stops? on a road trip
+
+
+Last Day:
+Make the carousel working
+directions/single destination map working correctly 
+detect 404 images
+detect tiny images 
+add title to the stops and add buttons for moving editing and deleteing
