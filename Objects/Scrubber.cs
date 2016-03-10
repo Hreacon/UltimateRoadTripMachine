@@ -47,8 +47,9 @@ namespace UltimateRoadTripMachineNS.Objects
           int termId = 0;
           while(rdr.Read())
           {
+            if(termId == 0)
+              Console.WriteLine("Database results found");
             termId = rdr.GetInt32(1);
-            Console.WriteLine("We made it here! false");
             string link = rdr.GetString(0);
             Console.WriteLine("adding image link: "+link);
             urls.Add(link);

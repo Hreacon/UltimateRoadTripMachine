@@ -15,7 +15,31 @@ namespace UltimateRoadTripMachineNS
         Console.WriteLine("Return View");
         return View["index.cshtml"];
       };
+
+
+      Get["/deleteDestination/{id}"] = parameters => {
+        Console.WriteLine("Deleteing: " + parameters.id);
+        Destination selectedDestination = Destination.Find(parameters.id);
+        selectedDestination.Delete();
+        return View["empty.cshtml"];
+      };
+
+      Get["/moveUp/{id}"] = parameters => {
+        Console.WriteLine("Move Up: " + parameters.id);
+        Destination selectedDestination = Destination.Find(parameters.id);
+        selectedDestination.MoveUp();
+        return View["empty.cshtml"];
+      };
+
+      Get["/moveDown/{id}"] = parameters => {
+        Console.WriteLine("Move Down: " + parameters.id);
+        Destination selectedDestination = Destination.Find(parameters.id);
+        selectedDestination.MoveDown();
+        return View["empty.cshtml"];
+      };
+
       // AJAX ROUTE ONLY RETURNS A PARTIAL HTML VIEW
+
       Post["/addStop"] = _ => {
         Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
         int roadTripId = 0;
