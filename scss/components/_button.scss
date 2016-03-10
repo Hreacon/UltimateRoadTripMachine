@@ -1,6 +1,7 @@
 .input-group-destination {
    margin: 20px 0;
    display: flex;
+   flex: 5;
    justify-content: center;
    position: fixed;
    top: 10px;
@@ -12,7 +13,7 @@
    background-color: white;
    @media #{$brk-narrow} {
      left: 22px;
-     width: 90vw;
+     width: 65vw;
    }
    input[type="text"] {
      outline:0;

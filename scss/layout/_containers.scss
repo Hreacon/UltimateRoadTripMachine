@@ -7,6 +7,7 @@
 }
 .content {
   flex: 1;
+  margin-top: 130px;
   background-image: url(../../img/roadtrip.jpg);
   background-repeat: no-repeat;
   background-position: center;
@@ -97,25 +98,28 @@
 
 .photo1 {
 
-  background-image: url(/img/alvard1.jpeg);
+  background-image: url(../../img/alvard1.jpeg);
 }
 .photo2 {
   background-color: tomato;
-  background-image: url(img/alvard2.jpeg);
+  background-image: url(../../img/alvard2.jpeg);
 }
 .photo3 {
   background-color: tomato;
-  background-image: url(img/alvard3.jpg);
+  background-image: url(../../img/alvard3.jpg);
 }
 .photo4 {
   background-color: tomato;
-  background-image: url(img/alvard4.jpg);
+  background-image: url(../../img/alvard4.jpg);
 }
 .photo5 {
   background-color: tomato;
-  background-image: url(../img/alvard5.jpg);
+  background-image: url(../../img/alvard5.jpg);
 }
 .photo6 {
   background-color: tomato;
-  background-image: url(../img/alvard6.jpg);
+  background-image: url(../../img/alvard6.jpg);
+}
+.stop {
+  background-color: rgba(0,0,0,0.6)
 }

@@ -7,6 +7,7 @@ html {
 .input-group-destination {
   margin: 20px 0;
   display: flex;
+  flex: 5;
   justify-content: center;
   position: fixed;
   top: 10px;
@@ -19,7 +20,7 @@ html {
   @media (max-width: 770px) {
     .input-group-destination {
       left: 22px;
-      width: 90vw; } }
+      width: 65vw; } }
   .input-group-destination input[type="text"] {
     outline: 0;
     padding: 14px;
@@ -83,6 +84,7 @@ html {
 .content {
   flex: 1;
   background-image: url(/Content/img/roadtrip.jpg);
+  margin-top: 130px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
@@ -158,27 +160,30 @@ html {
           margin-right: 0; } }
 
 .photo1 {
-  background-image: url(/img/alvard1.jpeg); }
+  background-image: url(../../img/alvard1.jpeg); }
 
 .photo2 {
   background-color: tomato;
-  background-image: url(img/alvard2.jpeg); }
+  background-image: url(../../img/alvard2.jpeg); }
 
 .photo3 {
   background-color: tomato;
-  background-image: url(img/alvard3.jpg); }
+  background-image: url(../../img/alvard3.jpg); }
 
 .photo4 {
   background-color: tomato;
-  background-image: url(img/alvard4.jpg); }
+  background-image: url(../../img/alvard4.jpg); }
 
 .photo5 {
   background-color: tomato;
-  background-image: url(../img/alvard5.jpg); }
+  background-image: url(../../img/alvard5.jpg); }
 
 .photo6 {
   background-color: tomato;
-  background-image: url(../img/alvard6.jpg); }
+  background-image: url(../../img/alvard6.jpg); }
+
+.stop {
+  background-color: rgba(0, 0, 0, 0.6); }
 
 footer {
   width: 100%;
@@ -226,13 +231,15 @@ footer {
   left: 0;
   width: 100vw; }
   .header .header-nav {
+    display: flex;
+    justify-content: space-between;
     max-width: 1300px;
     margin-left: auto;
     margin-right: auto; }
   .header .header-ul {
-    margin: 0 auto;
-    padding: 34px 12px 18px; }
+    flex: 1; }
     .header .header-ul li {
+      align-self: flex-start;
       padding: 5px 0;
       font-size: 18px;
       font-family: 'Fjalla One', sans-serif;
@@ -336,12 +343,24 @@ footer {
     visibility: visible; }
 
 .sliding-panel-button {
-  padding: 10px 16px;
-  display: inline-block;
+  padding: 2px 40px;
+  margin-top: 20px;
+  display: block;
   cursor: pointer;
   position: relative;
-  outline: none; }
-  .sliding-panel-button img {
-    height: 1.3em; }
+  outline: none;
+  background-color: #444;
+  border: none;
+  border-radius: 20px; }
+  .sliding-panel-button:hover {
+    background-color: #777; }
+  .sliding-panel-button i {
+    font-size: 3em; }
+  @media (max-width: 770px) {
+    .sliding-panel-button {
+      margin-right: 1.6em;
+      margin-top: 3em;
+      padding: 2px 12px;
+      border-radius: 5px; } }
 
 /*# sourceMappingURL=styles.css.map */

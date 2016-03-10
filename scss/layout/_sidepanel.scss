@@ -65,13 +65,28 @@
 }
 
 .sliding-panel-button {
-  padding: 10px 16px;
-  display: inline-block;
+  padding: 2px 40px;
+  margin-top: 20px;
+  display: block;
   cursor: pointer;
   position: relative;
   outline: none;
-
-  img {
-    height: 1.3em;
+  background-color: #444;
+  border: none;
+  border-radius: 20px;
+  &:hover {
+    background-color: #777;
   }
+  i {
+    font-size: 3em;
+  }
+  @media #{$brk-narrow} {
+    margin-right: 1.6em;
+    margin-top: 3em;
+    padding: 2px 12px;
+    border-radius: 5px;
+
+  }
+
+
 }
