@@ -57,6 +57,21 @@ function fixImageAddClick()
     });
     $(this).removeClass("clickhandler");
   });
+  $(".moveUpHandler").each(function() {
+    var href = "/moveUp/" + $(this).parent().attr("data-id");
+    $.ajax(href);
+    $(this).removeClass("moveUpHandler");
+  });
+  $(".moveDownHandler").each(function() {
+    var href = "/moveDown/" + $(this).parent().attr("data-id");
+    $.ajax(href);
+    $(this).removeClass("moveDownHandler");
+  });
+  $(".deleteHandler").each(function() {
+    var href = "/deleteDestination/" + $(this).parent().attr("data-id");
+    $.ajax(href);
+    $(this).removeClass("deleteHandler");
+  });
   $('.maximg').click(function() {
     $(this).hide();
   });
@@ -123,16 +138,16 @@ function fixImageSize(img)
 }
 
 $(document).ready(function() {
-  $("#commandLine").submit(function(event) {
+  $("#commandLine").submit(function(event) { // command enter
     var commandLine = $("input[name=command]");
     $("#commandLine input[type=submit]").prop('disabled', true);
-    console.log(commandLine);
     var command = commandLine.val();
     commandLine.val("Loading......");
     commandLine.prop('disabled', true);
     event.preventDefault();
+    
     var href = "/addStop";
-    if(command.trim().length > 0) {
+    if(command.trim().length > 0) { // command is good, do ajax
       console.log("Command sent to server at " + href + " with command " + command);
       var roadTripId = 0;
       roadTripId = $("#roadTripId").val();
@@ -149,7 +164,6 @@ $(document).ready(function() {
             commandLine.focus();
             window.scrollBy(0,-200);
             commandLine.val("");
-            $(".stop").css("background", "linear-gradient( rgba(0,0,0,.8), rgba(0,0,0,.6))");
         }
       ).fail(function(){
         commandLine.val("Failure..");
@@ -161,6 +175,7 @@ $(document).ready(function() {
       console.log("Command not sent, no command found");
     }
   });
+  // fix image sizes on window resize
   $(window).resize(function() {
     $("img[data-aspect]").each(function() {
       fixImageSize($(this));
