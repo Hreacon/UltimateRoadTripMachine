@@ -16,6 +16,7 @@ namespace UltimateRoadTripMachineNS
         return View["index.cshtml"];
       };
 
+
       Delete["/deleteDestination/{id}"] = parameters => {
         Destination selectedDestination = Destination.Find(parameters.id)
         selectedDestination.Delete();
@@ -56,6 +57,9 @@ namespace UltimateRoadTripMachineNS
       // Console.WriteLine("Return View");//
       // return View["stop.cshtml", model];
       // };
+
+      // AJAX ROUTE ONLY RETURNS A PARTIAL HTML VIEW
+
       Post["/addStop"] = _ => {
         Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
         int roadTripId = 0;
@@ -82,20 +86,10 @@ namespace UltimateRoadTripMachineNS
         }
         model.Add("images", Scrubber.Search(newStop.GetName(), 6));
         model.Add("roadTripId", roadTripId);
+        model.Add("destination", newStop);
         Console.WriteLine(model);
         Console.WriteLine("Return View");
         return View["stop.cshtml", model];
-      };
-      Post["/getPage"] = _ => {
-        Console.WriteLine("Get Page");
-        string command = Request.Form["command"];
-        List<string> images = Scrubber.Search(command);
-        Dictionary<string, object> model = new Dictionary<string, object>(){};
-        model.Add("list", images);
-        string binguri = "http://www.bing.com/images/search?q="; // this is for testing, it is not needed for production
-        model.Add("bing", Scrubber.GetPageContent(binguri + command));
-        Console.WriteLine("Return View");
-        return View["list.cshtml", model];
       };
     }
   }

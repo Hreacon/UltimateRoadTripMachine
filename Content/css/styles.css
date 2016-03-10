@@ -1,8 +1,6 @@
 html {
   box-sizing: border-box; }
-.content {
-  padding-top:11em;
-}
+
 *, *::after, *::before {
   box-sizing: inherit; }
 
@@ -44,12 +42,12 @@ html {
       background-color: #47BCEB; }
 
 .map {
-  margin-top: 11vh;
+  margin-top: 1vh;
   width: 100%;
   height: 400px;
   background: #ffffff; }
 
- iframe {
+.overlay iframe {
   pointer-events: none; }
 
 #map_canvas {
@@ -75,97 +73,132 @@ html {
   font-size: 1em;
   margin: 0; }
 
-body {
-  background-color: #333; }
+.site {
+  background-color: #333;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0; }
+
+.content {
+  flex: 1;
+  background-image: url(/Content/img/roadtrip.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; }
 
 .map {
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto; }
-  .map::after {
-    clear: both;
-    content: "";
-    display: table; }
+  margin-right: auto;
+  margin-left: auto; }
   .map iframe {
     min-height: 400px;
     width: 100%; }
 
-.photos {
-  display: flex;
-  flex-flow: row wrap;
+.results-header {
   max-width: 1200px;
-  margin-left: auto;
   margin-right: auto;
-  margin: auto;
-  padding: 1.5em 0 0;
-  /* clearfix wtf? */ }
-  .photos::after {
-    clear: both;
-    content: "";
-    display: table; }
-  .photos .img {
-    height: 300px;
-    width: calc(33.3% - 1em);
-    margin-right: 1.5em;
-    margin-bottom: 1.5em; }
-    .photos .img:nth-child(3n) {
-      margin-right: 0; }
-    .photos .img:hover {
-      border: 2px solid white; }
-    @media (max-width: 1040px) {
-      .photos .img {
-        width: calc(50% - 0.75em);
-        margin-right: 1.5em; }
-        .photos .img:nth-child(3n) {
-          margin-right: 1.5em; }
-        .photos .img:nth-child(2n) {
-          margin-right: 0; } }
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; }
+  .results-header h1 {
+    color: #ffb84d;
+    flex: 10;
+    padding: 0;
+    margin: 1em 0 0 1em;
+    font-family: 'Open Sans', sans-serif; }
+  .results-header i {
+    font-size: 1.6em;
+    color: #A1A19F;
+    flex: 1;
+    text-align: center; }
+    .results-header i:hover {
+      color: #fff;
+      transform: scale(1.3);
+      transition: all 1s 300ms ease-in-out; }
     @media (max-width: 770px) {
-      .photos .img {
-        width: 100%; }
-        .photos .img:nth-child(n) {
-          margin-right: 0; } }
-
-.photo1 {
-  background-image: url(../img/alvard1.jpeg); }
-
-.photo2 {
-  background-image: url(../img/alvard2.jpeg); }
-
-.photo3 {
-  background-image: url(../img/alvard3.jpg); }
-
-.photo4 {
-  background-image: url(../img/alvard4.jpg); }
-
-.photo5 {
-  background-image: url(../img/alvard5.jpg); }
-
-.photo6 {
-  background-image: url(../img/alvard6.jpg); }
-
-footer {
-  background-color: #222;
-  min-height: 100px; }
-  footer .footer-primary-contacts {
+      .results-header i {
+        flex: 2; } }
+  .photos {
+    display: flex;
+    flex-flow: row wrap;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap; }
-    footer .footer-primary-contacts::after {
+    margin: auto;
+    padding: 1.5em 0 0;
+    /* clearfix wtf? */ }
+    .photos::after {
       clear: both;
       content: "";
       display: table; }
+    .photos .img {
+      height: 300px;
+      width: calc(33.3% - 1em);
+      margin-right: 1.5em;
+      margin-bottom: 1.5em; }
+      .photos .img:nth-child(3n) {
+        margin-right: 0; }
+      .photos .img:hover {
+        border: 2px solid white; }
+      @media (max-width: 1040px) {
+        .photos .img {
+          width: calc(50% - 0.75em);
+          margin-right: 1.5em; }
+          .photos .img:nth-child(3n) {
+            margin-right: 1.5em; }
+          .photos .img:nth-child(2n) {
+            margin-right: 0; } }
+      @media (max-width: 770px) {
+        .photos .img {
+          width: 100%; }
+          .photos .img:nth-child(n) {
+            margin-right: 0; } }
+
+.photo1 {
+  background-image: url(/img/alvard1.jpeg); }
+
+.photo2 {
+  background-color: tomato;
+  background-image: url(img/alvard2.jpeg); }
+
+.photo3 {
+  background-color: tomato;
+  background-image: url(img/alvard3.jpg); }
+
+.photo4 {
+  background-color: tomato;
+  background-image: url(img/alvard4.jpg); }
+
+.photo5 {
+  background-color: tomato;
+  background-image: url(../img/alvard5.jpg); }
+
+.photo6 {
+  background-color: tomato;
+  background-image: url(../img/alvard6.jpg); }
+
+footer {
+  width: 100%;
+  background-color: #222;
+  min-height: 100px;
+  margin-top: 1px; }
+  footer .footer-primary-contacts {
+    max-width: 1300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap; }
+    footer .footer-primary-contacts li:nth-child(1) {
+      display: none; }
     @media (max-width: 770px) {
       footer .footer-primary-contacts {
         justify-content: flex-start; } }
     footer .footer-primary-contacts li {
       list-style: none;
       margin-left: 10px;
-      padding: 30px 10px 0 0; }
+      padding: 10px 10px 10px 0; }
     footer .footer-primary-contacts a {
       color: white;
       text-decoration: none; }
@@ -178,16 +211,20 @@ footer {
         width: 100%; }
       footer .footer-primary-contacts li:nth-child(5), footer .footer-primary-contacts li:nth-child(6), footer .footer-primary-contacts li:nth-child(7) {
         width: 10%;
+        display: block; }
+      footer .footer-primary-contacts li:nth-child(1) {
         display: block; } }
 
 .header {
+  z-index:900;
   margin: 0 auto;
   background-color: #222;
   height: 120px;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100vw; }
-  .header nav {
+  .header .header-nav {
     max-width: 1300px;
     margin-left: auto;
     margin-right: auto; }
@@ -208,28 +245,26 @@ footer {
         .header .header-ul li a:hover {
           color: #999; }
       .header .header-ul li i {
-        color: #ffb84d; }
+        color: #ffb84d;
+        font-size: 2em; }
 
 .photos .img {
   background-repeat: no-repeat;
   background-size: cover; }
 
-.carousel {
-  width: 80%;
-  height: 60vh;
+.maximg {
   margin-left: auto;
   margin-right: auto;
-  background-image: url(../img/alvard1.jpeg);
   display: flex;
   justify-content: space-between; }
-  .carousel .left-arrow, .carousel .right-arrow {
+  .maximg .left-arrow, .maximg .right-arrow {
     width: 28%;
     height: 100%;
     display: flex;
     align-content: center; }
-    .carousel .left-arrow:hover i, .carousel .right-arrow:hover i {
+    .maximg .left-arrow:hover i, .maximg .right-arrow:hover i {
       opacity: 1; }
-    .carousel .left-arrow i, .carousel .right-arrow i {
+    .maximg .left-arrow i, .maximg .right-arrow i {
       align-self: center;
       width: 100%;
       color: white;
@@ -237,5 +272,75 @@ footer {
       font-size: 2.5em;
       text-align: center;
       z-index: 999; }
+
+.sliding-panel-content {
+  position: fixed;
+  top: 0px;
+  right: auto;
+  bottom: 0px;
+  left: 0px;
+  height: 100%;
+  width: 220px;
+  -webkit-transform: translateX(-220px);
+  -moz-transform: translateX(-220px);
+  -ms-transform: translateX(-220px);
+  -o-transform: translateX(-220px);
+  transform: translateX(-220px);
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  background: #404040;
+  z-index: 999999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; }
+  .sliding-panel-content ul {
+    padding: 0;
+    margin: 0; }
+  .sliding-panel-content li {
+    list-style: none; }
+  .sliding-panel-content li a {
+    border-bottom: 1px solid #333;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    padding: 1em;
+    text-decoration: none; }
+    .sliding-panel-content li a:focus {
+      background-color: #4d4d4d; }
+    .sliding-panel-content li a:hover {
+      background-color: #477DCA;
+      color: #fff; }
+  .sliding-panel-content.is-visible {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0); }
+
+.sliding-panel-fade-screen {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  -webkit-transition: all 0.15s ease-out 0s;
+  -moz-transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
+  background: black;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999998; }
+  .sliding-panel-fade-screen.is-visible {
+    opacity: 0.4;
+    visibility: visible; }
+
+.sliding-panel-button {
+  padding: 10px 16px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  outline: none; }
+  .sliding-panel-button img {
+    height: 1.3em; }
 
 /*# sourceMappingURL=styles.css.map */
