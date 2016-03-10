@@ -7,28 +7,26 @@ html {
 .input-group-destination {
   margin: 20px 0;
   display: flex;
-  justify-content: center;
   position: fixed;
   top: 10px;
-  left: 35%;
-  width: 50%;
-  max-width: 700px;
+  right: 60px;
+  width: 60vw;
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   background-color: white; }
   @media (max-width: 770px) {
     .input-group-destination {
-      left: 22px;
+      right: 12px;
       width: 90vw; } }
   .input-group-destination input[type="text"] {
     outline: 0;
     padding: 14px;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
-    flex: 3;
+    flex: 1;
     font-size: 1.2rem;
     border: none; }
-  .input-group-destination input[type="submit"] {
+  .input-group-destination input[type="button"] {
     outline: 0;
     background-color: #42A8D1;
     color: white;
@@ -37,25 +35,16 @@ html {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border: none; }
-    .input-group-destination input[type="submit"]:hover {
+    .input-group-destination input[type="button"]:hover {
       cursor: pointer;
       background-color: #47BCEB; }
 
-.map {
-  margin-top: 11vh;
-  width: 100%;
-  height: 400px;
-  background: #ffffff; }
-
-.overlay iframe {
-  pointer-events: none; }
-
 #map_canvas {
-  min-height: 400px;
+  max-height: 100%;
   width: 100%; }
   @media (max-width: 770px) {
     #map_canvas {
-      min-height: 300px; } }
+      max-height: 100%; } }
 
 #map_canvas img {
   max-width: 100%; }
@@ -90,12 +79,11 @@ body {
 
 .photos {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  margin: auto;
-  padding: 1.5em 0 0;
   /* clearfix wtf? */ }
   .photos::after {
     clear: both;
@@ -103,25 +91,30 @@ body {
     display: table; }
   .photos .img {
     height: 300px;
-    width: calc(33.3% - 1em);
-    margin-right: 1.5em;
-    margin-bottom: 1.5em; }
-    .photos .img:nth-child(3n) {
+    width: 100%;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    .photos .img:last-child {
       margin-right: 0; }
     .photos .img:hover {
       border: 2px solid white; }
     @media (max-width: 1040px) {
       .photos .img {
-        width: calc(50% - 0.75em);
-        margin-right: 1.5em; }
-        .photos .img:nth-child(3n) {
-          margin-right: 1.5em; }
-        .photos .img:nth-child(2n) {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 48.82117%; }
+        .photos .img:last-child {
           margin-right: 0; } }
     @media (max-width: 770px) {
       .photos .img {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
         width: 100%; }
-        .photos .img:nth-child(n) {
+        .photos .img:last-child {
           margin-right: 0; } }
 
 .photo1 {
@@ -141,24 +134,22 @@ body {
 
 .photo6 {
   background-image: url(../img/alvard6.jpg); }
-.content {
-  padding-top:140px;
-}
+
 footer {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #222;
   min-height: 100px; }
+  footer::after {
+    clear: both;
+    content: "";
+    display: table; }
   footer .footer-primary-contacts {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap; }
-    footer .footer-primary-contacts::after {
-      clear: both;
-      content: "";
-      display: table; }
     @media (max-width: 770px) {
       footer .footer-primary-contacts {
         justify-content: flex-start; } }
@@ -169,8 +160,6 @@ footer {
     footer .footer-primary-contacts a {
       color: white;
       text-decoration: none; }
-    footer .footer-primary-contacts .fa-road {
-      color: #ffb84d; }
     footer .footer-primary-contacts i {
       font-size: 2em; }
     @media (max-width: 770px) {
@@ -183,14 +172,7 @@ footer {
 .header {
   margin: 0 auto;
   background-color: #222;
-  height: 120px;
-  position: fixed;
-  top: 0;
-  width: 100vw; }
-  .header nav {
-    max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto; }
+  height: 120px; }
   .header .header-ul {
     margin: 0 auto;
     padding: 34px 12px 18px; }
@@ -212,29 +194,7 @@ footer {
 
 .photos .img {
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  margin: 3px; }
 
-  .carousel {
-    width: 80%;
-    height: 60vh;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(../img/alvard1.jpeg);
-    display: flex;
-    justify-content: space-between; }
-    .carousel .left-arrow, .carousel .right-arrow {
-      width: 28%;
-      height: 100%;
-      display: flex;
-      align-content: center; }
-      .carousel .left-arrow:hover i, .carousel .right-arrow:hover i {
-        opacity: 1; }
-      .carousel .left-arrow i, .carousel .right-arrow i {
-        align-self: center;
-        width: 100%;
-        color: white;
-        opacity: 0.003;
-        font-size: 2.5em;
-        text-align: center;
-        z-index: 999; }
 /*# sourceMappingURL=styles.css.map */

@@ -8,13 +8,13 @@
   right:0;
   bottom:0;
 }
-.maximg .imgdiv {
+.maximg div {
   position: fixed;
   left: 50%;
   top:5%;
   bottom:5%;
 }
-.maximg .imgdiv img {
+.maximg div img {
   height:auto;
   margin-left:-50%;
   max-height:100%;

@@ -1,6 +1,8 @@
 html {
   box-sizing: border-box; }
-
+.content {
+  padding-top:11em;
+}
 *, *::after, *::before {
   box-sizing: inherit; }
 
