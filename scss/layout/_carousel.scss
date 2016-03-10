@@ -3,11 +3,10 @@
   height: 60vh;
   margin-left: auto;
   margin-right: auto;
-
+  background-image: url(../img/alvard1.jpeg);
   display: flex;
   justify-content: space-between;
   .left-arrow, .right-arrow {
-
     width: 28%;
     height: 100%;
     display: flex;
@@ -22,7 +21,7 @@
       width: 100%;
       color: white;
       opacity: 0.003;
-      font-size: 2em;
+      font-size: 2.5em;
       text-align: center;
       z-index: 999;
 
