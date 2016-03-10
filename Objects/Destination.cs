@@ -15,15 +15,13 @@ namespace UltimateRoadTripMachineNS.Objects
     {
       _id = id;
       _name = name;
-      if(_stop != 0)
+      _roadtrip_id = roadtrip_id;
+      if(stop == 0)
       {
         _stop = this.CountStops()+1;
-      }
-      else
-      {
+      } else {
         _stop = stop;
       }
-      _roadtrip_id = roadtrip_id;
     }
 
     public override bool Equals(System.Object otherDestination)
