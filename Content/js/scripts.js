@@ -62,10 +62,8 @@ function fixImageSize(img)
         img.parent().height(img.height()+4);
         if(img.parent().width() > img.width()+5 && img.parent().height() < 300)
         {
-          console.log("consider reset height");
           if((img.parent().width()-4) / aspect < 300)
           {
-            console.log("reset height");
             img.height((img.parent().width()-4)/aspect);
           } else {
             img.height(300);
@@ -131,12 +129,16 @@ $(document).ready(function() {
           roadTripId: roadTripId,
         }, function(data, status) {
             console.log("Data returned from server");
-            $(".content").append(data);
+            $(".content").append("<div id='scrollToHere'>"+data+"</div>");
             fixImageAddClick();
             var commandLine = $("input[name=command]");
             commandLine.prop('disabled', false);
             commandLine.val("");
             $("#commandLine input[type=submit]").prop('disabled', false);
+            document.getElementById('scrollToHere').scrollIntoView();
+            $("#scrollToHere").attr('id', '');
+            commandLine.focus();
+            window.scrollBy(0,-200);
         }
       );
     } else {

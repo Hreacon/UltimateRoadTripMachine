@@ -147,7 +147,7 @@ C#:
 directions/single destination map working correctly 
 Nick:
 Make image aspect ratio and center properly through the entire range - DONE
-Zoom to the newely added routes
+Zoom to the newely added routes - DONE
 Add function to undisable the input when the return is not proper
 Get the carousel working?
 detect 404 images? 
