@@ -15,39 +15,7 @@ namespace UltimateRoadTripMachineNS
         Console.WriteLine("Return View");
         return View["index.cshtml"];
       };
-      Post["/map"] = _ => {
-        string command = Request.Form["start"];
-        Console.WriteLine("Retrieving Map Location: "+ command);
-        Console.WriteLine("Return View");
-        return View["map.cshtml", Scrubber.GetMapOnLocation(command)];
-      };
-      Post["/mapDirections"] = _ => {
-        string start = Request.Form["start"];
-        string end = Request.Form["destination"];
-        Console.WriteLine("Retrieving Map Directions: '"+ start + "', '" + end +"'");
-        Console.WriteLine("Return View");
-        return View["map.cshtml", Scrubber.GetMapDirections(start, end)];
-      };
-      Post["/iframe"] = _ => {
-        string command = Request.Form["command"];
-        Console.WriteLine("iframe route, command string: " + command);
-        Uri model = new Uri(command);
-        Console.WriteLine("Return View");
-        return View["map.cshtml", model.AbsoluteUri];
-      };
-      // Post["/start"] = _ => { // start of a road trip. Reset the form to include a road trip id. Then show a map
-      //   // create new road trip based on start destination and some keywords
-      //   string firstStop = Request.Form["command"];
-      //   RoadTrip newTrip = new RoadTrip("The awesome " + firstStop + " Road Trip!", "");
-      //   newTrip.Save();
-      //   Destination newStop = new Destination(firstStop, 1, newTrip.GetId()); // TODO depreciated stop constructor
-      //   newStop.Save();
-      //   Dictionary<string,object> model = new Dictionary<string,object>(){};
-      //   model.Add("map", Scrubber.GetMapOnLocation(newStop.GetName()));
-      //   model.Add("roadTripId", newTrip.GetId());
-      // Console.WriteLine("Return View");//
-      // return View["stop.cshtml", model];
-      // };
+      // AJAX ROUTE ONLY RETURNS A PARTIAL HTML VIEW
       Post["/addStop"] = _ => {
         Dictionary<string,object> model = new Dictionary<string,object>(){}; // instantiate model
         int roadTripId = 0;
@@ -76,17 +44,6 @@ namespace UltimateRoadTripMachineNS
         Console.WriteLine(model);
         Console.WriteLine("Return View");
         return View["stop.cshtml", model];
-      };
-      Post["/getPage"] = _ => {
-        Console.WriteLine("Get Page");
-        string command = Request.Form["command"];
-        List<string> images = Scrubber.Search(command);
-        Dictionary<string, object> model = new Dictionary<string, object>(){};
-        model.Add("list", images);
-        string binguri = "http://www.bing.com/images/search?q="; // this is for testing, it is not needed for production
-        model.Add("bing", Scrubber.GetPageContent(binguri + command));
-        Console.WriteLine("Return View");
-        return View["list.cshtml", model];
       };
     }
   }
