@@ -11,7 +11,7 @@ namespace UltimateRoadTripMachineNS.Objects
     public static List<string> Search(string term, int limit = 6)
     {
       Console.WriteLine("Starting Search");
-      List<string> terms = new List<string>(){};
+      List<string> links = new List<string>(){};
       List<string> urls = new List<string>(){};
 
       SqlConnection conn = DB.Connection();
@@ -24,28 +24,36 @@ namespace UltimateRoadTripMachineNS.Objects
       TermParameter.Value = term;
       cmd.Parameters.Add(TermParameter);
 
+
       rdr = cmd.ExecuteReader();
       Console.WriteLine("Reader Reading");
-
-
-        Console.WriteLine("In While Loop");
 
         if(!(rdr.HasRows))
         {
           Console.WriteLine("reverting to scrub");
-          urls= Scrubber.Scrub(term, limit);
+          urls = Scrub(term, limit);
           int termId = AddSearch(term);
+          Console.WriteLine(termId);
+          foreach(string link in urls)
+          {
+            Console.WriteLine(link);
+            AddImageLink(link, termId);
+          }
+
+
 
         }
         else
         {
           while(rdr.Read())
-        {
-          string link = rdr.GetString(0);
-          Console.WriteLine("adding image link: "+link);
-          urls.Add(link);
+          {
+            Console.WriteLine("We made it here! false");
+            string link = rdr.GetString(0);
+            Console.WriteLine("adding image link: "+link);
+            urls.Add(link);
+          }
         }
-      }
+      Console.WriteLine("We made it here! true");
       if (rdr != null)
       {
         rdr.Close();
@@ -122,7 +130,7 @@ namespace UltimateRoadTripMachineNS.Objects
     {
       string output = String.Empty;
       WebRequest req = WebRequest.Create(new Uri(url).AbsoluteUri);
-      req.Timeout = 1000;
+      req.Timeout = 2000;
       try{
         WebResponse response = req.GetResponse();
         Stream data = response.GetResponseStream();
@@ -165,7 +173,7 @@ namespace UltimateRoadTripMachineNS.Objects
       int output = 0;
       foreach(string c in commands)
       {
-        if(link.Contains(c) && c.Length > 3)
+        if(link.ToLower().Contains(c.ToLower()) && c.Length > 3)
           output += 1;
       }
       if(link.Contains("thumb"))
