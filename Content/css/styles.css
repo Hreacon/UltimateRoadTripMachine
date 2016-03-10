@@ -49,7 +49,7 @@ html {
   height: 400px;
   background: #ffffff; }
 
-.overlay iframe {
+ iframe {
   pointer-events: none; }
 
 #map_canvas {

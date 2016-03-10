@@ -125,9 +125,7 @@ Resizing map - recenter focus on trip - DONE
 fiximg not centering properly - CLOSE ENOUGH
 Clear search bar when command is entered and have loading stuff appear and no other commands can be entererd. DONE
 Prevent maps from preventing scrolling - DONE
-Zoom to the newely added routes
 maximg - carousel?
-Add function to undisable the input when the return is not proper
 
 
 C#:
@@ -142,14 +140,22 @@ change timeout when scrubbing - DONE
 C# View/Front End:
 Add the title to the "stops" and add buttons for moving, editing and deleting
 
-Front-End:
-View All Roadtrips?
-Quick Links to go to different Stops? on a road trip
 
 
 Last Day:
-Make the carousel working
+C#:
 directions/single destination map working correctly 
-detect 404 images
-detect tiny images 
+Nick:
+Make image aspect ratio and center properly through the entire range - DONE
+Zoom to the newely added routes
+Add function to undisable the input when the return is not proper
+Get the carousel working?
+detect 404 images? 
+detect tiny images? 
+CSS:
 add title to the stops and add buttons for moving editing and deleteing
+finish make styling look right
+
+Past MVP:
+View All Roadtrips?
+Quick Links to go to different Stops? on a road trip

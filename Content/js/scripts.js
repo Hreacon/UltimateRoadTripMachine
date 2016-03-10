@@ -41,14 +41,65 @@ function fixImageAddClick()
 function fixImageSize(img)
 {
   var aspect = img.attr('data-aspect');
+  img.css('position', 'relative');
+ 
   if(aspect < 1) {
+    img.css('left','25%');
     img.width(img.parent().height() * aspect-4);
     // console.log(img.parent().width()+" - "+img.width()+"/2/"+img.parent().width()+"*100 = " + ((img.parent().width() - img.width()/2)/(img.parent().width())*100) + "%");
-    img.css("margin-left", ((img.parent().width() - img.width()/2)/(img.parent().width())*100)/2.8 + "%");
   } else {
+    // for landscape set the width and let the height figure itself out and set margin to center it vertically
     img.width(img.parent().width()-4);
+    console.log("Landscape image height: "+ img.height());
+    img.height(img.width()/aspect);
+    if(img.height() > img.parent().height()-10)
+    {
+      img.height( img.parent().height()-4 );
+      img.width(img.parent().height() * aspect-4);
+    }
+     if( window.innerWidth < 780 )
+      {
+        img.parent().height(img.height()+4);
+        if(img.parent().width() > img.width()+25 && img.parent().height < 300)
+          img.parent().height(img.parent().height()+10);
+      } else {
+        img.parent().height("300px");
+      }
+      if(img.parent().width()-10 > img.width())
+      {
+        // center horizontally
+        // img.css('left','25%');
+        var margin = (((img.parent().width() - img.width())/2)/(img.parent().width())*100);
+        if(margin > 2){
+          img.css("margin-left", (margin-2) + "%");
+          img.css("margin-top", 0);
+        } else {
+          img.css("margin-top", 0);
+          img.css("margin-left", 0);
+      }
+      } else if(img.parent().height()-10 > img.height())
+      {
+        // center vertically 
+        var margin = (((img.parent().height() - img.height())/2)/(img.parent().height())*100);
+        if(margin > 2) {
+          img.css("margin-top", (margin-2) + "%");
+          img.css("margin-left", 0);
+        } else {
+          img.css("margin-top", 0);
+          img.css("margin-left", 0);
+      }
+      } else {
+          img.css("margin-top", 0);
+          img.css("margin-left", 0);
+      }
+    // }
+    
+    // if(img.parent().height() - img.height() > 100)
+    //   img.parent().height(img.height()+4);
+    // img.height(img.width()/aspect);
     // img.css("margin-top", (img.parent().height() - img.height()) / 2 + "px");
-    img.parent().height(img.height()+4);
+    // if(img.height()+4<300)
+    //   img.parent().height(img.height()+4);
   }
   // todo set margin to center img
 }
