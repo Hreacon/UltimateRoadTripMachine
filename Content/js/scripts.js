@@ -149,6 +149,7 @@ $(document).ready(function() {
             commandLine.focus();
             window.scrollBy(0,-200);
             commandLine.val("");
+            $(".stop").css("background", "linear-gradient( rgba(0,0,0,.8), rgba(0,0,0,.6))");
         }
       ).fail(function(){
         commandLine.val("Failure..");
