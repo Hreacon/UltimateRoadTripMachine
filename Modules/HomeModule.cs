@@ -42,9 +42,9 @@ namespace UltimateRoadTripMachineNS
       };
 
       Post["/nameTrip/"] = _ => {
-        Roadtrip newTrip = RoadTrip.Find(int.Parse(Request.Form["id"]));
+        RoadTrip newTrip = RoadTrip.Find(int.Parse(Request.Form["id"]));
         newTrip.SetName(Request.Form["name"]);
-        Return View["empty.cshtml"];
+        return View["empty.cshtml"];
       };
 
       // AJAX ROUTE ONLY RETURNS A PARTIAL HTML VIEW
