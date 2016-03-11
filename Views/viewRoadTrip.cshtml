@@ -21,16 +21,22 @@
   }
 </div>
 <script type="text/javascript">
-$(document).ready(function() {
-  $(".destination").each(function() {
-    var id = $(this).text();
+function loadStop()
+{
+  if($(".destination").length > 0) {
+    var id = $(".destination").first().text();
     href = "/getStop/" + id;
     $.ajax(href).done(function(data, status) {
       $(".content").append("<div>"+data+"</div>");
       fixImageAddClick();
-      
+      $(".destination").first().remove();
+      loadStop();
     });
-  });
+    
+  }
+}
+$(document).ready(function() {
+  loadStop();
   $(".nameTrip").show();
 });
 </script>

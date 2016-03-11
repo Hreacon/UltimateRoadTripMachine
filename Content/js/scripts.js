@@ -106,9 +106,9 @@ function fixImageAddClick()
     $(this).click(function() {
       var href = "/moveUp/" + $(this).parent().attr("data-id");
       console.log("AJAX Sending Move/Delete");
-      var href = "/roadTrip/" + $("#roadTripId").val();
+      var href2 = "/roadTrip/" + $("#roadTripId").val();
       $.ajax(href).done(function() {
-        window.location.href = href;
+        window.location.href = href2;
       });
       var stop = $(this).parent().parent().parent();
       stop.insertBefore(stop.prev());
@@ -119,9 +119,9 @@ function fixImageAddClick()
     $(this).click(function() {
       var href = "/moveDown/" + $(this).parent().attr("data-id");
       console.log("AJAX Sending Move/Delete");
-      var href = "/roadTrip/" + $("#roadTripId").val();
+      var href2 = "/roadTrip/" + $("#roadTripId").val();
       $.ajax(href).done(function() {
-        window.location.href = href;
+        window.location.href = href2;
       });
       var stop = $(this).parent().parent().parent();
       stop.insertAfter(stop.next());

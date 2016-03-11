@@ -207,7 +207,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM destinations WHERE roadtrip_id = @RoadTripId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM destinations WHERE roadtrip_id = @RoadTripId ORDER BY stop;", conn);
       SqlParameter roadtripIdParameter = new SqlParameter();
       roadtripIdParameter.ParameterName = "@RoadTripId";
       roadtripIdParameter.Value = this.GetId();

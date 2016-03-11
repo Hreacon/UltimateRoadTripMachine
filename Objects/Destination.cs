@@ -188,7 +188,7 @@ namespace UltimateRoadTripMachineNS.Objects
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE destinations SET name = '@NewName', stop = @NewStop, roadtrip_id = @NewRoadTripId WHERE id = @DestinationId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE destinations SET name = @NewName, stop = @NewStop, roadtrip_id = @NewRoadTripId WHERE id = @DestinationId;", conn);
 
       SqlParameter NewNameParameter = new SqlParameter();
       NewNameParameter.ParameterName= "@NewName";
@@ -234,7 +234,13 @@ namespace UltimateRoadTripMachineNS.Objects
     public Destination GetPreviousDestination()
     {
       var destinations = RoadTrip.Find(GetRoadTripId()).GetDestinations();
-      return destinations[GetStop()-2];
+      Destination output = null;
+      foreach(var d in destinations)
+      {
+        if(d.GetStop() == GetStop()-1)
+          output = d;
+      }
+      return output;
     }
     public List<string> GetImages(int limit = 6)
     {
