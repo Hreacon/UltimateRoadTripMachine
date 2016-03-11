@@ -171,7 +171,7 @@ header zindex 900
 results header is accidentally on the photos class
 
 
-
+FINAL HOUR:
 Destination methods needed for view roadtrip:
 GetPreviousDestination
 GetImages
