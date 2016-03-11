@@ -197,6 +197,11 @@ html {
 .stop {
   background-color: rgba(0, 0, 0, 0.6); }
 
+.terms {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto; }
+
 footer {
   width: 100%;
   background-color: #222;
@@ -220,10 +225,14 @@ footer {
     footer .footer-primary-contacts a {
       color: white;
       text-decoration: none; }
+      footer .footer-primary-contacts a:hover {
+        color: #777; }
     footer .footer-primary-contacts .fa-road {
       color: #ffb84d; }
     footer .footer-primary-contacts i {
       font-size: 2em; }
+      footer .footer-primary-contacts i:hover {
+        color: #42A8D1; }
     @media (max-width: 770px) {
       footer .footer-primary-contacts li {
         width: 100%; }

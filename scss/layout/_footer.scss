@@ -23,12 +23,18 @@ footer {
     a {
       color: white;
       text-decoration: none;
+      &:hover {
+        color: #777;
+      }
     }
     .fa-road {
         color: #ffb84d;
     }
     i {
       font-size: 2em;
+      &:hover {
+        color: #42A8D1;
+      }
     }
     @media #{$brk-narrow} {
       li {
