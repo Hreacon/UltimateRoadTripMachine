@@ -172,15 +172,17 @@ $(document).ready(function() {
           command: command,
           roadTripId: roadTripId,
         }).done(function(data, status) {
-            console.log("Data returned from server");
-            $(".content").append("<div id='scrollToHere'>"+data+"</div>");
-            fixImageAddClick();
-            var commandLine = $("input[name=command]");
-            document.getElementById('scrollToHere').scrollIntoView();
-            $("#scrollToHere").attr('id', '');
-            commandLine.focus();
-            window.scrollBy(0,-200);
-            commandLine.val("");
+          console.log("Data returned from server");
+          $(".content").append("<div id='scrollToHere'>"+data+"</div>");
+          if($(".content").children().length>0)
+            $(".nameTrip").show();
+          fixImageAddClick();
+          var commandLine = $("input[name=command]");
+          document.getElementById('scrollToHere').scrollIntoView();
+          $("#scrollToHere").attr('id', '');
+          commandLine.focus();
+          window.scrollBy(0,-200);
+          commandLine.val("");
         }
       ).fail(function(){
         commandLine.val("Failure..");
@@ -191,6 +193,13 @@ $(document).ready(function() {
     } else {
       console.log("Command not sent, no command found");
     }
+    $(".nameTrip").click(function() {
+      var name = prompt("What do you want to name your Road Trip?");
+      $.post("/nameTrip", {
+        destinationId: $("[data-id]").attr('data-id'),
+        name: name
+      });
+    });
   });
   // fix image sizes on window resize
   $(window).resize(function() {
