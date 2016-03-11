@@ -1,0 +1,7 @@
+<ul>
+  <li><a>List of Road Trips</a></li>
+@foreach(var trip in Model)
+{
+  <li><a href="/roadTrip/@trip.GetId()">@trip.GetName()</a></li>
+}
+</ul>

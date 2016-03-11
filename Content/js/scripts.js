@@ -228,6 +228,10 @@ function fixImageSize(img)
 }
 
 $(document).ready(function() {
+  // get all road trips
+  $.ajax("/getAllRoadTrips").done(function(data,status){
+    $(".js-menu").html(data);
+  });
   $("#commandLine").submit(function(event) { // command enter
     var commandLine = $("input[name=command]");
     $("#commandLine input[type=submit]").prop('disabled', true);
@@ -247,8 +251,10 @@ $(document).ready(function() {
         }).done(function(data, status) {
           console.log("Data returned from server");
           $(".content").append("<div id='scrollToHere'>"+data+"</div>");
-          if($(".content").children().length>0)
+          if($(".content").children().length>0){
             $(".nameTrip").show();
+            $(".fire").hide();
+          }
           fixImageAddClick();
           var commandLine = $("input[name=command]");
           document.getElementById('scrollToHere').scrollIntoView();

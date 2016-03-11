@@ -23,7 +23,9 @@ namespace UltimateRoadTripMachineNS
         Console.WriteLine("View Stop");
         return View["destination.cshtml", Destination.Find(int.Parse(x.id))];
       };
-
+      Get["/getAllRoadTrips"] = _ => {
+        return View["viewAllRoadTrips.cshtml", RoadTrip.GetAll()];
+      };
       Get["/deleteDestination/{id}"] = parameters => {
         Console.WriteLine("Deleteing: " + parameters.id);
         Destination selectedDestination = Destination.Find(parameters.id);
