@@ -34,6 +34,7 @@ namespace UltimateRoadTripMachineNS
       Get["/moveDown/{id}"] = parameters => {
         Console.WriteLine("Move Down: " + parameters.id);
         Destination selectedDestination = Destination.Find(parameters.id);
+        Console.WriteLine("Destination Found, RoadTripId: " + selectedDestination.GetRoadTripId());
         selectedDestination.MoveDown();
         return View["empty.cshtml"];
       };

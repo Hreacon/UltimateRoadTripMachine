@@ -58,18 +58,32 @@ function fixImageAddClick()
     $(this).removeClass("clickhandler");
   });
   $(".moveUpHandler").each(function() {
-    var href = "/moveUp/" + $(this).parent().attr("data-id");
-    $.ajax(href);
+    $(this).click(function() {
+      var href = "/moveUp/" + $(this).parent().attr("data-id");
+      console.log("AJAX Sending Move/Delete");
+      $.ajax(href);
+      var stop = $(this).parent().parent().parent();
+      stop.insertBefore(stop.prev());
+    });
     $(this).removeClass("moveUpHandler");
   });
   $(".moveDownHandler").each(function() {
-    var href = "/moveDown/" + $(this).parent().attr("data-id");
-    $.ajax(href);
+    $(this).click(function() {
+      var href = "/moveDown/" + $(this).parent().attr("data-id");
+      console.log("AJAX Sending Move/Delete");
+      $.ajax(href);
+      var stop = $(this).parent().parent().parent();
+      stop.insertAfter(stop.next());
+    });
     $(this).removeClass("moveDownHandler");
   });
   $(".deleteHandler").each(function() {
-    var href = "/deleteDestination/" + $(this).parent().attr("data-id");
-    $.ajax(href);
+    $(this).click(function() {
+      var href = "/deleteDestination/" + $(this).parent().attr("data-id");
+      console.log("AJAX Sending Move/Delete");
+      $.ajax(href);
+      $(this).parent().parent().remove();
+    });
     $(this).removeClass("deleteHandler");
   });
   $('.maximg').click(function() {
