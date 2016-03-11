@@ -45,7 +45,8 @@ html {
 .nameTrip {
   margin: 2em;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  display: none; }
   .nameTrip button {
     height: 2.8em;
     border-radius: 6px;
