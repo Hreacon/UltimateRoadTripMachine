@@ -182,3 +182,7 @@ route to show road trips DONE JUST HAVING IMAGE TROUBLE
 delete button "are you sure" DONE
 
 Carousel SHITTY CLICK LISTENER FUCKIN WORKS YEAH
+
+
+HIDE ARROWS
+Reshow the trip

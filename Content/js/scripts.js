@@ -6,7 +6,6 @@
 function fixImageAddClick()
 {
   console.log("Fix Image Add Click");
-  var i = 0;
   $(".clickhandler").each(function() {
     if($(".clickhandler").parent().attr('data-id') > 0)
     {
@@ -16,12 +15,12 @@ function fixImageAddClick()
     }
     var img = $(this).find("img");
     console.log(img);
+    if(img.complete || img.readyState == 4)
+    {
+      // image cached!
+      fixImageSize(img);
+    }
     img.on('load', function() {
-      var aspect = img.width() / img.height();
-      img.attr("data-aspect", aspect);
-      console.log("Image number: " + i + "Aspect Ratio: " + aspect);
-      img.attr('data-index', i);
-      i++;
       fixImageSize(img);
     });
     // Add MaxImg click handler
@@ -138,10 +137,34 @@ function fixImageAddClick()
   $('.maximg').click(function() {
     $(this).hide();
   });
+  indexImages();
 } // end fix image add click
+function indexImages()
+{
+  console.log("Indexing images");
+  $(".stop").each(function() {
+    var i = 0;
+    $(this).find("img").each(function() {
+      $(this).attr('data-index', i);
+      i++;
+    });
+  });
+  // count stops
+  // if the first stop, hide up arrow
+  // if the last stop, hide down arrow
+  // if no stops, do nothing
+  var stopCount = $(".stop").length;
+  if(stopCount > 0)
+  {
+    
+  }
+}
 function fixImageSize(img)
 {
-  var aspect = img.attr('data-aspect');
+  
+  var aspect = img.width() / img.height();
+  img.attr("data-aspect", aspect);
+  console.log("Aspect Ratio: " + aspect);
   img.css('position', 'relative');
 
   if(aspect < 1) {
@@ -239,16 +262,17 @@ $(document).ready(function() {
     } else {
       console.log("Command not sent, no command found");
     }
+  });
+  
     $(".nameTrip").click(function() {
       var name = prompt("What do you want to name your Road Trip?");
       $.post("/nameTrip", {
         id: $("#roadTripId").val(),
         name: name,
       }).done(function() {
-        $(".nameTrip").html(name);
+        $(".nameTrip").find("button").text(name);
       });
     });
-  });
   // fix image sizes on window resize
   $(window).resize(function() {
     $("img[data-aspect]").each(function() {

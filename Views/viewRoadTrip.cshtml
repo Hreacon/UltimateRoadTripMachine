@@ -1,13 +1,9 @@
 @Html.Partial("header.cshtml")
 
 <div class="content">
-  @foreach(var dest in Model.GetDestinations())
-  {
-    @Html.Partial("destination.cshtml", dest)
-  }
 </div>
 <div class="nameTrip">
-  @Model.GetName();
+  <button>@Model.GetName()</button>
 </div>
 <div class="maximg carousel">
   <div class="left-arrow">
@@ -18,10 +14,24 @@
     <i class="fa fa-chevron-right"></i>
   </div>
 </div>
-      
+<div style="display:none">
+  @foreach(var dest in Model.GetDestinations())
+  {
+    <div class="destination">@dest.GetId()</div>
+  }
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
-  fixImageAddClick();
+  $(".destination").each(function() {
+    var id = $(this).text();
+    href = "/getStop/" + id;
+    $.ajax(href).done(function(data, status) {
+      $(".content").append("<div>"+data+"</div>");
+      fixImageAddClick();
+      
+    });
+  });
+  $(".nameTrip").show();
 });
 </script>
 @Html.Partial("footer.cshtml")

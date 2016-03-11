@@ -18,6 +18,9 @@ namespace UltimateRoadTripMachineNS
       Get["/roadTrip/{id}"] = x => {
         return View["viewRoadTrip.cshtml", RoadTrip.Find(int.Parse(x.id))];
       };
+      Get["/getStop/{id}"] = x => {
+        return View["destination.cshtml", Destination.Find(int.Parse(x.id))];
+      };
 
       Get["/deleteDestination/{id}"] = parameters => {
         Console.WriteLine("Deleteing: " + parameters.id);
@@ -41,9 +44,10 @@ namespace UltimateRoadTripMachineNS
         return View["empty.cshtml"];
       };
 
-      Post["/nameTrip/"] = _ => {
+      Post["/nameTrip"] = _ => {
         RoadTrip newTrip = RoadTrip.Find(int.Parse(Request.Form["id"]));
         newTrip.SetName(Request.Form["name"]);
+        newTrip.Update();
         return View["empty.cshtml"];
       };
 
