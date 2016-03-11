@@ -176,9 +176,9 @@ Destination methods needed for view roadtrip:
 GetPreviousDestination
 GetImages
 GetMap
-Button at the bottom of the roadtrip that allows the user to name the road trip
+Button at the bottom of the roadtrip that allows the user to name the road trip DONE
 homemodule route for rename road trips
 
-delete button "are you sure"
+delete button "are you sure" DONE
 
 Carousel

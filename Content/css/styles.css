@@ -269,6 +269,7 @@ footer {
     width: 28%;
     height: 100%;
     display: flex;
+    z-index:902;
     align-content: center; }
     .maximg .left-arrow:hover i, .maximg .right-arrow:hover i {
       opacity: 1; }
