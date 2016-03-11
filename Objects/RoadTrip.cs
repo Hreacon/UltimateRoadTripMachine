@@ -72,7 +72,8 @@ namespace UltimateRoadTripMachineNS.Objects
         string description = rdr.GetString(2);
 
         RoadTrip newTrip = new RoadTrip(name, description, id);
-        allTrips.Add(newTrip);
+        if(newTrip.GetDestinations().Count > 0)
+          allTrips.Add(newTrip);
       }
 
       if (rdr != null)

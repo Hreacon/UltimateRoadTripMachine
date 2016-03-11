@@ -3,6 +3,7 @@ using System;
 using System.Data.SqlClient;
 using System.Net;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace UltimateRoadTripMachineNS.Objects
 {
@@ -74,7 +75,7 @@ namespace UltimateRoadTripMachineNS.Objects
       }
       return urls;
     }
-    
+
 
     public static int AddSearch(string term)
     {
@@ -184,7 +185,7 @@ namespace UltimateRoadTripMachineNS.Objects
       int output = 0;
       foreach(string c in commands)
       {
-        if(link.ToLower().Contains(c.ToLower()) && c.Length > 3)
+        if(link.ToLower().Contains(Regex.Replace(c.ToLower(), "[\\p{P}-\\^]+", "")) && c.Length > 3)
           output += 1;
       }
       if(link.Contains("thumb"))

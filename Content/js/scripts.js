@@ -106,9 +106,8 @@ function fixImageAddClick()
     $(this).click(function() {
       var href = "/moveUp/" + $(this).parent().attr("data-id");
       console.log("AJAX Sending Move/Delete");
-      var href2 = "/roadTrip/" + $("#roadTripId").val();
       $.ajax(href).done(function() {
-        window.location.href = href2;
+        window.location.href = "/roadTrip/" + $("#roadTripId").val();
       });
       var stop = $(this).parent().parent().parent();
       stop.insertBefore(stop.prev());
@@ -119,9 +118,8 @@ function fixImageAddClick()
     $(this).click(function() {
       var href = "/moveDown/" + $(this).parent().attr("data-id");
       console.log("AJAX Sending Move/Delete");
-      var href2 = "/roadTrip/" + $("#roadTripId").val();
       $.ajax(href).done(function() {
-        window.location.href = href2;
+        window.location.href = "/roadTrip/" + $("#roadTripId").val();;
       });
       var stop = $(this).parent().parent().parent();
       stop.insertAfter(stop.next());
@@ -165,7 +163,7 @@ function indexImages()
 }
 function fixImageSize(img)
 {
-  
+
   var aspect = img.width() / img.height();
   img.attr("data-aspect", aspect);
   console.log("Aspect Ratio: " + aspect);
@@ -239,7 +237,7 @@ $(document).ready(function() {
     commandLine.val("Loading......");
     commandLine.prop('disabled', true);
     event.preventDefault();
-    
+
     var href = "/addStop";
     if(command.trim().length > 0) { // command is good, do ajax
       console.log("Command sent to server at " + href + " with command " + command);
@@ -273,7 +271,7 @@ $(document).ready(function() {
       console.log("Command not sent, no command found");
     }
   });
-  
+
     $(".nameTrip").click(function() {
       var name = prompt("What do you want to name your Road Trip?");
       $.post("/nameTrip", {
