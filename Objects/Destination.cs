@@ -231,7 +231,11 @@ namespace UltimateRoadTripMachineNS.Objects
       List<Destination> tripDestinations = RoadTrip.Find(this.GetRoadTripId()).GetDestinations();
       return tripDestinations.Count;
     }
-
+    public Destination GetPreviousDestination()
+    {
+      var destinations = RoadTrip.Find(GetRoadTripId()).GetDestinations();
+      return destinations[GetStop()-1];
+    }
     public void MoveUp()
     {
       {

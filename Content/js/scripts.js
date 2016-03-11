@@ -47,14 +47,17 @@ function fixImageAddClick()
       maximgImg.attr('width', width );
       $('.maximg').css('display', 'flex');
       $(".left-arrow").click(function() {
+        console.log("left arrow");
         var galleryId = $("maximg").attr('data-gallery');
         var index = $("maximg").attr('data-index');
         index++;
         if(index > 5) index = 0;
         if(index < 0) index = 5;
-        $("[data-id="+galleryId+"]").find()
+        var newsrc = $("[data-id="+galleryId+"] [data-index="+index+"]").attr('src');
+        $("maximg").attr('data-index', index);
+        img.attr('src', newsrc);
       })
-    });
+    }); // end maximg clickhandler
     $(this).removeClass("clickhandler");
   });
   $(".moveUpHandler").each(function() {
@@ -197,7 +200,7 @@ $(document).ready(function() {
       var name = prompt("What do you want to name your Road Trip?");
       $.post("/nameTrip", {
         destinationId: $("[data-id]").attr('data-id'),
-        name: name
+        name: name,
       });
     });
   });
