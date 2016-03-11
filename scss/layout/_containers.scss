@@ -12,7 +12,25 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
+  .fire{
+    text-align: center;
+    margin-top: 26vh;
+    font-size: 3em;
+    padding: 10px;
+      text-transform: uppercase;
+  color: white;
+  text-shadow: 0    0   2px #fefcc9,
+               1px -1px 3px #feec85,
+              -2px -2px 4px #ffae34,
+               2px -4px 5px #ec760c,
+              -2px -6px 6px #cd4606,
+               0   -8px 7px #973716,
+               1px -9px 8px #451b0e;
+    @media #{$brk-narrow}{
+      font-size: 2.5em;
+      margin-top: 20vh;
+    }
+  }
 }
 
 .map {
@@ -122,4 +140,10 @@
 }
 .stop {
   background-color: rgba(0,0,0,0.6)
+}
+
+.terms {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }

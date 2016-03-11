@@ -65,8 +65,9 @@
 }
 
 .sliding-panel-button {
-  padding: 2px 40px;
+  padding: 2px 30px;
   margin-top: 20px;
+  margin-right: 2.2em;
   display: block;
   cursor: pointer;
   position: relative;
@@ -81,8 +82,8 @@
     font-size: 3em;
   }
   @media #{$brk-narrow} {
-    margin-right: 1.6em;
-    margin-top: 3em;
+
+    margin: 3.2em 1.6em 0 0;
     padding: 2px 12px;
     border-radius: 5px;
 

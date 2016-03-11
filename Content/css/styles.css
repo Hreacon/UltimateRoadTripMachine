@@ -42,6 +42,22 @@ html {
       cursor: pointer;
       background-color: #47BCEB; }
 
+.nameTrip {
+  margin: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  display: none; }
+  .nameTrip button {
+    height: 2.8em;
+    border-radius: 6px;
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.9);
+    background-color: #666;
+    border: none;
+    color: white;
+    font-family: "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif; }
+    .nameTrip button:hover {
+      background-color: #888; }
+
 .map {
   margin-top: 1em;
   width: 100%;
@@ -88,6 +104,18 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
+  .content .fire {
+    text-align: center;
+    margin-top: 26vh;
+    font-size: 3em;
+    padding: 10px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0    0   2px #fefcc9, 1px -1px 3px #feec85, -2px -2px 4px #ffae34, 2px -4px 5px #ec760c, -2px -6px 6px #cd4606, 0   -8px 7px #973716, 1px -9px 8px #451b0e; }
+    @media (max-width: 770px) {
+      .content .fire {
+        font-size: 2.5em;
+        margin-top: 20vh; } }
 
 .map {
   max-width: 1200px;
@@ -185,6 +213,11 @@ html {
 .stop {
   background-color: rgba(0, 0, 0, 0.6); }
 
+.terms {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto; }
+
 footer {
   width: 100%;
   background-color: #222;
@@ -208,10 +241,14 @@ footer {
     footer .footer-primary-contacts a {
       color: white;
       text-decoration: none; }
+      footer .footer-primary-contacts a:hover {
+        color: #777; }
     footer .footer-primary-contacts .fa-road {
       color: #ffb84d; }
     footer .footer-primary-contacts i {
       font-size: 2em; }
+      footer .footer-primary-contacts i:hover {
+        color: #42A8D1; }
     @media (max-width: 770px) {
       footer .footer-primary-contacts li {
         width: 100%; }
@@ -344,8 +381,9 @@ footer {
     visibility: visible; }
 
 .sliding-panel-button {
-  padding: 2px 40px;
+  padding: 2px 30px;
   margin-top: 20px;
+  margin-right: 2.2em;
   display: block;
   cursor: pointer;
   position: relative;
@@ -359,8 +397,7 @@ footer {
     font-size: 3em; }
   @media (max-width: 770px) {
     .sliding-panel-button {
-      margin-right: 1.6em;
-      margin-top: 3em;
+      margin: 3.2em 1.6em 0 0;
       padding: 2px 12px;
       border-radius: 5px; } }
 
