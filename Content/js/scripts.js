@@ -79,10 +79,13 @@ function fixImageAddClick()
   });
   $(".deleteHandler").each(function() {
     $(this).click(function() {
-      var href = "/deleteDestination/" + $(this).parent().attr("data-id");
-      console.log("AJAX Sending Move/Delete");
-      $.ajax(href);
-      $(this).parent().parent().remove();
+      if(confirm("Are you sure you want to delete this stop?"))
+      {
+        var href = "/deleteDestination/" + $(this).parent().attr("data-id");
+        console.log("AJAX Sending Move/Delete");
+        $.ajax(href);
+        $(this).parent().parent().remove();
+      }
     });
     $(this).removeClass("deleteHandler");
   });
