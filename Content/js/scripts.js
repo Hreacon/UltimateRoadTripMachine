@@ -6,12 +6,16 @@
 function fixImageAddClick()
 {
   console.log("Fix Image Add Click");
-  var uniqueId=Math.floor((Math.random()*1000000) + 1);
-  $(".clickhandler").parent().attr('data-id', uniqueId);
-  console.log("UniqueId: "+uniqueId);
   var i = 0;
   $(".clickhandler").each(function() {
+    if($(".clickhandler").parent().attr('data-id') > 0)
+    {
+      var uniqueId=Math.floor((Math.random()*1000000) + 1);
+      $(".clickhandler").parent().attr('data-id', uniqueId);
+      console.log("UniqueId: "+uniqueId);
+    }
     var img = $(this).find("img");
+    console.log(img);
     img.on('load', function() {
       var aspect = img.width() / img.height();
       img.attr("data-aspect", aspect);
@@ -26,7 +30,7 @@ function fixImageAddClick()
       var img = $(this).children("img");
       var src = img.attr('src');
       // carousel info
-      $(".maximg").attr('data-gallery', $(this).parent().attr('data-id'));
+      $(".maximg").attr('data-gid', $(this).parent().parent().find(".results-header").attr('data-id'));
       $(".maximg").attr('data-index', img.attr('data-index'));
       if( window.innerWidth > 1000 ) {
         $('.maximg .maximginner').attr('top', '5%');
@@ -46,17 +50,56 @@ function fixImageAddClick()
       maximgImg.attr('height', height );
       maximgImg.attr('width', width );
       $('.maximg').css('display', 'flex');
-      $(".left-arrow").click(function() {
-        console.log("left arrow");
-        var galleryId = $("maximg").attr('data-gallery');
-        var index = $("maximg").attr('data-index');
+      $(".left-arrow").click(function(e) {
+        e.stopPropagation();
+        var galleryId = $(".maximg").attr('data-gid');
+        var index = $(".maximg").attr('data-index');
+        index--;
+        if(index > 5) index = 0;
+        if(index < 0) index = 5;
+        var targetImg = $("[data-id="+galleryId+"]").parent().find("[data-index="+index+"]");
+        var newsrc = targetImg.attr('src');
+        var newAspect = targetImg.attr('data-aspect');
+        console.log("left arrow: id: " + galleryId + ", Index: " + index + ", newsrc: " + newsrc);
+        $(".maximg").attr('data-index', index);
+        if( newAspect > 1 ) {
+          width = window.innerWidth - window.innerWidth*.2;
+          height = width * newAspect;
+        } else {
+          height = window.innerHeight - window.innerHeight*.1;
+          width = height * newAspect;
+        }
+        console.log("dimensions "+width+"x"+height);
+        var maximgImg = $(".maximginner").find("img");
+        maximgImg.attr('src', newsrc);
+        maximgImg.attr('height', height );
+        maximgImg.attr('width', width );
+      });
+      $(".right-arrow").click(function(e) {
+        e.stopPropagation();
+        var galleryId = $(".maximg").attr('data-gid');
+        var index = $(".maximg").attr('data-index');
         index++;
         if(index > 5) index = 0;
         if(index < 0) index = 5;
-        var newsrc = $("[data-id="+galleryId+"] [data-index="+index+"]").attr('src');
-        $("maximg").attr('data-index', index);
-        img.attr('src', newsrc);
-      })
+        var targetImg = $("[data-id="+galleryId+"]").parent().find("[data-index="+index+"]");
+        var newsrc = targetImg.attr('src');
+        var newAspect = targetImg.attr('data-aspect');
+        console.log("right arrow: id: " + galleryId + ", Index: " + index + ", newsrc: " + newsrc);
+        $(".maximg").attr('data-index', index);
+        if( newAspect > 1 ) {
+          width = window.innerWidth - window.innerWidth*.2;
+          height = width * newAspect;
+        } else {
+          height = window.innerHeight - window.innerHeight*.1;
+          width = height * newAspect;
+        }
+        console.log("dimensions "+width+"x"+height);
+        var maximgImg = $(".maximginner").find("img");
+        maximgImg.attr('src', newsrc);
+        maximgImg.attr('height', height );
+        maximgImg.attr('width', width );
+      });
     }); // end maximg clickhandler
     $(this).removeClass("clickhandler");
   });
@@ -201,6 +244,8 @@ $(document).ready(function() {
       $.post("/nameTrip", {
         id: $("#roadTripId").val(),
         name: name,
+      }).done(function() {
+        $(".nameTrip").html(name);
       });
     });
   });

@@ -178,7 +178,7 @@ GetImages DONE
 GetMap DONE
 Button at the bottom of the roadtrip that allows the user to name the road trip DONE
 homemodule route for rename road trips CHRIS
-route to show road trips
+route to show road trips DONE JUST HAVING IMAGE TROUBLE
 delete button "are you sure" DONE
 
-Carousel SHITTY CLICK LISTENER
+Carousel SHITTY CLICK LISTENER FUCKIN WORKS YEAH
