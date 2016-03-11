@@ -88,6 +88,18 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
+  .content .fire {
+    text-align: center;
+    margin-top: 26vh;
+    font-size: 3em;
+    padding: 10px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0    0   2px #fefcc9, 1px -1px 3px #feec85, -2px -2px 4px #ffae34, 2px -4px 5px #ec760c, -2px -6px 6px #cd4606, 0   -8px 7px #973716, 1px -9px 8px #451b0e; }
+    @media (max-width: 770px) {
+      .content .fire {
+        font-size: 2.5em;
+        margin-top: 20vh; } }
 
 .map {
   max-width: 1200px;
@@ -343,8 +355,9 @@ footer {
     visibility: visible; }
 
 .sliding-panel-button {
-  padding: 2px 40px;
+  padding: 2px 30px;
   margin-top: 20px;
+  margin-right: 2.2em;
   display: block;
   cursor: pointer;
   position: relative;
@@ -358,8 +371,7 @@ footer {
     font-size: 3em; }
   @media (max-width: 770px) {
     .sliding-panel-button {
-      margin-right: 1.6em;
-      margin-top: 3em;
+      margin: 3.2em 1.6em 0 0;
       padding: 2px 12px;
       border-radius: 5px; } }
 
