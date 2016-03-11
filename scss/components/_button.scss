@@ -44,17 +44,18 @@
   margin: 2em;
   margin-left: auto;
   margin-right: auto;
-  display: none;
+  // display: none;
   button {
-    height: 2.8em;
+    padding: 10px 18px;
     border-radius: 6px;
     box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.9);
-    background-color: #666;
+    background-color: #DA7D15;
     border: none;
     color: white;
     font-family: $lucida-grande;
+    font-size: 1.8em;
     &:hover{
-      background-color: #888;
+      background-color: #ffb84d;
     }
   }
 }
