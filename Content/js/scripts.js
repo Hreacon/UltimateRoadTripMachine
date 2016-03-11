@@ -106,7 +106,10 @@ function fixImageAddClick()
     $(this).click(function() {
       var href = "/moveUp/" + $(this).parent().attr("data-id");
       console.log("AJAX Sending Move/Delete");
-      $.ajax(href);
+      var href = "/roadTrip/" + $("#roadTripId").val();
+      $.ajax(href).done(function() {
+        window.location.href = href;
+      });
       var stop = $(this).parent().parent().parent();
       stop.insertBefore(stop.prev());
     });
@@ -116,7 +119,10 @@ function fixImageAddClick()
     $(this).click(function() {
       var href = "/moveDown/" + $(this).parent().attr("data-id");
       console.log("AJAX Sending Move/Delete");
-      $.ajax(href);
+      var href = "/roadTrip/" + $("#roadTripId").val();
+      $.ajax(href).done(function() {
+        window.location.href = href;
+      });
       var stop = $(this).parent().parent().parent();
       stop.insertAfter(stop.next());
     });
@@ -153,11 +159,9 @@ function indexImages()
   // if the first stop, hide up arrow
   // if the last stop, hide down arrow
   // if no stops, do nothing
-  var stopCount = $(".stop").length;
-  if(stopCount > 0)
-  {
-    
-  }
+  $(".fa").show();
+  $(".stop").first().find(".fa-arrow-circle-up").hide();
+  $(".stop").last().find(".fa-arrow-circle-down").hide();
 }
 function fixImageSize(img)
 {

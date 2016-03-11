@@ -234,7 +234,7 @@ namespace UltimateRoadTripMachineNS.Objects
     public Destination GetPreviousDestination()
     {
       var destinations = RoadTrip.Find(GetRoadTripId()).GetDestinations();
-      return destinations[GetStop()-1];
+      return destinations[GetStop()-2];
     }
     public List<string> GetImages(int limit = 6)
     {
