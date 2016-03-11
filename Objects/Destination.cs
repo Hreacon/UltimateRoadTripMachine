@@ -236,6 +236,21 @@ namespace UltimateRoadTripMachineNS.Objects
       var destinations = RoadTrip.Find(GetRoadTripId()).GetDestinations();
       return destinations[GetStop()-1];
     }
+    public List<string> GetImages(int limit = 6)
+    {
+      return Scrubber.Search(GetName(), limit);
+    }
+    public string GetMapLink()
+    {
+      string output = String.Empty;
+      if(GetStop() == 1)
+      {
+        output = Scrubber.GetMapOnLocation(GetName());
+      } else {
+        output = Scrubber.GetMapDirections(GetPreviousDestination().GetName(), GetName());
+      }
+      return output;
+    }
     public void MoveUp()
     {
       {

@@ -199,7 +199,7 @@ $(document).ready(function() {
     $(".nameTrip").click(function() {
       var name = prompt("What do you want to name your Road Trip?");
       $.post("/nameTrip", {
-        destinationId: $("[data-id]").attr('data-id'),
+        id: $("#roadTripId").val(),
         name: name,
       });
     });

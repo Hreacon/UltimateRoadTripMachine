@@ -1,0 +1,20 @@
+<div class="stop">
+  <div class="results-header" data-id="@Model.GetId()">
+    <h1 class="search-title">@Model.GetName()</h1>
+    <i class="fa fa-arrow-circle-down moveDownHandler"></i>
+    <i class="fa fa-arrow-circle-up moveUpHandler"></i>
+    <i class="fa fa-times-circle deleteHandler"></i>
+  </div>
+  <div class="map" id="map_canvas">
+    @Html.Partial("map.cshtml", Model.GetMapLink())
+  </div>
+  <!-- //images displayed from search// -->
+  <div class="photos">
+    @Html.Partial("list.cshtml", Model.GetImages())
+  </div>
+  <!-- //videos displayed from search// -->
+  <div class="videos">
+
+  </div>
+  <input type="hidden" id="roadTripId" value="@Model.GetRoadTripId()">
+</div>

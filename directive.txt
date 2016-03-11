@@ -173,12 +173,12 @@ results header is accidentally on the photos class
 
 FINAL HOUR:
 Destination methods needed for view roadtrip:
-GetPreviousDestination
-GetImages
-GetMap
+GetPreviousDestination DONE
+GetImages DONE
+GetMap DONE
 Button at the bottom of the roadtrip that allows the user to name the road trip DONE
-homemodule route for rename road trips
-
+homemodule route for rename road trips CHRIS
+route to show road trips
 delete button "are you sure" DONE
 
-Carousel
+Carousel SHITTY CLICK LISTENER
